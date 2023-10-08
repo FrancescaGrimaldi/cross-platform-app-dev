@@ -10,7 +10,6 @@ import CardContainer from './components/CardContainer';
 import TitleArea from './components/TitleArea';
 import WinnerCard from './components/WinnerCard';
 
-// try to do a separate component for the homepage
 const LottoApp = () => {
   const images = {
     background: require('./images/background.jpg'),
