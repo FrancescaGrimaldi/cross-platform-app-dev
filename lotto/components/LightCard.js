@@ -3,26 +3,33 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable semi */
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable quotes */
 import React, { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Pressable } from 'react-native';
 
 const LightCard = (props) => {
     const [isPressed, setIsPressed] = useState(false);
 
+    const onLightCardPress = () => {
+        setIsPressed(!isPressed);
+    }
+
     return (
-        <View style={{ 
-            backgroundColor: "#b2d2aa",
-            height: 60,
-            width: 150,
-            borderRadius: 10,
-            margin: 4,
-            alignItems: "center",
-            justifyContent: "center",
-          }}>
-          <Text onPress={() => setIsPressed(!isPressed)} style={{color: '#22391f', fontWeight: 'bold'}}>{props.boldText}</Text>
-          { isPressed ? <Text onPress={() => setIsPressed(!isPressed)} style={{color: '#718c6b'}}>{props.smallText}</Text> : null }
-        </View>
+        <Pressable onPress={onLightCardPress}>
+
+            <View style={{ 
+                backgroundColor: '#b2d2aa',
+                height: 60,
+                width: 150,
+                borderRadius: 10,
+                margin: 4,
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}>
+            <Text style={{color: '#22391f', fontWeight: 'bold'}}>{props.boldText}</Text>
+            { isPressed && <Text style={{color: '#4e6b4a'}}>{props.smallText}</Text> }
+            </View>
+            
+        </Pressable>
     );
 }
 

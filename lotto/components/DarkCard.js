@@ -23,12 +23,12 @@ const DarkCard = (props) => {
 
     return (
         <View style={{ 
-            backgroundColor: "#22391f",
+            backgroundColor: '#22391f',
             height: 40,
             width: 150,
             borderRadius: 10,
             margin: 2,
-            justifyContent: "center",
+            justifyContent: 'center',
         }}>
             <Text style={{color: '#ddf0d8', fontWeight: 'bold', marginLeft: 7}}>{props.text}</Text>
             {logos[props.logo]}

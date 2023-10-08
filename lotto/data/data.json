@@ -1,0 +1,68 @@
+{
+    "results" : [
+        {
+            "id" : "1",
+            "week" : "40",
+            "winner" : "John",
+            "city" : "Oslo",
+            "prize" : "10000 NOK",
+            "winningNumbers" : "12, 28, 9, 42, 17"
+        },
+        {
+            "id" : "2",
+            "week" : "39",
+            "winner" : "Lucy",
+            "city": "Bergen",
+            "prize" : "75000 NOK",
+            "winningNumbers" : "6, 21, 37, 14, 49"
+        },
+        {
+            "id" : "3",
+            "week" : "38",
+            "winner" : "Carl",
+            "city": "Trondheim",
+            "prize" : "30000 NOK",
+            "winningNumbers" : "3, 18, 27, 41, 8"
+        },
+        {
+            "id" : "4",
+            "week" : "37",
+            "winner" : "Frank",
+            "city": "Stavanger",
+            "prize" : "75000 NOK",
+            "winningNumbers" : "10, 33, 22, 46, 12"
+        },
+        {
+            "id" : "5",
+            "week" : "36",
+            "winner" : "Jim",
+            "city": "Tromsø",
+            "prize" : "1900 NOK",
+            "winningNumbers" : "7, 19, 34, 15, 38"
+        },
+        {
+            "id" : "6",
+            "week" : "35",
+            "winner" : "Alex",
+            "city": "Bodø",
+            "prize" : "200000 NOK",
+            "winningNumbers" : "2, 25, 31, 50, 9"
+        },
+        {
+            "id" : "7",
+            "week" : "34",
+            "winner" : "Luke",
+            "city": "Kristiansand",
+            "prize" : "60000 NOK",
+            "winningNumbers" : "13, 29, 44, 5, 36"
+        },
+        {
+            "id" : "8",
+            "week" : "33",
+            "winner" : "Mary",
+            "city": "Heimdal",
+            "prize" : "5000 NOK",
+            "winningNumbers" : "4, 20, 30, 45, 11"
+        }
+    ]
+}

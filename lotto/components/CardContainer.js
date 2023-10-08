@@ -23,11 +23,12 @@ const CardContainer = (props) => {
     return (
         <View style={{ 
             flex: 1, 
-            justifyContent: "center", 
-            alignItems: "center",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            alignContent: "center",
+            justifyContent: 'center', 
+            alignItems: 'center',
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            alignContent: 'center',
+            margin: 10,
         }}>
             { children }
         </View>
