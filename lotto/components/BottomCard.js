@@ -8,7 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const BottomCard = (props) => {
     const onBottomCardPress = () => {
-        props.bottomPress('results')
+        props.bottomPress('Results')
     }
 
     return (
