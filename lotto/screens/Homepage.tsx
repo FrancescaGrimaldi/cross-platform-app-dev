@@ -10,7 +10,6 @@ import BottomCard from '../components/BottomCard';
 import CardContainer from '../components/CardContainer';
 import TitleArea from '../components/TitleArea';
 
-
 const Homepage = ( {navigation}: {navigation: any} ) => {
     const images = {
         background: require('../images/background.jpg'),

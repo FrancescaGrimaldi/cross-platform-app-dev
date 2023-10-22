@@ -3,6 +3,7 @@
 /* eslint-disable eol-last */
 /* eslint-disable react-native/no-inline-styles */
 
+/* payment logic not implemented, user is redirected to homepage */
 import React from 'react';
 import { Text, View, Pressable } from 'react-native';
 import DarkCard from '../components/DarkCard';
