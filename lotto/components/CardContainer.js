@@ -14,9 +14,9 @@ const CardContainer = (props) => {
     
     for (let instance of props.children) {
         if (props.color === "light") {
-            children.push(<LightCard key={instance} boldText={instance[0]} smallText={instance[1]} />);
+            children.push(<LightCard key={instance} boldText={instance[0]} smallText={instance[1]} switchPage={props.switchPage}/>);
         } else if (props.color === "dark") {
-            children.push(<DarkCard key={instance} text={instance[0]} logo={instance[1]} />);
+            children.push(<DarkCard key={instance} text={instance[0]} logo={instance[1]} switchPage={props.switchPage}/>);
         }
     }
 

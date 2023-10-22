@@ -80,5 +80,31 @@
             "prize" : "27000 NOK",
             "winningNumbers" : "24, 32, 19, 47, 50"
         }
+    ],
+    "subscription" : [
+        {
+            "id" : "1",
+            "length" : "1 week",
+            "price" : "Pay 50 NOK",
+            "paragraph" : "For just 50 NOK, you can secure a week of excitement and opportunity. With your subscription, you'll receive exclusive access to a variety of exciting lottery draws, giving you a chance to turn your dreams into reality. Don't miss out on your shot at life-changing jackpots – subscribe today and let the anticipation begin!"
+        },
+        {
+            "id" : "2",
+            "length" : "2 weeks",
+            "price" : "Pay 90 NOK",
+            "paragraph" : "Unlock double the fun and a sweet discount with our 2-week lotto subscription offer! For only 90 NOK, you'll get a full 14 days of access to our thrilling lottery draws. That's two weeks of excitement and twice the chances to win life-changing jackpots. Don't miss this limited-time opportunity to maximize your winning potential at a discounted rate. Subscribe now and let the countdown to your fortune begin!"
+        },
+        {
+            "id" : "3",
+            "length" : "5 weeks",
+            "price" : "Pay 200 NOK",
+            "paragraph" : "Elevate your lotto experience with our exclusive 5-week subscription plan! For just 200 NOK, you can enjoy an extended period of excitement and increase your chances of hitting the jackpot. What's even better? You'll receive a fantastic discount when you opt for this extended subscription, allowing you to play for five weeks at an unbeatable rate. Don't wait; seize the opportunity to turn your dreams into reality and subscribe now for an extraordinary journey into the world of lotto!"
+        },
+        {
+            "id" : "4",
+            "length" : "Subscribe",
+            "price" : "Go to payment",
+            "paragraph" : "With a flexible monthly payment option, you can customize your subscription to fit your budget. Whether you're a casual player or a dedicated lotto enthusiast, our monthly subscription lets you access exciting draws, exclusive promotions, and fantastic discounts. Say goodbye to missing out on opportunities, and say hello to a consistent chance at life-changing wins. Subscribe today, and let the excitement of lotto become a seamless part of your life!"
+        }
     ]
 }

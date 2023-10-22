@@ -3,14 +3,12 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable semi */
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, View, Pressable } from 'react-native';
 
 const LightCard = (props) => {
-    const [isPressed, setIsPressed] = useState(false);
-
     const onLightCardPress = () => {
-        setIsPressed(!isPressed);
+        props.switchPage('Subscription', props.boldText)
     }
 
     return (
@@ -26,7 +24,7 @@ const LightCard = (props) => {
                 justifyContent: 'center',
             }}>
             <Text style={{color: '#22391f', fontWeight: 'bold'}}>{props.boldText}</Text>
-            { isPressed && <Text style={{color: '#4e6b4a'}}>{props.smallText}</Text> }
+            <Text style={{color: '#4e6b4a'}}>{props.smallText}</Text>
             </View>
             
         </Pressable>

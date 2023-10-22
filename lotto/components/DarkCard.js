@@ -7,6 +7,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialComm from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAw5 from 'react-native-vector-icons/FontAwesome5';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -19,6 +20,7 @@ const DarkCard = (props) => {
         "star": <AntDesign name='star' size={20} color='#ddf0d8' style={{position: 'absolute', right: 10}} />,
         "pencil": <Entypo name='pencil' size={20} color='#ddf0d8' style={{position: 'absolute', right: 10}} />,
         "info": <AntDesign name='questioncircleo' size={20} color='#ddf0d8' style={{position: 'absolute', right: 10}} />,
+        "money": <MaterialIcons name='payments' size={30} color='#ddf0d8' style={{position: 'absolute', right: 15}} />,
     };
 
     return (

@@ -22,6 +22,12 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
         dark: [['Lucky coupon', 'clover'], ['Cooperative bank', 'pie-chart'], ['System games', 'system'], ['Super draw', 'star'], ['Fill in yourself', 'pencil'], ['How to play', 'info']],
     }
 
+    const switchLightPage = (specificPage: any, routeParam: any) => {
+        if (specificPage === 'Subscription') {
+            navigation.navigate('Subscription', {week: routeParam});
+        }
+    }
+
     return (
         <ScrollView style={{flex: 1}}>
             <View style={{
@@ -48,7 +54,6 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
                         />
                     </View>
 
-                    <Text style={{color: '#22391f', fontWeight: 'bold', fontSize: 15, marginLeft: 20, marginTop: 15}}>Log in</Text>
                     <TitleArea bigTitle="New lotto millionaires every Thursday" subtitle="About 14 million NOK in the first prize pot" />
                     
                     <View style={{
@@ -57,7 +62,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
                         justifyContent: 'center',
                     }}>
                         <Text style={{color: '#22391f', fontWeight: 'bold'}}>Deadline Wednesday at 18:00</Text>
-                        <CardContainer color="light" children={ childrenCards.light } />
+                        <CardContainer color="light" children={ childrenCards.light } switchPage={switchLightPage}/>
                     </View>
 
                 </ImageBackground>
