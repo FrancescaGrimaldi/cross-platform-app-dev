@@ -20,7 +20,6 @@ const BottomCard = (props) => {
                 width: 310,
                 height: 90,
                 borderRadius: 10,
-                marginBottom: 5,
             }}>
                 <Text style={{fontSize: 20, fontWeight: 'bold', color: '#22391f', marginLeft: 10}}>{props.mainText}</Text>
                 <Text style={{color: '#22391f', marginLeft: 10}}>{props.caption}</Text>
