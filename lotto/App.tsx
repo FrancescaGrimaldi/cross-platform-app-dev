@@ -12,6 +12,7 @@ import Homepage from './screens/Homepage';
 import Results from './screens/Results';
 import Subscription from './screens/Subscription';
 import Profile from './screens/Profile';
+import HowToPlay from './screens/HowToPlay';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,6 +33,7 @@ function HomeScreen() {
             <MaterialComm name="account" color={color} size={size} />
           ),
         }}/>
+      <Tab.Screen name="HowToPlay" component={HowToPlay}/>
     </Tab.Navigator>
   );
 }

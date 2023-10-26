@@ -81,7 +81,7 @@
             "winningNumbers" : "24, 32, 19, 47, 50"
         }
     ],
-    "subscription" : [
+    "subscriptions" : [
         {
             "id" : "1",
             "length" : "1 week",
@@ -105,6 +105,42 @@
             "length" : "Subscribe",
             "price" : "Go to payment",
             "paragraph" : "With a flexible monthly payment option, you can customize your subscription to fit your budget. Whether you're a casual player or a dedicated lotto enthusiast, our monthly subscription lets you access exciting draws, exclusive promotions, and fantastic discounts. Say goodbye to missing out on opportunities, and say hello to a consistent chance at life-changing wins. Subscribe today, and let the excitement of lotto become a seamless part of your life!"
+        }
+    ],
+    "howtoplay" : [
+        {
+            "id" : "1",
+            "title" : "1. Choose Your Subscription",
+            "content" : "First, select the subscription plan that suits your playing style and budget. We offer flexible options, including weekly, bi-weekly, and monthly subscriptions, each with its unique benefits and discounts." 
+        },
+        {
+            "id" : "2",
+            "title" : "2. Pick Your Numbers",
+            "content" : "On the 'Fill in Yourself' page, you have the power to choose your lucky numbers. Simply click on the numbers you want to play for the upcoming draw. You can also choose to have the system generate random numbers for you by using the 'Quick Pick' option if you prefer to leave it to chance."
+        },
+        {
+            "id" : "3",
+            "title" : "3. Review Your Selection",
+            "content" : "Before finalizing your ticket, double-check your chosen numbers to make sure they're the ones you want to play. You can make changes or reset your selection as needed."
+        },
+        {
+            "id" : "4",
+            "title" : "4. Subscription Confirmation",
+            "content" : "If you've chosen a subscription plan, ensure your payment details are up-to-date to ensure uninterrupted play. You'll be automatically entered into the lotto draws for the duration of your subscription."
+        },
+        {
+            "id" : "5",
+            "title" : "5. Sit Back and Enjoy",
+            "content" : "Once you've completed your selection and confirmed your subscription, you're all set! Get ready to enjoy the thrill of lotto draws and keep an eye on your numbers to see if you've won. We'll notify you of any winnings, and your prizes will be credited to your account."
+        },
+        {
+            "id" : "6",
+            "title" : "6. Stay Informed",
+            "content" : "Keep track of upcoming draw dates, jackpot sizes, and any exclusive promotions or special events through our notifications and announcements."
+        },
+        {
+            "id": "7",
+            "content" : "Playing the lotto has never been easier. With our user-friendly interface and customizable subscription options, you're just a few clicks away from the chance to turn your dreams into reality. Good luck, and may your lucky numbers come through!"
         }
     ]
 }

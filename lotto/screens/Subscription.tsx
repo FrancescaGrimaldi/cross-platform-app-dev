@@ -16,7 +16,7 @@ const Subscription = ( {navigation, route}: {navigation: any, route: any} ) => {
     
     const getSubscription = async () => {
         try {
-            const response = await fetch('https://9696-188-113-90-45.ngrok-free.app/subscription');
+            const response = await fetch('https://9696-188-113-90-45.ngrok-free.app/subscriptions');
             const data = await response.json();
             setSubscrData(data)
         } catch (error) {
