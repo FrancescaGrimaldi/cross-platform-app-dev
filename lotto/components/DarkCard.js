@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable semi */
 /* eslint-disable jsx-quotes */
 /* eslint-disable eol-last */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable quotes */
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Pressable } from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialComm from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -23,18 +24,24 @@ const DarkCard = (props) => {
         "money": <MaterialIcons name='payments' size={30} color='#ddf0d8' style={{position: 'absolute', right: 15}} />,
     };
 
+    const onDarkCardPress = () => {
+        props.switchPage(props.text)
+    }
+
     return (
-        <View style={{ 
-            backgroundColor: '#22391f',
-            height: 40,
-            width: 150,
-            borderRadius: 10,
-            margin: 2,
-            justifyContent: 'center',
-        }}>
-            <Text style={{color: '#ddf0d8', fontWeight: 'bold', marginLeft: 7}}>{props.text}</Text>
-            {logos[props.logo]}
-        </View>
+        <Pressable onPress={onDarkCardPress}>
+            <View style={{ 
+                backgroundColor: '#22391f',
+                height: 40,
+                width: 150,
+                borderRadius: 10,
+                margin: 2,
+                justifyContent: 'center',
+            }}>
+                <Text style={{color: '#ddf0d8', fontWeight: 'bold', marginLeft: 7}}>{props.text}</Text>
+                {logos[props.logo]}
+            </View>
+        </Pressable>
     );
 };
 

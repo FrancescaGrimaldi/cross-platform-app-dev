@@ -5,7 +5,6 @@
 /* eslint-disable eol-last */
 /* eslint-disable react-native/no-inline-styles */
 
-/* payment logic not implemented, user is redirected to homepage */
 import React, { useState, useEffect } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 
@@ -14,7 +13,7 @@ const HowToPlay = ( {navigation}: {navigation: any} ) => {
     
     const getParagraphs = async () => {
         try {
-            const response = await fetch('https://9696-188-113-90-45.ngrok-free.app/howtoplay');
+            const response = await fetch('https://6fa2-188-113-90-45.ngrok-free.app/howtoplay');
             const pars = await response.json();
             setParagraphs(pars)
         } catch (error) {
@@ -24,7 +23,7 @@ const HowToPlay = ( {navigation}: {navigation: any} ) => {
 
     useEffect( () => {
         getParagraphs();
-    });
+    }, []);
 
     return (
         <ScrollView style={{
@@ -34,12 +33,15 @@ const HowToPlay = ( {navigation}: {navigation: any} ) => {
         }}>
             {
                 paragraphs.map((item: { id: any; title: any; content: any; }, index: any) => (
-                    <View key={index}>
-                        <Text v-if={item.title} style={{
+                    <View key={index} style={{marginTop: 20}}>
+                        { item.title &&
+                        <Text style={{
                             fontSize: 20,
+                            fontWeight: 'bold',
                             color: '#22391f',
-                            margin: 20,
-                        }}>{item.title}</Text>
+                            marginLeft: 20,
+                        }}>{item.title}</Text>}
+                        
                         <Text style={{
                             fontSize: 18,
                             color: '#22391f',

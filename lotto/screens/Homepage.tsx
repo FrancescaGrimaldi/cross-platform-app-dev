@@ -27,6 +27,15 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
         }
     }
 
+    const switchDarkPage = (specificPage: any) => {
+        if (specificPage === 'How to play') {
+            navigation.navigate('How to play');
+        }
+        if (specificPage === 'Fill in yourself') {
+            navigation.navigate('Fill in yourself');
+        }
+    }
+
     return (
         <ScrollView style={{flex: 1}}>
             <View style={{
@@ -66,7 +75,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
 
                 </ImageBackground>
 
-                <CardContainer color="dark" children={ childrenCards.dark } />
+                <CardContainer color="dark" children={ childrenCards.dark } switchPage={switchDarkPage}/>
                 <BottomCard mainText="Results" caption="All winning numbers and prizes" bottomPress={() => navigation.navigate('Results')}/>
             </View>
         </ScrollView>

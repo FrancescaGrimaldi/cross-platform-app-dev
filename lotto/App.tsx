@@ -13,6 +13,7 @@ import Results from './screens/Results';
 import Subscription from './screens/Subscription';
 import Profile from './screens/Profile';
 import HowToPlay from './screens/HowToPlay';
+import Fill from './screens/Fill';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -33,7 +34,6 @@ function HomeScreen() {
             <MaterialComm name="account" color={color} size={size} />
           ),
         }}/>
-      <Tab.Screen name="HowToPlay" component={HowToPlay}/>
     </Tab.Navigator>
   );
 }
@@ -45,6 +45,8 @@ const LottoApp = () => {
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="Results" component={Results} />
         <Stack.Screen name="Subscription" component={Subscription} />
+        <Stack.Screen name="How to play" component={HowToPlay}/>
+        <Stack.Screen name="Fill in yourself" component={Fill}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

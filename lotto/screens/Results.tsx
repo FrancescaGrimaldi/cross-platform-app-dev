@@ -14,7 +14,7 @@ const Results = ( {navigation}: {navigation: any} ) => {
 
     const getResults = async () => {
         try {
-            const response = await fetch('https://9696-188-113-90-45.ngrok-free.app/results?_sort=week&_order=desc');
+            const response = await fetch('https://6fa2-188-113-90-45.ngrok-free.app/results?_sort=week&_order=desc');
             const initialItems = await response.json();
             setItems(initialItems)
         } catch (error) {
@@ -24,7 +24,7 @@ const Results = ( {navigation}: {navigation: any} ) => {
 
     useEffect( () => {
         getResults();
-    });
+    }, []);
 
     return (
         <SafeAreaView>

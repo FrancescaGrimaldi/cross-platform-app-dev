@@ -6,17 +6,22 @@
 
 /* payment logic not implemented, user is redirected to homepage */
 import React, { useState, useEffect } from 'react';
-import { Text, View, Pressable } from 'react-native';
+import { Text, View } from 'react-native';
 import DarkCard from '../components/DarkCard';
 
 const Subscription = ( {navigation, route}: {navigation: any, route: any} ) => {
     const {week} = route.params;
 
     const [subscrData, setSubscrData] = useState<{ length: number, paragraph: string, price: string }[]>([]);
+
+    const switchDarkPage = () => {
+        // redirect to homepage
+        navigation.navigate('Home');
+    }
     
     const getSubscription = async () => {
         try {
-            const response = await fetch('https://9696-188-113-90-45.ngrok-free.app/subscriptions');
+            const response = await fetch('https://6fa2-188-113-90-45.ngrok-free.app/subscriptions');
             const data = await response.json();
             setSubscrData(data)
         } catch (error) {
@@ -53,9 +58,7 @@ const Subscription = ( {navigation, route}: {navigation: any, route: any} ) => {
                 margin: 20,
             }}>{text}</Text>
 
-            <Pressable onPress={() => navigation.navigate('Home')}>
-                <DarkCard text={price} logo="money" />
-            </Pressable>
+            <DarkCard text={price} logo="money" switchPage={switchDarkPage}/>
         </View>
     );
 }

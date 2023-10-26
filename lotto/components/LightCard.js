@@ -23,8 +23,8 @@ const LightCard = (props) => {
                 alignItems: 'center',
                 justifyContent: 'center',
             }}>
-            <Text style={{color: '#22391f', fontWeight: 'bold'}}>{props.boldText}</Text>
-            <Text style={{color: '#4e6b4a'}}>{props.smallText}</Text>
+                <Text style={{color: '#22391f', fontWeight: 'bold'}}>{props.boldText}</Text>
+                <Text style={{color: '#4e6b4a'}}>{props.smallText}</Text>
             </View>
             
         </Pressable>
