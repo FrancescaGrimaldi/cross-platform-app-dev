@@ -1,21 +1,30 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable no-trailing-spaces */
 /* eslint-disable eol-last */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable semi */
 /* eslint-disable react-native/no-inline-styles */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TextInput, SafeAreaView, ScrollView } from 'react-native';
 
 import WinnerCard from '../components/WinnerCard';
 
 const Results = ( {navigation}: {navigation: any} ) => {
+    const [items, setItems] = useState([]);
 
-    const initialItems = require('../data/data.json').results;
-    initialItems.sort((a: { week: number; }, b: { week: number; }) => (a.week > b.week) ? -1 : 1);
-    
-    const [items, setItems] = useState(initialItems);
+    const getResults = async () => {
+        try {
+            const response = await fetch('https://9696-188-113-90-45.ngrok-free.app/results?_sort=week&_order=desc');
+            const initialItems = await response.json();
+            setItems(initialItems)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect( () => {
+        getResults();
+    });
 
     return (
         <SafeAreaView>
@@ -32,7 +41,7 @@ const Results = ( {navigation}: {navigation: any} ) => {
                             });
                             setItems(matchedItems);
                         } else {
-                            setItems(initialItems);
+                            getResults();
                         }
                     }}
                 />
