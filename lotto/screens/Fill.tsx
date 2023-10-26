@@ -10,6 +10,8 @@ import { Text, View, ScrollView, Pressable, TextInput } from 'react-native';
 const Fill = ( {navigation}: {navigation: any} ) => {
     const [rows, setRows] = useState([]);
     const [newRow, setNewRow] = useState(['', '', '', '', '']);
+    const [modRow, setModRow] = useState(['', '', '', '', '']);
+    const [mod, setMod] = useState('');
 
     const getRows = async () => {
         try {
@@ -35,6 +37,29 @@ const Fill = ( {navigation}: {navigation: any} ) => {
             const newResponse = await fetch('https://6fa2-188-113-90-45.ngrok-free.app/fill');
             const newData = await newResponse.json();
             setRows(newData)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const modifyRow = async ( id: any ) => {
+        try {
+            // modify row
+            await fetch('https://6fa2-188-113-90-45.ngrok-free.app/fill/' + id, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    numbers: modRow,
+                }),
+            })
+
+            const newResponse = await fetch('https://6fa2-188-113-90-45.ngrok-free.app/fill');
+            const newData = await newResponse.json();
+            setRows(newData)
+            setModRow(['', '', '', '', ''])
+            setMod('')
         } catch (error) {
             console.error(error);
         }
@@ -99,7 +124,7 @@ const Fill = ( {navigation}: {navigation: any} ) => {
                                 color: '#22391f',
                                 marginLeft: 20,
                             }}>Row {item.id}</Text>
-                            <Pressable>
+                            <Pressable onPress={() => setMod(item.id)}>
                                 <Text style={{
                                     fontSize: 15,
                                     fontWeight: 'bold',
@@ -221,6 +246,94 @@ const Fill = ( {navigation}: {navigation: any} ) => {
                         }}
                     />
                     <Pressable onPress={addNewRow}>
+                        <Text style={{
+                            fontSize: 35,
+                            fontWeight: 'bold',
+                            color: '#22391f',
+                            marginTop: 6,
+                            marginRight: 10,
+                        }}>+</Text>
+                    </Pressable>
+                </View>
+            </View>
+            }
+
+            { mod !== '' &&
+            <View style={{
+                marginTop: 20,
+            }}>
+                <Text style={{
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: '#22391f',
+                    marginLeft: 20,
+                }}>Modify row {mod}</Text>
+
+                <View style={{
+                    marginHorizontal: 20,
+                    flexDirection: 'row',
+                }}>
+                    <TextInput keyboardType="numeric"
+                        onChangeText={text => setModRow([text, modRow[1], modRow[2], modRow[3], modRow[4]])}
+                        style={{
+                            height: 40,
+                            borderColor: '#22391f',
+                            borderWidth: 1,
+                            borderRadius: 40,
+                            margin: 10,
+                            padding: 10,
+                            backgroundColor: '#fff',
+                        }}
+                    />
+                    <TextInput keyboardType="numeric"
+                        onChangeText={text => setModRow([modRow[0], text, modRow[2], modRow[3], modRow[4]])}
+                        style={{
+                            height: 40,
+                            borderColor: '#22391f',
+                            borderWidth: 1,
+                            borderRadius: 40,
+                            margin: 10,
+                            padding: 10,
+                            backgroundColor: '#fff',
+                        }}
+                    />
+                    <TextInput keyboardType="numeric"
+                        onChangeText={text => setModRow([modRow[0], modRow[1], text, modRow[3], modRow[4]])}
+                        style={{
+                            height: 40,
+                            borderColor: '#22391f',
+                            borderWidth: 1,
+                            borderRadius: 40,
+                            margin: 10,
+                            padding: 10,
+                            backgroundColor: '#fff',
+                        }}
+                    />
+                    <TextInput keyboardType="numeric"
+                        onChangeText={text => setModRow([modRow[0], modRow[1], modRow[2], text, modRow[4]])}
+                        style={{
+                            height: 40,
+                            borderColor: '#22391f',
+                            borderWidth: 1,
+                            borderRadius: 40,
+                            margin: 10,
+                            padding: 10,
+                            backgroundColor: '#fff',
+                        }}
+                    />
+                    <TextInput keyboardType="numeric"
+                        onChangeText={text => setModRow([modRow[0], modRow[1], modRow[2], modRow[3], text])}
+                        style={{
+                            height: 40,
+                            borderColor: '#22391f',
+                            borderWidth: 1,
+                            borderRadius: 40,
+                            margin: 10,
+                            padding: 10,
+                            backgroundColor: '#fff',
+                        }}
+                    />
+                    <Pressable onPress={() => modifyRow(mod)}>
                         <Text style={{
                             fontSize: 35,
                             fontWeight: 'bold',
