@@ -11,10 +11,12 @@ import WinnerCard from '../components/WinnerCard';
 
 const Results = ( {navigation}: {navigation: any} ) => {
     const [items, setItems] = useState([]);
+    const dbUrl = 'https://4a16-188-113-90-45.ngrok-free.app/results';
 
+    // fetch results from server
     const getResults = async () => {
         try {
-            const response = await fetch('https://6fa2-188-113-90-45.ngrok-free.app/results?_sort=week&_order=desc');
+            const response = await fetch(dbUrl + '?_sort=week&_order=desc');
             const initialItems = await response.json();
             setItems(initialItems)
         } catch (error) {

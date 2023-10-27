@@ -45,8 +45,8 @@ const LottoApp = () => {
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="Results" component={Results} />
         <Stack.Screen name="Subscription" component={Subscription} />
-        <Stack.Screen name="How to play" component={HowToPlay}/>
         <Stack.Screen name="Fill in yourself" component={Fill}/>
+        <Stack.Screen name="How to play" component={HowToPlay}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

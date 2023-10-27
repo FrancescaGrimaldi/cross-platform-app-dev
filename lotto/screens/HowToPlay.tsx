@@ -6,14 +6,18 @@
 /* eslint-disable react-native/no-inline-styles */
 
 import React, { useState, useEffect } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
+import Paragraph from '../components/Paragraph'
 
 const HowToPlay = ( {navigation}: {navigation: any} ) => {
     const [paragraphs, setParagraphs] = useState([]);
+
+    const dbUrl = 'https://4a16-188-113-90-45.ngrok-free.app/howtoplay'
     
+    // fetch how to play information from server
     const getParagraphs = async () => {
         try {
-            const response = await fetch('https://6fa2-188-113-90-45.ngrok-free.app/howtoplay');
+            const response = await fetch(dbUrl);
             const pars = await response.json();
             setParagraphs(pars)
         } catch (error) {
@@ -34,19 +38,7 @@ const HowToPlay = ( {navigation}: {navigation: any} ) => {
             {
                 paragraphs.map((item: { id: any; title: any; content: any; }, index: any) => (
                     <View key={index} style={{marginTop: 20}}>
-                        { item.title &&
-                        <Text style={{
-                            fontSize: 20,
-                            fontWeight: 'bold',
-                            color: '#22391f',
-                            marginLeft: 20,
-                        }}>{item.title}</Text>}
-                        
-                        <Text style={{
-                            fontSize: 18,
-                            color: '#22391f',
-                            margin: 20,
-                        }}>{item.content}</Text>
+                        <Paragraph id={item.id} title={item.title} content={item.content} />
                     </View>
                 ))
             }

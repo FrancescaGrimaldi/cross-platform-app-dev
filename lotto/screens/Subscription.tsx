@@ -14,14 +14,17 @@ const Subscription = ( {navigation, route}: {navigation: any, route: any} ) => {
 
     const [subscrData, setSubscrData] = useState<{ length: number, paragraph: string, price: string }[]>([]);
 
+    const dbUrl = 'https://4a16-188-113-90-45.ngrok-free.app/subscriptions';
+
     const switchDarkPage = () => {
         // redirect to homepage
         navigation.navigate('Home');
     }
     
+    // fetch subscription information from server
     const getSubscription = async () => {
         try {
-            const response = await fetch('https://6fa2-188-113-90-45.ngrok-free.app/subscriptions');
+            const response = await fetch(dbUrl);
             const data = await response.json();
             setSubscrData(data)
         } catch (error) {
