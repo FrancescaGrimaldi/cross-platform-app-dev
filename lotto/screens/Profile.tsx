@@ -5,14 +5,36 @@
 /* eslint-disable semi */
 
 /* registration and login logic not implemented yet, user is redirected to the homepage after clicking on log in */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, Pressable } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Profile = ( {navigation}: {navigation: any} ) => {
+    // modify background color from data in AsyncStorage
+    // initialize
+    const [preferredBgColor, setPreferredBgColor] = useState('#ecf2eb');
+
+    // update
+    useEffect( () => {
+        updateBgColor();
+    }, []);
+
+    const updateBgColor = async() => {
+        try {
+            const value = await AsyncStorage.getItem('bgcolor')
+            if (value !== null) {
+                // value previously stored
+                setPreferredBgColor(value);
+            }
+        } catch (error) {
+            return null;
+        }
+    }
+
     return (
         <View style={{
             flex: 1,
-            backgroundColor: '#ecf2eb',
+            backgroundColor: preferredBgColor,
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',

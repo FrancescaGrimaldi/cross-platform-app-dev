@@ -4,11 +4,12 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable react-native/no-inline-styles */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, ImageBackground, Image, ScrollView } from 'react-native';
 import BottomCard from '../components/BottomCard';
 import CardContainer from '../components/CardContainer';
 import TitleArea from '../components/TitleArea';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Homepage = ( {navigation}: {navigation: any} ) => {
     const images = {
@@ -36,11 +37,32 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
         }
     }
 
+    // modify background color from data in AsyncStorage
+    // initialize
+    const [preferredBgColor, setPreferredBgColor] = useState('#ecf2eb');
+
+    // update
+    useEffect( () => {
+        updateBgColor();
+    }, []);
+
+    const updateBgColor = async() => {
+        try {
+            const value = await AsyncStorage.getItem('bgcolor')
+            if (value !== null) {
+                // value previously stored
+                setPreferredBgColor(value);
+            }
+        } catch (error) {
+            return null;
+        }
+    }
+
     return (
         <ScrollView style={{flex: 1}}>
             <View style={{
                 flex: 1,
-                backgroundColor: '#ecf2eb',
+                backgroundColor: preferredBgColor,
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexDirection: 'column',

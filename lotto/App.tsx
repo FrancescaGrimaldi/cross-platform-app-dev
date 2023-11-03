@@ -6,14 +6,19 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import MaterialComm from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import Homepage from './screens/Homepage';
 import Results from './screens/Results';
 import Subscription from './screens/Subscription';
 import Profile from './screens/Profile';
 import HowToPlay from './screens/HowToPlay';
 import Fill from './screens/Fill';
+import SettingsIcon from './components/SettingsIcon';
+import SettingsScreen from './screens/SettingsScreen';
+
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import MaterialComm from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,17 +26,25 @@ const Tab = createBottomTabNavigator();
 function HomeScreen() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Homepage" component={Homepage} options={{
+      <Tab.Screen name="Homepage" component={Homepage} options={ ({navigation}) => ({
+          headerRight: () => (<SettingsIcon navigation={navigation}/>),
           headerTitle: 'Home',
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="home" color={color} size={size} />
           ),
-        }}/>
+        })}/>
       <Tab.Screen name="Profile" component={Profile} options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
             <MaterialComm name="account" color={color} size={size} />
+          ),
+        }}/>
+      <Tab.Screen name="SettingsScreen" component={SettingsScreen} options={{
+          tabBarLabel: 'Settings',
+          headerTitle: 'Settings',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="settings-sharp" color={color} size={size} />
           ),
         }}/>
     </Tab.Navigator>

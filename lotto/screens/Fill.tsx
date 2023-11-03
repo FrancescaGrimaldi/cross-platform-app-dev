@@ -17,7 +17,7 @@ const Fill = ( {navigation}: {navigation: any} ) => {
     const [modRow, setModRow] = useState(['', '', '', '', '']);
     const [modIndex, setModIndex] = useState('');
 
-    const dbUrl = 'https://4a16-188-113-90-45.ngrok-free.app/fill'
+    const dbUrl = 'https://974b-188-113-90-45.ngrok-free.app/fill'
 
     // retrieves the filled rows from the database
     const getRows = async () => {

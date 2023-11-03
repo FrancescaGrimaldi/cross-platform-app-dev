@@ -12,7 +12,7 @@ import Paragraph from '../components/Paragraph'
 const HowToPlay = ( {navigation}: {navigation: any} ) => {
     const [paragraphs, setParagraphs] = useState([]);
 
-    const dbUrl = 'https://4a16-188-113-90-45.ngrok-free.app/howtoplay'
+    const dbUrl = 'https://974b-188-113-90-45.ngrok-free.app/howtoplay'
     
     // fetch how to play information from server
     const getParagraphs = async () => {

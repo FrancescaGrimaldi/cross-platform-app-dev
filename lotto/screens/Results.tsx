@@ -6,12 +6,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, SafeAreaView, ScrollView } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import WinnerCard from '../components/WinnerCard';
 
 const Results = ( {navigation}: {navigation: any} ) => {
     const [items, setItems] = useState([]);
-    const dbUrl = 'https://4a16-188-113-90-45.ngrok-free.app/results';
+    const dbUrl = 'https://974b-188-113-90-45.ngrok-free.app/results';
 
     // fetch results from server
     const getResults = async () => {
@@ -24,13 +25,29 @@ const Results = ( {navigation}: {navigation: any} ) => {
         }
     }
 
+    // modify background color from data in AsyncStorage
+    const [preferredBgColor, setPreferredBgColor] = useState('#ecf2eb');
+
+    const updateBgColor = async() => {
+        try {
+            const value = await AsyncStorage.getItem('bgcolor')
+            if (value !== null) {
+                // value previously stored
+                setPreferredBgColor(value);
+            }
+        } catch (error) {
+            return null;
+        }
+    }
+
     useEffect( () => {
         getResults();
+        updateBgColor();
     }, []);
 
     return (
         <SafeAreaView>
-            <View style={{backgroundColor: '#ecf2eb'}}>
+            <View style={{backgroundColor: preferredBgColor}}>
                 <TextInput
                     style={{height: 40, borderColor: '#22391f', borderWidth: 1, margin: 10, padding: 10, backgroundColor: '#fff'}}
                     placeholder="Search by week"
@@ -48,7 +65,7 @@ const Results = ( {navigation}: {navigation: any} ) => {
                     }}
                 />
             </View>
-            <ScrollView style={{backgroundColor: '#ecf2eb', marginBottom: 55}}>
+            <ScrollView style={{backgroundColor: preferredBgColor, marginBottom: 55}}>
                 {
                     items.map((item: { id: any; week: any; winner: any; city: any; prize: any; winningNumbers: any; }, index: any) => (
                     <WinnerCard key={index} id={item.id} week={item.week} name={item.winner} city={item.city} prize={item.prize} numbers={item.winningNumbers} />

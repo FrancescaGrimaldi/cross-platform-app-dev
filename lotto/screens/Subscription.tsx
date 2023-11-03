@@ -14,7 +14,7 @@ const Subscription = ( {navigation, route}: {navigation: any, route: any} ) => {
 
     const [subscrData, setSubscrData] = useState<{ length: number, paragraph: string, price: string }[]>([]);
 
-    const dbUrl = 'https://4a16-188-113-90-45.ngrok-free.app/subscriptions';
+    const dbUrl = 'https://974b-188-113-90-45.ngrok-free.app/subscriptions';
 
     const switchDarkPage = () => {
         // redirect to homepage
