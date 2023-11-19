@@ -14,12 +14,12 @@ import Bookmarks from './screens/Bookmarks';
 import ShoppingCart from './screens/ShoppingCart';
 import Settings from './screens/Settings';
 
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialComm from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAw5 from 'react-native-vector-icons/FontAwesome5';
 import FontAw from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
+import ItemDetails from './screens/ItemDetails';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,7 +34,7 @@ function HomeScreen() {
     },
   })}>
       <Tab.Screen name="Homepage" component={Homepage} options={ ({navigation}) => ({
-          headerTitle: 'Home',
+          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialComm name="view-grid" color={color} size={size} />
@@ -42,6 +42,7 @@ function HomeScreen() {
         })}/>
       <Tab.Screen name="MapView" component={MapView} options={ ({navigation}) => ({
           headerTitle: 'MapView',
+          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <FontAw5 name="map-marked-alt" color={color} size={size} />
@@ -72,14 +73,15 @@ function HomeScreen() {
   );
 }
 
-const LottoApp = () => {
+const FoodApp = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="ItemDetails" component={ItemDetails} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-export default LottoApp;
+export default FoodApp;
