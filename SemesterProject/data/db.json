@@ -1,105 +1,127 @@
 {
-    "items" : [
-        {
-            "id" : "1",
-            "name" : "BBQ Burger",
-            "category" : "American",
-            "price" : 193,
-            "location" : {
-                "latitude" : 63.429784930277215,
-                "longitude" : 10.392469162854288
-            },
-            "contact" : "Super Hero Burger",
-            "short-description" : "complete later",
-            "full-description" : "complete later"
-        },
-        {
-            "id" : "2",
-            "name" : "Pasta Carbonara",
-            "category" : "Italian",
-            "price" : 219,
-            "location" : {
-                "latitude" : 63.434003448794535,
-                "longitude" :  10.404083383667945
-            },
-            "contact" : "Pasta Lab",
-            "short-description" : "complete later",
-            "full-description" : "complete later"
-        },
-        {
-            "id" : "3",
-            "name" : "Ekte Tronder",
-            "category" : "American",
-            "price" : 135,
-            "location" : {
-                "latitude" : 63.43352777547623,
-                "longitude" : 10.398037643824685
-            },
-            "contact" : "Tronderburger",
-            "short-description" : "complete later",
-            "full-description" : "complete later"
-        },
-        {
-            "id" : "4",
-            "name" : "Pizza with burrata",
-            "category" : "Italian",
-            "price" : 150,
-            "location" : {
-                "latitude" : 63.43068700723171,
-                "longitude" : 10.39799402785
-            },
-            "contact" : "Grafen Trondheim",
-            "short-description" : "complete later",
-            "full-description" : "complete later"
-        },
-        {
-            "id" : "5",
-            "name" : "Gyoza dumplings",
-            "category" : "Asian",
-            "price" : 189,
-            "location" : {
-                "latitude" : 63.4308647535414,
-                "longitude" : 10.39313217017708
-            },
-            "contact" : "Sumo",
-            "short-description" : "complete later",
-            "full-description" : "complete later"
-        },
-        {
-            "id" : "6",
-            "name" : "Bourbon BBQ Ribs",
-            "category" : "American",
-            "price" : 279,
-            "location" : {
-                "latitude" : 63.4330273375149, 
-                "longitude" : 10.398028636105836
-            },
-            "contact" : "O'Learys",
-            "short-description" : "complete later",
-            "full-description" : "complete later"
-        },
-        {
-            "id" : "7",
-            "name" : "Spring Rolls",
-            "category" : "Asian",
-            "price" : 119,
-            "location" : {
-                "latitude" : 63.43224345787168,
-                "longitude" : 10.395775499013695
-            },
-            "contact" : "Palaeng Cafe Asian Street Food",
-            "short-description" : "complete later",
-            "full-description" : "complete later"
-        }
-    ],
-    "bookmarks" : [
-        {
-            "item_id" : 1,
-            "date" : "19.11.23"
-        },
-        {  
-            "item_id" : 4,
-            "date" : "19.11.23"
-        }
-    ]
+  "items": [
+    {
+      "id": "1",
+      "name": "BBQ Burger",
+      "category": "American",
+      "price": 193,
+      "location": {
+        "latitude": 63.429784930277215,
+        "longitude": 10.392469162854288
+      },
+      "contact": "Super Hero Burger",
+      "short-description": "complete later",
+      "full-description": "complete later"
+    },
+    {
+      "id": "2",
+      "name": "Pasta Carbonara",
+      "category": "Italian",
+      "price": 219,
+      "location": {
+        "latitude": 63.434003448794535,
+        "longitude": 10.404083383667945
+      },
+      "contact": "Pasta Lab",
+      "short-description": "complete later",
+      "full-description": "complete later"
+    },
+    {
+      "id": "3",
+      "name": "Ekte Tronder",
+      "category": "American",
+      "price": 135,
+      "location": {
+        "latitude": 63.43352777547623,
+        "longitude": 10.398037643824685
+      },
+      "contact": "Tronderburger",
+      "short-description": "complete later",
+      "full-description": "complete later"
+    },
+    {
+      "id": "4",
+      "name": "Pizza with burrata",
+      "category": "Italian",
+      "price": 150,
+      "location": {
+        "latitude": 63.43068700723171,
+        "longitude": 10.39799402785
+      },
+      "contact": "Grafen Trondheim",
+      "short-description": "complete later",
+      "full-description": "complete later"
+    },
+    {
+      "id": "5",
+      "name": "Gyoza dumplings",
+      "category": "Asian",
+      "price": 189,
+      "location": {
+        "latitude": 63.4308647535414,
+        "longitude": 10.39313217017708
+      },
+      "contact": "Sumo",
+      "short-description": "complete later",
+      "full-description": "complete later"
+    },
+    {
+      "id": "6",
+      "name": "Bourbon BBQ Ribs",
+      "category": "American",
+      "price": 279,
+      "location": {
+        "latitude": 63.4330273375149,
+        "longitude": 10.398028636105836
+      },
+      "contact": "O'Learys",
+      "short-description": "complete later",
+      "full-description": "complete later"
+    },
+    {
+      "id": "7",
+      "name": "Spring Rolls",
+      "category": "Asian",
+      "price": 119,
+      "location": {
+        "latitude": 63.43224345787168,
+        "longitude": 10.395775499013695
+      },
+      "contact": "Palaeng Cafe Asian Street Food",
+      "short-description": "complete later",
+      "full-description": "complete later"
+    }
+  ],
+  "bookmarks": [
+    {
+      "item_id": "7",
+      "id": 1
+    },
+    {
+      "item_id": "4",
+      "id": 2
+    }
+  ],
+  "cart": [
+    {
+      "item_id": "5",
+      "quantity": 1,
+      "id": 1
+    },
+    {
+      "item_id": "1",
+      "quantity": 1,
+      "id": 2
+    },
+    {
+      "item_id": "6",
+      "quantity": 1,
+      "id": 3
+    },
+    {
+      "item_id": "4",
+      "quantity": 1,
+      "id": 4
+    }
+  ]
 }

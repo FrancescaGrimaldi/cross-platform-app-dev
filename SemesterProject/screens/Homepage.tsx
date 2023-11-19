@@ -13,7 +13,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
     // fetch items from server
     const getItems = async () => {
         try {
-            const response = await fetch('https://7f9d-188-113-90-45.ngrok-free.app/items');
+            const response = await fetch('https://9aa1-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/items');
             const json = await response.json();
             setItems(json);
         } catch (error) {
@@ -26,7 +26,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
     }, []);
     
     return (
-        <ScrollView style={{flex: 1}}>
+        <ScrollView>
             {
                 items.map( (item: any, index: number) => (
                     <Pressable key={index} onPress={() => navigation.navigate('ItemDetails', item.id)}>

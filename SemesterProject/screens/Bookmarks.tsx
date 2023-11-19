@@ -14,7 +14,7 @@ const Bookmarks = ( {navigation}: {navigation: any} ) => {
     // fetch bookmarked items' id from server
     const getFavs = async () => {
         try {
-            const response = await fetch('https://7f9d-188-113-90-45.ngrok-free.app/bookmarks');
+            const response = await fetch('https://9aa1-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/bookmarks');
             const json = await response.json();
             setFavs(json);
         } catch (error) {
@@ -24,7 +24,7 @@ const Bookmarks = ( {navigation}: {navigation: any} ) => {
     
     useEffect( () => {
         getFavs();
-    }, []);
+    }, [favs]);
 
     return (
         <ScrollView style={{

@@ -1,3 +1,4 @@
+/* eslint-disable eol-last */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable semi */
