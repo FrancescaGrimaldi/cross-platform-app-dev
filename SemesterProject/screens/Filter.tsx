@@ -5,27 +5,32 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { ScrollView } from 'react-native';
 import CheckboxCategory from '../components/CheckboxCategory';
 
 const Filter = ( {navigation, route}: {navigation: any, route: any} ) => {
     const categories = ['American Food', 'Asian Food', 'Italian Food']
+    const [selected, setSelected] = useState(route.params.selectedCategories);
 
     const addToSelectedCategories = (category: string) => {
-        route.params.setSelectedCategories([...route.params.selectedCategories, category]);
+        setSelected([...selected, category]);
     }
 
     const removeFromSelectedCategories = (category: string) => {
-        route.params.setSelectedCategories(route.params.selectedCategories.filter( (item: string) => item !== category));
+        setSelected(selected.filter( (item: string) => item !== category));
     }
 
     const checkSelected = (category: string) => {
-        if (route.params.selectedCategories.includes(category)) {
+        if (selected.includes(category)) {
             return true;
         }
         return false;
     }
+
+    useEffect( () => {
+        route.params.setSelectedCategories(selected)
+    }, [route.params, selected]);
     
     return (
         <ScrollView style={{flex: 1}}>

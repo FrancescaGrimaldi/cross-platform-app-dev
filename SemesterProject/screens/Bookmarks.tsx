@@ -8,13 +8,16 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, ScrollView } from 'react-native';
 
+import Globals from '../Globals';
+import Title from '../components/Title';
+
 const Bookmarks = ( {navigation}: {navigation: any} ) => {
     const [favs, setFavs] = useState([]);
 
     // fetch bookmarked items' id from server
     const getFavs = async () => {
         try {
-            const response = await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/bookmarks');
+            const response = await fetch(`https://${Globals.serverAddress}/bookmarks`);
             const json = await response.json();
             setFavs(json);
         } catch (error) {
@@ -27,27 +30,29 @@ const Bookmarks = ( {navigation}: {navigation: any} ) => {
     }, [favs]);
 
     return (
-        <ScrollView style={{
-            flex: 1,
-            flexDirection: 'column',
-        }}>
-            {
-                favs.map( (item: any, index: number) => (
-                    <View key={index} style={{
-                        flex: 1,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        padding: 10,
-                        borderBottomWidth: 1,
-                        borderBottomColor: 'grey',
-                    }}>
-                        <Text>{item.item_id}</Text>
-                        <Text>{item.date}</Text>
-                    </View>
-                ))
-            }
-        </ScrollView>
+        <View>
+            <Title title="My favourites"/>
+            <ScrollView style={{
+                flexDirection: 'column',
+            }}>
+                {
+                    favs.map( (item: any, index: number) => (
+                        <View key={index} style={{
+                            flex: 1,
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            padding: 10,
+                            borderBottomWidth: 1,
+                            borderBottomColor: 'grey',
+                        }}>
+                            <Text>{item.item_id}</Text>
+                            <Text>{item.date}</Text>
+                        </View>
+                    ))
+                }
+            </ScrollView>
+        </View>
     );            
 }
 

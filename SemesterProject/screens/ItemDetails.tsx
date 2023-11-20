@@ -8,6 +8,7 @@
 
 import React, {useState, useEffect} from 'react';
 import { Text, View, ScrollView, Pressable } from 'react-native';
+import Globals from '../Globals';
 
 const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
     const [item, setItem] = useState([]);
@@ -16,7 +17,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
     // fetch item details from server
     const getItemDetails = async () => {
         try {
-            const response = await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/items/' + route.params);
+            const response = await fetch(`https://${Globals.serverAddress}/items/` + route.params);
             const json = await response.json();
             setItem(json);
         } catch (error) {
@@ -26,7 +27,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
 
     const checkFav = async () => {
         try {
-            const response = await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/bookmarks/?item_id=' + route.params);
+            const response = await fetch(`https://${Globals.serverAddress}/bookmarks/?item_id=` + route.params);
             const json = await response.json();
             if (json.length > 0) {
                 setIsFav(true);
@@ -39,10 +40,10 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
     const addToCart = async () => {
         // check if the item is already in the shopping cart, if so, increment the quantity
         try {
-            const response = await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/cart/?item_id=' + route.params);
+            const response = await fetch(`https://${Globals.serverAddress}/cart/?item_id=` + route.params);
             const json = await response.json();
             if (json.length > 0) {
-                await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/cart/' + json[0].id, {
+                await fetch(`https://${Globals.serverAddress}/cart/` + json[0].id, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
                 });
                 return;
             } else {
-                await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/cart', {
+                await fetch(`https://${Globals.serverAddress}/cart`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -72,12 +73,12 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
     const addToFavs = async () => {
         // check if the item is already in the bookmarks list, if so, return
         try {
-            const response = await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/bookmarks/?item_id=' + route.params);
+            const response = await fetch(`https://${Globals.serverAddress}/bookmarks/?item_id=` + route.params);
             const json = await response.json();
             if (json.length > 0) {
                 return;
             } else {
-                await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/bookmarks', {
+                await fetch(`https://${Globals.serverAddress}/bookmarks`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -96,10 +97,10 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
     const removeFromFavs = async () => {
         try {
             // delete using the id of the bookmark
-            const response = await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/bookmarks/?item_id=' + route.params);
+            const response = await fetch(`https://${Globals.serverAddress}/bookmarks/?item_id=` + route.params);
             const json = await response.json();
             const id = json[0].id;
-            await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/bookmarks/' + id, {
+            await fetch(`https://${Globals.serverAddress}/bookmarks/` + id, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

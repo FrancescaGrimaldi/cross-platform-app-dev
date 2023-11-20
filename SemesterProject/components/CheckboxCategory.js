@@ -7,8 +7,8 @@ import React, { useState } from 'react';
 import CheckBox from '@react-native-community/checkbox';
 import { View, Text, StyleSheet } from 'react-native';
 
-const CheckboxCategory = ({ category, selected, addToSelected, removeFromSelected }) => {
-    const [toggleCheckBox, setToggleCheckBox] = useState(selected);
+const CheckboxCategory = (props) => {
+    const [toggleCheckBox, setToggleCheckBox] = useState(props.selected);
     
     return (
         <View style={styles.container}>
@@ -17,11 +17,11 @@ const CheckboxCategory = ({ category, selected, addToSelected, removeFromSelecte
             value={toggleCheckBox}
             onValueChange={(newValue) => {
                 setToggleCheckBox(newValue);
-                if (newValue) { addToSelected(category); }
-                else { removeFromSelected(category); }
+                if (newValue) { props.addToSelected(props.category); }
+                else { props.removeFromSelected(props.category); }
             }}
         />
-        <Text style={styles.text}>{category}</Text>
+        <Text style={styles.text}>{props.category}</Text>
         </View>
     );
 }

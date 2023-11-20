@@ -7,7 +7,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import React, {useState, useEffect} from 'react';
-import { Text, View, ScrollView, Pressable, Alert, Modal, StyleSheet } from 'react-native';
+import { Text, View, ScrollView, Pressable, Modal, StyleSheet } from 'react-native';
+import Globals from '../Globals';
+import Title from '../components/Title';
 
 const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -18,7 +20,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     // fetch items in the shopping cart from server
     const getCartItems = async () => {
         try {
-            const response = await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/cart');
+            const response = await fetch(`https://${Globals.serverAddress}/cart`);
             const json = await response.json();
             setCartItems(json);
         } catch (error) {
@@ -30,7 +32,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
         let sum = 0;
         for (let item of cartItems) {
             try {
-                const response = await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/items/' + item.item_id);
+                const response = await fetch(`https://${Globals.serverAddress}/items/` + item.item_id);
                 const json = await response.json();
                 sum += json.price * item.quantity;
             } catch (error) {
@@ -41,7 +43,6 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
         setFee(sum / 100);
     }
 
-    // TODO: check in the specs if one can remove an item from the shopping cart or only reset all of it
     useEffect( () => {
         getCartItems();
         calculateTotal();
@@ -50,7 +51,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     const resetCart = async () => {
         try {
             for (let item of cartItems) {
-                await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/cart/' + item.id, {
+                await fetch(`https://${Globals.serverAddress}/cart/` + item.id, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
@@ -77,6 +78,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
 
     return (
         <View>
+            <Title title="My shopping basket"/>
             <ScrollView>
                 {
                     cartItems.map( (item: any, index: number) => (
@@ -114,16 +116,14 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={() => {confirmCheckout}}>
-            <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-                <Text style={styles.modalText}>Operation successful!</Text>
-                <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => confirmCheckout()}>
-                <Text style={styles.textStyle}>Close</Text>
-                </Pressable>
-            </View>
-            </View>
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Operation successful!</Text>
+                        <Pressable style={[styles.button, styles.buttonClose]} onPress={() => confirmCheckout()}>
+                            <Text style={styles.textStyle}>Close</Text>
+                        </Pressable>
+                    </View>
+                </View>
             </Modal>
 
             <Pressable onPress={resetCart} style={{margin: 20, backgroundColor: 'pink'}}>

@@ -6,16 +6,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import React from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { View } from 'react-native';
+import Title from '../components/Title';
 
 const Settings = ( {navigation}: {navigation: any} ) => {
     
     return (
-        <ScrollView style={{flex: 1}}>
-            <View style={{backgroundColor: 'pink'}}>
-                <Text>Settings</Text>
-            </View>
-        </ScrollView>
+        <View style={{}}>
+            <Title title="Settings"/>
+        </View>
     );            
 }
 

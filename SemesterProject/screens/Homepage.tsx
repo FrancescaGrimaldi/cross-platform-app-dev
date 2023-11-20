@@ -7,6 +7,7 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, ScrollView, Pressable, TextInput } from 'react-native';
 import FontAw5 from 'react-native-vector-icons/FontAwesome5';
+import Globals from '../Globals';
 
 const Homepage = ( {navigation}: {navigation: any} ) => {
     const [items, setItems] = useState([]);
@@ -15,7 +16,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
     // fetch items from server
     const getItems = async () => {
         try {
-            const response = await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/items');
+            const response = await fetch(`https://${Globals.serverAddress}/items`);
             const json = await response.json();
             // check if there are any categories to filter by
             if (filteredCategories.length > 0) {
@@ -33,7 +34,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
 
     useEffect( () => {
         getItems();
-    });
+    }, [filteredCategories]);
     
     return (
         <View>
@@ -48,6 +49,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
                         var matchedItems = [];
 
                         // don't know if i want to make it so that it searches for the item's category too
+                        // is case sensitive
                         if (newText.trim().length > 0) {
                             matchedItems = items.filter(function (item: { name: string | any[]; }) {
                                 return item.name.includes(newText);

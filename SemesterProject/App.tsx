@@ -52,6 +52,7 @@ function HomeScreen() {
         })}/>
       <Tab.Screen name="Bookmarks" component={Bookmarks} options={ ({navigation}) => ({
           headerTitle: 'Bookmarks',
+          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <FontAw name="heart" color={color} size={size} />
@@ -59,6 +60,7 @@ function HomeScreen() {
       })}/>
       <Tab.Screen name="ShoppingCart" component={ShoppingCart} options={ ({navigation}) => ({
           headerTitle: 'ShoppingCart',
+          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <Entypo name="shopping-cart" color={color} size={size} />
@@ -66,6 +68,7 @@ function HomeScreen() {
       })}/>
       <Tab.Screen name="Settings" component={Settings} options={ ({navigation}) => ({
           headerTitle: 'Settings',
+          headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="settings" color={color} size={size} />
