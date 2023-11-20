@@ -14,6 +14,7 @@ import MapView from './screens/MapView';
 import Bookmarks from './screens/Bookmarks';
 import ShoppingCart from './screens/ShoppingCart';
 import Settings from './screens/Settings';
+import Filter from './screens/Filter';
 
 import MaterialComm from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -80,6 +81,7 @@ const FoodApp = () => {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="ItemDetails" component={ItemDetails} />
+        <Stack.Screen name="Filter" component={Filter} />
       </Stack.Navigator>
     </NavigationContainer>
   );

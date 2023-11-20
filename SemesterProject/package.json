@@ -11,6 +11,7 @@
     "mockapi": "json-server --w data/db.json"
   },
   "dependencies": {
+    "@react-native-community/checkbox": "^0.5.16",
     "@react-navigation/bottom-tabs": "^6.5.10",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.15",

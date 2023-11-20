@@ -18,7 +18,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     // fetch items in the shopping cart from server
     const getCartItems = async () => {
         try {
-            const response = await fetch('https://9aa1-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/cart');
+            const response = await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/cart');
             const json = await response.json();
             setCartItems(json);
         } catch (error) {
@@ -30,7 +30,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
         let sum = 0;
         for (let item of cartItems) {
             try {
-                const response = await fetch('https://9aa1-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/items/' + item.item_id);
+                const response = await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/items/' + item.item_id);
                 const json = await response.json();
                 sum += json.price * item.quantity;
             } catch (error) {
@@ -50,7 +50,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     const resetCart = async () => {
         try {
             for (let item of cartItems) {
-                await fetch('https://9aa1-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/cart/' + item.id, {
+                await fetch('https://2934-2001-700-300-4035-2dd5-fa65-60e1-1cf0.ngrok-free.app/cart/' + item.id, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',

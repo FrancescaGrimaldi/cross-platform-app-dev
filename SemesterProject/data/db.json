@@ -3,7 +3,7 @@
     {
       "id": "1",
       "name": "BBQ Burger",
-      "category": "American",
+      "category": "American Food",
       "price": 193,
       "location": {
         "latitude": 63.429784930277215,
@@ -16,7 +16,7 @@
     {
       "id": "2",
       "name": "Pasta Carbonara",
-      "category": "Italian",
+      "category": "Italian Food",
       "price": 219,
       "location": {
         "latitude": 63.434003448794535,
@@ -29,7 +29,7 @@
     {
       "id": "3",
       "name": "Ekte Tronder",
-      "category": "American",
+      "category": "American Food",
       "price": 135,
       "location": {
         "latitude": 63.43352777547623,
@@ -42,7 +42,7 @@
     {
       "id": "4",
       "name": "Pizza with burrata",
-      "category": "Italian",
+      "category": "Italian Food",
       "price": 150,
       "location": {
         "latitude": 63.43068700723171,
@@ -55,7 +55,7 @@
     {
       "id": "5",
       "name": "Gyoza dumplings",
-      "category": "Asian",
+      "category": "Asian Food",
       "price": 189,
       "location": {
         "latitude": 63.4308647535414,
@@ -68,7 +68,7 @@
     {
       "id": "6",
       "name": "Bourbon BBQ Ribs",
-      "category": "American",
+      "category": "American Food",
       "price": 279,
       "location": {
         "latitude": 63.4330273375149,
@@ -81,7 +81,7 @@
     {
       "id": "7",
       "name": "Spring Rolls",
-      "category": "Asian",
+      "category": "Asian Food",
       "price": 119,
       "location": {
         "latitude": 63.43224345787168,
@@ -102,26 +102,5 @@
       "id": 2
     }
   ],
-  "cart": [
-    {
-      "item_id": "5",
-      "quantity": 1,
-      "id": 1
-    },
-    {
-      "item_id": "1",
-      "quantity": 1,
-      "id": 2
-    },
-    {
-      "item_id": "6",
-      "quantity": 1,
-      "id": 3
-    },
-    {
-      "item_id": "4",
-      "quantity": 1,
-      "id": 4
-    }
-  ]
+  "cart": []
 }
