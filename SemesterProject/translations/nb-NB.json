@@ -1,0 +1,41 @@
+{
+    "Settings" : {
+        "title" : "Innstillinger",
+        "locale" : {
+            "title" : "Språk",
+            "en" : "Engelsk",
+            "nb" : "Norsk Bokmål",
+            "it" : "Italiensk",
+            "sys" : "Systemspråk"
+        }
+    },
+    "Bookmarks" : {
+        "title" : "Mine favoritter"
+    },
+    "Homepage" : {
+        "title" : "Hjem",
+        "search" : {
+            "placeholder" : "Søk"
+        }
+    },
+    "Filter" : {
+        "title" : "Filter",
+        "categories" : {
+            "American Food" : "Amerikansk mat",
+            "Asian Food" : "Asiatisk mat",
+            "Italian Food" : "Italiensk mat"
+        }
+    },
+    "ShoppingCart" : {
+        "title" : "Handlekurven min",
+        "empty" : "Handlekurven din er tom!",
+        "total" : "Total",
+        "subtotal" : "Delsum",
+        "fees" : "Leverings og servicegebyrer",
+        "checkout" : {
+            "title" : "Sjekk ut",
+            "success" : "Bestillingen din er lagt inn!",
+            "close" : "Ferdig"
+        }
+    }
+}

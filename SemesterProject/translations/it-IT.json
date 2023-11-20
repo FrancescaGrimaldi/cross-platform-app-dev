@@ -1,0 +1,41 @@
+{
+    "Settings" : {
+        "title" : "Impostazioni",
+        "locale" : {
+            "title" : "Lingua",
+            "en" : "Inglese",
+            "nb" : "Norvegese Bokmål",
+            "it" : "Italiano",
+            "sys" : "Lingua di sistema"
+        }
+    },
+    "Bookmarks" : {
+        "title" : "I miei preferiti"
+    },
+    "Homepage" : {
+        "title" : "Home",
+        "search" : {
+            "placeholder" : "Cerca"
+        }
+    },
+    "Filter" : {
+        "title" : "Filtra",
+        "categories" : {
+            "American Food" : "Cibo americano",
+            "Asian Food" : "Cibo orientale",
+            "Italian Food" : "Cibo italiano"
+        }
+    },
+    "ShoppingCart" : {
+        "title" : "Il mio carrello",
+        "empty" : "Il tuo carrello è vuoto!",
+        "total" : "Totale",
+        "subtotal" : "Subtotale",
+        "fees" : "Consegna e tasse di servizio",
+        "checkout" : {
+            "title" : "Checkout",
+            "success" : "Il tuo ordine è stato inviato!",
+            "close" : "Chiudi"
+        }
+    }
+}

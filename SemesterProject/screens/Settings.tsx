@@ -2,7 +2,6 @@
 /* eslint-disable semi */
 /* eslint-disable eol-last */
 /* eslint-disable no-trailing-spaces */
-/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import React from 'react';

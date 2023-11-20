@@ -64,6 +64,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
                     <FontAw5 name="filter" size={25} color="#22391f" style={{marginTop: 15, marginLeft: 15}} />
                 </Pressable>
             </View>
+            
             <ScrollView>
                 {
                     items.map( (item: any, index: number) => (

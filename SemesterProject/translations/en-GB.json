@@ -1,0 +1,41 @@
+{
+    "Settings" : {
+        "title" : "Settings",
+        "locale" : {
+            "title" : "Language",
+            "en" : "English",
+            "nb" : "Norwegian Bokmål",
+            "it" : "Italian",
+            "sys" : "System language"
+        }
+    },
+    "Bookmarks" : {
+        "title" : "My favourites"
+    },
+    "Homepage" : {
+        "title" : "Home",
+        "search" : {
+            "placeholder" : "Search"
+        }
+    },
+    "Filter" : {
+        "title" : "Filter",
+        "categories" : {
+            "American Food" : "American Food",
+            "Asian Food" : "Asian Food",
+            "Italian Food" : "Italian Food"
+        }
+    },
+    "ShoppingCart" : {
+        "title" : "My shopping basket",
+        "empty" : "Your shopping basket is empty!",
+        "total" : "Total",
+        "subtotal" : "Subtotal",
+        "fees" : "Delivery and service fees",
+        "checkout" : {
+            "title" : "Checkout",
+            "success" : "Your order has been placed successfully!",
+            "close" : "Done"
+        }
+    }
+}
