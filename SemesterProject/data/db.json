@@ -110,5 +110,16 @@
       "id": 7
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "item_id": "3",
+      "quantity": 2,
+      "id": 1
+    },
+    {
+      "item_id": "6",
+      "quantity": 1,
+      "id": 2
+    }
+  ]
 }

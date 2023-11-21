@@ -10,6 +10,10 @@ import React, {useState, useEffect} from 'react';
 import { Text, View, ScrollView, Pressable, Modal, StyleSheet } from 'react-native';
 import Globals from '../Globals';
 import Title from '../components/Title';
+import Cart from '../components/Cart';
+
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialComm from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -78,28 +82,28 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
 
     return (
         <View>
-            <Title title="My shopping basket"/>
-            <ScrollView>
+            <View style={{marginLeft: 15}}>
+                <Title title="My shopping basket"/>
+            </View>
+            <ScrollView style={{
+                height: '30%',
+                marginTop: 20,
+            }}>
                 {
                     cartItems.map( (item: any, index: number) => (
-                        <View key={index} style={{
-                            flex: 1,
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            padding: 10,
-                            borderBottomWidth: 1,
-                            borderBottomColor: 'grey',
-                        }}>
-                            <Text>{item.item_id}</Text>
-                        </View>
+                        <Cart id={item.item_id} quantity={item.quantity} key={index} />
                     ))
                 }
             </ScrollView>
-
-            <Text>Subtotal: {total}</Text>
-            <Text>Delivery and Service fees: {fee}</Text>
-            <Text>Total: {total + fee}</Text>
+            
+            <View style={{
+                marginLeft: 15,
+            }}>
+                <Text style={{fontWeight: 'bold', fontSize: 22}}>Order summary</Text>
+                <Text style={{fontSize: 18}}>Subtotal: {total}</Text>
+                <Text style={{fontSize: 18}}>Delivery and Service fees: {fee}</Text>
+                <Text style={{fontSize: 18, textDecorationLine: 'underline'}}>Total: {total + fee}</Text>
+            </View>
 
             <Text style={{
                 fontSize: 20,
@@ -107,10 +111,45 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                 margin: 20,
             }}>You might also like... (implement!!)</Text>
 
-            <Pressable style={{margin: 20, backgroundColor: 'cyan'}} onPress={checkout}>
-                <Text style={{fontSize: 20, fontWeight: 'bold'}}>Checkout</Text>
-            </Pressable>
-            
+            <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginVertical: 'auto',
+                marginHorizontal: 15,
+            }}>
+                <Pressable onPress={resetCart}>
+                    <View style={{
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: '#fc5c65',
+                        borderRadius: 10,
+                        width: 180,
+                        height: 80,
+                        elevation: 10,
+                    }}>
+                        <MaterialComm name="cart-remove" size={40} color="black"/>
+                        <Text style={{fontSize: 16, fontWeight: 'bold'}}>Reset</Text>
+                    </View>
+                </Pressable>
+
+                <Pressable onPress={checkout}>
+                    <View style={{
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: '#3ae374',
+                        borderRadius: 10,
+                        width: 180,
+                        height: 80,
+                        elevation: 10,
+                    }}>
+                        <MaterialIcons name="shopping-cart-checkout" size={40} color="black"/>
+                        <Text style={{fontSize: 16, fontWeight: 'bold'}}>Checkout</Text>
+                    </View>
+                </Pressable>
+            </View>
+
             <Modal
                 animationType="slide"
                 transparent={true}
@@ -125,10 +164,6 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                     </View>
                 </View>
             </Modal>
-
-            <Pressable onPress={resetCart} style={{margin: 20, backgroundColor: 'pink'}}>
-                <Text style={{fontSize: 20, fontWeight: 'bold'}}>Reset</Text>
-            </Pressable>
         </View>
 
     );            
