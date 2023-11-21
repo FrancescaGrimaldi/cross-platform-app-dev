@@ -7,12 +7,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import React, {useState, useEffect} from 'react';
-import { Text, View, ScrollView, Pressable } from 'react-native';
+import { Text, View, Pressable, Image } from 'react-native';
 import Globals from '../Globals';
+import Title from '../components/Title';
+import ImageModal from 'react-native-image-modal';
+
+import FontAw from 'react-native-vector-icons/FontAwesome';
 
 const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
     const [item, setItem] = useState([]);
-    const [isFav, setIsFav] = useState(false);  // TODO: check if item is in the bookmarks list
+    const [isFav, setIsFav] = useState(false); // TODO: save favs in local storage (?)
+    const imgSources = [require('../images/items/1_1.jpg'), require('../images/items/1_2.jpg'), require('../images/items/1_3.jpg'), require('../images/items/1_4.jpg'), require('../images/items/1_5.jpg')]
 
     // fetch item details from server
     const getItemDetails = async () => {
@@ -127,33 +132,97 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
     }, []);
     
     return (
-        <ScrollView>
+        <View>
+
             <View style={{
-                flex: 1,
-                flexDirection: 'row',
+                marginLeft: 15,
+                flexDirection: 'column',
                 justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: 10,
-                borderBottomWidth: 1,
-                borderBottomColor: 'grey',
+                marginVertical: 10,
             }}>
-                <Text>{item.name}</Text>
-                <Text>{item.category}</Text>
-                <Text>{item.price}</Text>
+                <Text style={{fontSize: 16, marginRight: 80}}>{item.category}</Text>
+                <Title title={item.name} subtitle={`By ${item.contact}`} />
             </View>
 
-            {
-                isFav ? <Text>Item is in the bookmarks list</Text> : <Text>Item is not in the bookmarks list</Text>
-            }
+            <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                marginVertical: 10,
+                marginLeft: 15,
+            }}>
+                <Image source={imgSources[(item.id - 1) * 6]} style={{width: '80%', height: 200, borderRadius: 13}} />
+                <View style={{
+                    flexDirection: 'column',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                }}>
+                    <Pressable onPress={switchFav}>
+                        <FontAw name={isFav ? 'heart' : 'heart-o'} size={32} color="#22391f" style={{marginRight: 20, marginLeft: 10}} />
+                    </Pressable>
+                    <View>
+                        <Pressable onPress={addToCart}>
+                            <FontAw name="shopping-cart" size={35} color="#22391f" style={{marginRight: 20, marginLeft: 12}} />
+                        </Pressable>
+                        <Text style={{marginRight: 10, fontSize: 16}}>{item.price} NOK</Text>
+                    </View>
+                </View>
+            </View>
 
-            <Pressable onPress={switchFav}>
-                <Text>Bookmarks</Text>
-            </Pressable>
+            <View style={{
+                marginHorizontal: 15,
+            }}>
+                <Text style={{fontSize: 22, fontWeight: 'bold'}}>Description</Text>
+                <Text style={{fontSize: 20}}>{item.fulldescr}</Text>
+            </View>
 
-            <Pressable onPress={addToCart}>
-                <Text>Add to cart</Text>
-            </Pressable>
-        </ScrollView>
+            <View style={{
+                flexDirection: 'row',
+                justifyContent: 'space-evenly',
+                alignItems: 'center',
+                marginVertical: 20,
+            }}>
+                <ImageModal
+                    resizeMode="cover"
+                    modalImageResizeMode="contain"
+                    imageBackgroundColor="#00000"
+                    style={{
+                        width: 90,
+                        height: 90,
+                    }}
+                    source={imgSources[1]}
+                />
+                <ImageModal
+                    resizeMode="cover"
+                    modalImageResizeMode="contain"
+                    imageBackgroundColor="#00000"
+                    style={{
+                        width: 90,
+                        height: 90,
+                    }}
+                    source={imgSources[2]}
+                />
+                <ImageModal
+                    resizeMode="cover"
+                    modalImageResizeMode="contain"
+                    imageBackgroundColor="#00000"
+                    style={{
+                        width: 90,
+                        height: 90,
+                    }}
+                    source={imgSources[3]}
+                />
+                <ImageModal
+                    resizeMode="cover"
+                    modalImageResizeMode="contain"
+                    imageBackgroundColor="#00000"
+                    style={{
+                        width: 90,
+                        height: 90,
+                    }}
+                    source={imgSources[4]}
+                />
+            </View>
+        </View>
     );            
 }
 

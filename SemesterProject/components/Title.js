@@ -8,15 +8,19 @@ import { View, Text } from 'react-native';
 
 const Title = (props) => {
     return (
-        <View style={{}}>
+        <View>
             <Text style={{
                 fontSize: 35,
                 fontWeight: 'bold',
                 textAlign: 'left',
-                marginVertical: 10,
-                marginLeft: 15,
+                marginTop: 10,
                 color: 'black',
             }}>{props.title}</Text>
+            <Text style={{
+                fontSize: 20,
+                textAlign: 'left',
+                color: 'black',
+            }}>{props.subtitle}</Text>
         </View>
     )
 }

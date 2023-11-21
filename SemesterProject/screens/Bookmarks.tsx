@@ -3,16 +3,16 @@
 /* eslint-disable eol-last */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import React, { useState, useEffect } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { View, ScrollView, Pressable } from 'react-native';
 
 import Globals from '../Globals';
 import Title from '../components/Title';
+import ItemCard from '../components/ItemCard';
 
 const Bookmarks = ( {navigation}: {navigation: any} ) => {
-    const [favs, setFavs] = useState([]);
+    const [favs, setFavs] = useState([])
 
     // fetch bookmarked items' id from server
     const getFavs = async () => {
@@ -31,24 +31,18 @@ const Bookmarks = ( {navigation}: {navigation: any} ) => {
 
     return (
         <View>
-            <Title title="My favourites"/>
+            <View style={{marginLeft: 15}}>
+                <Title title="My favourites"/>
+            </View>
             <ScrollView style={{
                 flexDirection: 'column',
             }}>
                 {
-                    favs.map( (item: any, index: number) => (
-                        <View key={index} style={{
-                            flex: 1,
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            padding: 10,
-                            borderBottomWidth: 1,
-                            borderBottomColor: 'grey',
-                        }}>
-                            <Text>{item.item_id}</Text>
-                            <Text>{item.date}</Text>
-                        </View>
+                    // retrieve the item name from the id using findName()
+                    favs.map( (item: any) => (
+                        <Pressable key={item.id} onPress={() => navigation.navigate('ItemDetails', item.item_id)}>
+                            <ItemCard id={item.item_id}/>
+                        </Pressable>
                     ))
                 }
             </ScrollView>

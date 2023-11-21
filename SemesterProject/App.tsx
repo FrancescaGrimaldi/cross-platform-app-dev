@@ -83,7 +83,7 @@ const FoodApp = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name="ItemDetails" component={ItemDetails} />
+        <Stack.Screen name="ItemDetails" component={ItemDetails} options={{ headerTitle: '' }}/>
         <Stack.Screen name="Filter" component={Filter} />
       </Stack.Navigator>
     </NavigationContainer>
