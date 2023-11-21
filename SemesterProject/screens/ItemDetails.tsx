@@ -3,21 +3,30 @@
 /* eslint-disable eol-last */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import React, {useState, useEffect} from 'react';
 import { Text, View, Pressable, Image } from 'react-native';
 import Globals from '../Globals';
 import Title from '../components/Title';
-import ImageModal from 'react-native-image-modal';
+import PictureGallery from '../components/PictureGallery';
 
 import FontAw from 'react-native-vector-icons/FontAwesome';
+
+const imgSources = {
+    1: require('../images/items/1_1.jpg'),
+    2: require('../images/items/2_1.jpg'),
+    3: require('../images/items/3_1.jpg'),
+    4: require('../images/items/4_1.jpg'),
+    5: require('../images/items/5_1.jpg'),
+    6: require('../images/items/6_1.jpg'),
+    7: require('../images/items/7_1.jpg'),
+}
 
 const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
     const [item, setItem] = useState([]);
     const [isFav, setIsFav] = useState(false); // TODO: save favs in local storage (?)
-    const imgSources = [require('../images/items/1_1.jpg'), require('../images/items/1_2.jpg'), require('../images/items/1_3.jpg'), require('../images/items/1_4.jpg'), require('../images/items/1_5.jpg')]
+    const [itemImg, setItemImg] = useState(require('../images/items/unavailable.jpg')); // TODO: add more images to the item object and display them in a gallery
 
     // fetch item details from server
     const getItemDetails = async () => {
@@ -25,6 +34,8 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
             const response = await fetch(`https://${Globals.serverAddress}/items/` + route.params);
             const json = await response.json();
             setItem(json);
+            checkFav();
+            setItemImg(imgSources[json.id] || []);
         } catch (error) {
             console.error(error);
         }
@@ -128,7 +139,6 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
 
     useEffect( () => {
         getItemDetails();
-        checkFav();
     }, []);
     
     return (
@@ -150,7 +160,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
                 marginVertical: 10,
                 marginLeft: 15,
             }}>
-                <Image source={imgSources[(item.id - 1) * 6]} style={{width: '80%', height: 200, borderRadius: 13}} />
+                <Image source={itemImg} style={{width: '80%', height: 200, borderRadius: 13}} />
                 <View style={{
                     flexDirection: 'column',
                     justifyContent: 'space-around',
@@ -175,53 +185,8 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
                 <Text style={{fontSize: 20}}>{item.fulldescr}</Text>
             </View>
 
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'space-evenly',
-                alignItems: 'center',
-                marginVertical: 20,
-            }}>
-                <ImageModal
-                    resizeMode="cover"
-                    modalImageResizeMode="contain"
-                    imageBackgroundColor="#00000"
-                    style={{
-                        width: 90,
-                        height: 90,
-                    }}
-                    source={imgSources[1]}
-                />
-                <ImageModal
-                    resizeMode="cover"
-                    modalImageResizeMode="contain"
-                    imageBackgroundColor="#00000"
-                    style={{
-                        width: 90,
-                        height: 90,
-                    }}
-                    source={imgSources[2]}
-                />
-                <ImageModal
-                    resizeMode="cover"
-                    modalImageResizeMode="contain"
-                    imageBackgroundColor="#00000"
-                    style={{
-                        width: 90,
-                        height: 90,
-                    }}
-                    source={imgSources[3]}
-                />
-                <ImageModal
-                    resizeMode="cover"
-                    modalImageResizeMode="contain"
-                    imageBackgroundColor="#00000"
-                    style={{
-                        width: 90,
-                        height: 90,
-                    }}
-                    source={imgSources[4]}
-                />
-            </View>
+            <PictureGallery item={item} />
+
         </View>
     );            
 }

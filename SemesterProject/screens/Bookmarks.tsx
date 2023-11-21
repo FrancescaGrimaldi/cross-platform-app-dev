@@ -25,9 +25,15 @@ const Bookmarks = ( {navigation}: {navigation: any} ) => {
         }
     }
     
-    useEffect( () => {
-        getFavs();
-    }, [favs]);
+    useEffect(() => {
+        const id = setInterval(() => {
+            getFavs();
+        }, 3000)
+        
+        return () => {
+            clearInterval(id);
+        }
+    });
 
     return (
         <View>

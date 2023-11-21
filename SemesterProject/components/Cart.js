@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable semi */
 /* eslint-disable eol-last */
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable react-native/no-inline-styles */
 
@@ -24,7 +25,7 @@ const Cart = (props) => {
 
     useEffect(() => {
         findItem()
-    })
+    }, [])
 
     return (
         <View style={{
@@ -32,12 +33,14 @@ const Cart = (props) => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: 10,
-            borderBottomWidth: 1,
-            borderBottomColor: 'pink',
+            paddingVertical: 2,
         }}>
-            <Text>{item.name}</Text>
-            <Text>x{props.quantity}</Text>
+            <Text style={{
+                fontSize: 18,
+            }}>{item.name}</Text>
+            <Text style={{
+                fontSize: 18,
+            }}>x{props.quantity}</Text>
         </View>
     )
 }

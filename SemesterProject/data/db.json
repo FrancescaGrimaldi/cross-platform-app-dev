@@ -10,14 +10,7 @@
         "longitude": 10.392469162854288
       },
       "contact": "Super Hero Burger",
-      "fulldescr": "Burger with mayonnaise, beef meat, BBQ sauce, onion rings, lettuce, tomato and onion.",
-      "images": {
-        "2": "../images/items/1_2.jpg",
-        "3": "../images/items/1_3.jpg",
-        "4": "../images/items/1_4.jpg",
-        "5": "../images/items/1_5.jpg",
-        "one": "../images/items/1_1.jpg"
-      }
+      "fulldescr": "Burger with mayonnaise, beef meat, BBQ sauce, onion rings, lettuce, tomato and onion."
     },
     {
       "id": "2",
@@ -98,10 +91,6 @@
       "id": 2
     },
     {
-      "item_id": "7",
-      "id": 5
-    },
-    {
       "item_id": "5",
       "id": 6
     },
@@ -110,16 +99,5 @@
       "id": 7
     }
   ],
-  "cart": [
-    {
-      "item_id": "3",
-      "quantity": 2,
-      "id": 1
-    },
-    {
-      "item_id": "6",
-      "quantity": 1,
-      "id": 2
-    }
-  ]
+  "cart": []
 }

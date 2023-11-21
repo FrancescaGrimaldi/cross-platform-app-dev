@@ -43,24 +43,26 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
                 flexDirection: 'row',
             }}>
                 <TextInput
-                    style={{height: 40, width: '82%', borderColor: '#22391f', borderWidth: 1, margin: 10, padding: 10, backgroundColor: '#fff'}}
+                    style={{fontSize: 17, height: 40, width: '82%', borderColor: '#22391f', borderWidth: 1, margin: 10, padding: 10, backgroundColor: '#fff', borderRadius: 10}}
                     placeholder="Search"
                     onChangeText={newText => {
                         var matchedItems = [];
 
-                        // don't know if i want to make it so that it searches for the item's category too
                         // is case sensitive
                         if (newText.trim().length > 0) {
                             matchedItems = items.filter(function (item: { name: string | any[]; }) {
-                                return item.name.includes(newText);
+                                if (typeof item.name === 'string') {
+                                    return item.name.toLowerCase().includes(newText.toLowerCase());
+                                }
+                                return false;
                             });
                             setItems(matchedItems);
                         } else {
                             getItems();
                         }
                     }}
-                />
-                <Pressable onPress={() => navigation.navigate('Filter', {selectedCategories: filteredCategories, setSelectedCategories: setFilteredCategories})}>
+                    />
+                    <Pressable onPress={() => navigation.navigate('Filter', {selectedCategories: filteredCategories, setSelectedCategories: setFilteredCategories})}>
                     <FontAw5 name="filter" size={25} color="#22391f" style={{marginTop: 15, marginLeft: 15}} />
                 </Pressable>
             </View>

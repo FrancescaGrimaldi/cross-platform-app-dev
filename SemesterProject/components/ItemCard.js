@@ -9,6 +9,17 @@ import { View, Text, Image} from 'react-native';
 
 import Globals from '../Globals';
 
+const imagesMap = {
+    1: require('../images/items/1_1.jpg'),
+    2: require('../images/items/2_1.jpg'),
+    3: require('../images/items/3_1.jpg'),
+    4: require('../images/items/4_1.jpg'),
+    5: require('../images/items/5_1.jpg'),
+    6: require('../images/items/6_1.jpg'),
+    7: require('../images/items/7_1.jpg'),
+}
+
+// TODO: implement different sizes for different parts of the app
 const ItemCard = (props) => {
     const [item, setItem] = useState({});
     
@@ -24,7 +35,7 @@ const ItemCard = (props) => {
 
     useEffect(() => {
         findItem()
-    })
+    }, [])
 
     return (
         <View style={{
@@ -43,7 +54,7 @@ const ItemCard = (props) => {
                 width: 70,
                 height: 70,
                 borderRadius: 10,
-            }} source={require('../images/items/1_1.jpg')} />
+            }} source={imagesMap[item.id]} />
             
             <View style={{
                 flex: 1,

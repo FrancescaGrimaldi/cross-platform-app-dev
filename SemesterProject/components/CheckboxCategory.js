@@ -12,16 +12,16 @@ const CheckboxCategory = (props) => {
     
     return (
         <View style={styles.container}>
-        <CheckBox
-            disabled={false}
-            value={toggleCheckBox}
-            onValueChange={(newValue) => {
-                setToggleCheckBox(newValue);
-                if (newValue) { props.addToSelected(props.category); }
-                else { props.removeFromSelected(props.category); }
-            }}
-        />
-        <Text style={styles.text}>{props.category}</Text>
+            <CheckBox
+                disabled={false}
+                value={toggleCheckBox}
+                onValueChange={(newValue) => {
+                    setToggleCheckBox(newValue);
+                    if (newValue) { props.addToSelected(props.category); }
+                    else { props.removeFromSelected(props.category); }
+                }}
+            />
+            <Text style={styles.text}>{props.category}</Text>
         </View>
     );
 }
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
         marginVertical: 5,
     },
     text: {
-        fontSize: 16,
+        fontSize: 22,
+        marginLeft: 10,
     },
 });
 

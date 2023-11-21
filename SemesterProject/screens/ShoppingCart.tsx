@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable semi */
 /* eslint-disable eol-last */
 /* eslint-disable no-trailing-spaces */
@@ -7,19 +6,23 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import React, {useState, useEffect} from 'react';
-import { Text, View, ScrollView, Pressable, Modal, StyleSheet } from 'react-native';
+import { Text, View, ScrollView, Pressable, StyleSheet, Image } from 'react-native';
 import Globals from '../Globals';
 import Title from '../components/Title';
 import Cart from '../components/Cart';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialComm from 'react-native-vector-icons/MaterialCommunityIcons';
+import ModalWindow from '../components/ModalWindow';
+import SmallItemCard from '../components/SmallItemCard';
+import CartButton from '../components/CartButton';
 
 const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [total, setTotal] = useState(0);
     const [fee, setFee] = useState(0);  // TODO: calculate fees
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState<{id: number, item_id: number, quantity: number,}[]>([]);
+    const [suggestedItems, setSuggestions] = useState<any[]>([]);  // TODO: suggest items based on [cartItems] category
 
     // fetch items in the shopping cart from server
     const getCartItems = async () => {
@@ -27,6 +30,8 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
             const response = await fetch(`https://${Globals.serverAddress}/cart`);
             const json = await response.json();
             setCartItems(json);
+            calculateTotal();
+            suggestItems();
         } catch (error) {
             console.error(error);
         }
@@ -47,10 +52,51 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
         setFee(sum / 100);
     }
 
-    useEffect( () => {
-        getCartItems();
-        calculateTotal();
-    }, [cartItems]);
+    const suggestItems = async () => {
+        // retrieve all information of each cart item from the server and check their category to suggest similar items
+        let itemsCategories: any[] = [];
+        for (let item of cartItems) {
+            try {
+                const response = await fetch(`https://${Globals.serverAddress}/items/` + item.item_id);
+                const json = await response.json();
+                if (!itemsCategories.includes(json.category)) {
+                    itemsCategories.push(json.category);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        for (let category of itemsCategories) {
+            try {
+                const response = await fetch(`https://${Globals.serverAddress}/items?category=` + category);
+                const json = await response.json();
+                // check if the suggested item is already in the cart
+                for (let item of json) {
+                    let found = false;
+                    for (let cartItem of cartItems) {
+                        if (item.id === cartItem.item_id) {
+                            found = true;
+                        }
+                    }
+                    if (!found && suggestedItems.map( (suggested : any) => suggested.id).indexOf(item.id) === -1) {
+                        setSuggestions([...suggestedItems, item]);
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
+
+    useEffect(() => {
+        const id = setInterval(() => {
+            getCartItems();
+        }, 3000)
+        
+        return () => {
+            clearInterval(id);
+        }
+    });
 
     const resetCart = async () => {
         try {
@@ -64,8 +110,11 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                 });
             }
             
-            getCartItems();
-
+            setCartItems([]);
+            setTotal(0);
+            setFee(0);
+            setSuggestions([]);
+            
         } catch (error) {
             console.error(error);
         }
@@ -85,9 +134,13 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
             <View style={{marginLeft: 15}}>
                 <Title title="My shopping basket"/>
             </View>
+
+            <Text style={{fontWeight: 'bold', marginLeft: 15, fontSize: 22}}>Order summary</Text>
+
             <ScrollView style={{
-                height: '30%',
-                marginTop: 20,
+                height: '20%',
+                marginTop: 5,
+                marginHorizontal: 15,
             }}>
                 {
                     cartItems.map( (item: any, index: number) => (
@@ -97,19 +150,54 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
             </ScrollView>
             
             <View style={{
-                marginLeft: 15,
+                marginHorizontal: 15,
             }}>
-                <Text style={{fontWeight: 'bold', fontSize: 22}}>Order summary</Text>
-                <Text style={{fontSize: 18}}>Subtotal: {total}</Text>
-                <Text style={{fontSize: 18}}>Delivery and Service fees: {fee}</Text>
-                <Text style={{fontSize: 18, textDecorationLine: 'underline'}}>Total: {total + fee}</Text>
+
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                }}>
+                    <Text style={{fontSize: 18}}>Subtotal</Text>
+                    <Text style={{fontSize: 18}}>{total} NOK</Text>
+                </View>
+
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                }}>
+                    <Text style={{fontSize: 18}}>Delivery and Service fees</Text>
+                    <Text style={{fontSize: 18}}>{fee} NOK</Text>
+                </View>
+
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    borderBottomWidth: 1,
+                    borderBottomColor: 'black',
+                }}>
+                    <Text style={{fontSize: 18,  fontWeight: 'bold'}}>Total</Text>
+                    <Text style={{fontSize: 18, fontWeight: 'bold'}}>{total + fee} NOK</Text>
+                </View>
+
             </View>
 
-            <Text style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-                margin: 20,
-            }}>You might also like... (implement!!)</Text>
+            <View>
+                <Text style={{
+                    fontSize: 22,
+                    fontWeight: 'bold',
+                    marginTop: 30,
+                    marginHorizontal: 15,
+                }}>You might also like...</Text>
+
+                <ScrollView horizontal={true} style={{margin: 15}}>
+                    {
+                        suggestedItems.map( (item: any, index: number) => (
+                            <SmallItemCard id={item.id} name={item.name} key={index} navigation={navigation}/>
+                        ))
+                    }
+                </ScrollView>
+
+            </View>
 
             <View style={{
                 flexDirection: 'row',
@@ -117,104 +205,14 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                 marginVertical: 'auto',
                 marginHorizontal: 15,
             }}>
-                <Pressable onPress={resetCart}>
-                    <View style={{
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: '#fc5c65',
-                        borderRadius: 10,
-                        width: 180,
-                        height: 80,
-                        elevation: 10,
-                    }}>
-                        <MaterialComm name="cart-remove" size={40} color="black"/>
-                        <Text style={{fontSize: 16, fontWeight: 'bold'}}>Reset</Text>
-                    </View>
-                </Pressable>
-
-                <Pressable onPress={checkout}>
-                    <View style={{
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: '#3ae374',
-                        borderRadius: 10,
-                        width: 180,
-                        height: 80,
-                        elevation: 10,
-                    }}>
-                        <MaterialIcons name="shopping-cart-checkout" size={40} color="black"/>
-                        <Text style={{fontSize: 16, fontWeight: 'bold'}}>Checkout</Text>
-                    </View>
-                </Pressable>
+                <CartButton onPress={resetCart} icon="reset" text="Reset" backgroundColor="#fc5c65"/>
+                <CartButton onPress={checkout} icon="checkout" text="Checkout" backgroundColor="#3ae374"/>
             </View>
 
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {confirmCheckout}}>
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Operation successful!</Text>
-                        <Pressable style={[styles.button, styles.buttonClose]} onPress={() => confirmCheckout()}>
-                            <Text style={styles.textStyle}>Close</Text>
-                        </Pressable>
-                    </View>
-                </View>
-            </Modal>
+            <ModalWindow visible={modalVisible} text="Operation completed successfully" buttonText="Close" onClose={confirmCheckout} onPress={confirmCheckout}/>
         </View>
 
     );            
 }
-
-const styles = StyleSheet.create({
-    centeredView: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: 22,
-    },
-    
-    modalView: {
-      margin: 20,
-      backgroundColor: 'white',
-      borderRadius: 20,
-      padding: 35,
-      alignItems: 'center',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.25,
-      shadowRadius: 4,
-      elevation: 5,
-    },
-    
-    button: {
-      borderRadius: 12,
-      padding: 7,
-      elevation: 2,
-    },
-    
-    buttonClose: {
-      backgroundColor: '#2196F3',
-    },
-    
-    textStyle: {
-      color: 'white',
-      fontWeight: 'bold',
-      textAlign: 'center',
-      fontSize: 18,
-    },
-
-    modalText: {
-      marginBottom: 15,
-      fontSize: 20,
-      textAlign: 'center',
-    },
-});
 
 export default ShoppingCart;
