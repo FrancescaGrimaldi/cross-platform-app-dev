@@ -9,25 +9,25 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialComm from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const icons = {
-    checkout: <MaterialIcons name="shopping-cart-checkout" size={40} color="black"/>,
-    reset: <MaterialComm name="cart-remove" size={40} color="black"/>,
+    checkout: <MaterialIcons style={{marginLeft: 20}} name="shopping-cart-checkout" size={40} color="green"/>,
+    reset: <MaterialComm style={{marginLeft: 20}} name="cart-remove" size={40} color="red"/>,
 }
 
 const CartButton = (props) => {
     return (
         <Pressable onPress={props.onPress}>
             <View style={{
-                flexDirection: 'column',
+                flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: props.backgroundColor,
                 borderRadius: 10,
-                width: 180,
-                height: 80,
-                elevation: 10,
+                backgroundColor: 'white',
+                width: '100%',
+                height: 60,
+                elevation: 5,
+                marginVertical: 10,
             }}>
                 { icons[props.icon] }
-                <Text style={{fontSize: 16, fontWeight: 'bold'}}>{props.text}</Text>
+                <Text style={{fontSize: 18, marginLeft: 20, fontWeight: 'bold'}}>{props.text}</Text>
             </View>
         </Pressable>
     )

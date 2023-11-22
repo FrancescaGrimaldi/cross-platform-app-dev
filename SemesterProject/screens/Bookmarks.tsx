@@ -46,9 +46,7 @@ const Bookmarks = ( {navigation}: {navigation: any} ) => {
                 {
                     // retrieve the item name from the id using findName()
                     favs.map( (item: any) => (
-                        <Pressable key={item.id} onPress={() => navigation.navigate('ItemDetails', item.item_id)}>
-                            <ItemCard id={item.item_id}/>
-                        </Pressable>
+                        <ItemCard key={item.id} id={item.item_id} navigation={navigation}/>
                     ))
                 }
             </ScrollView>

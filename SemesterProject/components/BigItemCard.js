@@ -1,13 +1,9 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable semi */
-/* eslint-disable eol-last */
-/* eslint-disable no-trailing-spaces */
 /* eslint-disable react-native/no-inline-styles */
+/* eslint-disable semi */
 
-import React, {useState, useEffect} from 'react';
-import { View, Text, Image, Pressable} from 'react-native';
-
-import Globals from '../Globals';
+import React from 'react';
+import { View, Image, Text, Pressable } from 'react-native';
 
 const imagesMap = {
     1: require('../images/items/1_1.jpg'),
@@ -19,44 +15,29 @@ const imagesMap = {
     7: require('../images/items/7_1.jpg'),
 }
 
-// TODO: implement different sizes for different parts of the app
-const ItemCard = (props) => {
-    const [item, setItem] = useState({});
-    
-    const findItem = async () => {
-        try {
-            const response = await fetch(`http://${Globals.serverAddress}/items/${props.id}`);
-            const json = await response.json();
-            setItem(json);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    useEffect(() => {
-        findItem()
-    }, [])
-
+const BigItemCard = (props) => {
     return (
         <Pressable onPress={() => props.navigation.navigate('ItemDetails', props.id)}>
             <View style={{
                 flex: 1,
-                flexDirection: 'row',
+                flexDirection: 'column',
                 justifyContent: 'space-between',
-                alignItems: 'center',
+                alignItems: 'flex-start',
                 padding: 10,
                 backgroundColor: 'white',
-                marginHorizontal: 15,
                 marginVertical: 5,
+                marginHorizontal: 15,
                 borderRadius: 10,
                 elevation: 7,
+                height: 350,
+                width: '93%',
             }}>
                 <Image style={{
-                    width: 70,
-                    height: 70,
+                    width: '100%',
+                    height: '85%',
                     borderRadius: 10,
-                }} source={imagesMap[item.id]} />
-                
+                }} source={imagesMap[props.id]} />
+
                 <View style={{
                     flex: 1,
                     flexDirection: 'column',
@@ -64,12 +45,12 @@ const ItemCard = (props) => {
                     alignItems: 'flex-start',
                     marginLeft: 10,
                 }}>
-                    <Text style={{fontSize: 20, fontWeight: 'bold'}}>{item.name}</Text>
-                    <Text style={{fontSize: 16}}>By {item.contact}</Text>
+                    <Text style={{fontSize: 22, fontWeight: 'bold'}}>{props.name}</Text>
+                    <Text style={{fontSize: 18}}>By {props.contact}</Text>
                 </View>
             </View>
         </Pressable>
     )
 }
 
-export default ItemCard;
+export default BigItemCard;

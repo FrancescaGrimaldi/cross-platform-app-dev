@@ -21,14 +21,14 @@ const SmallItemCard = (props) => {
             <View style={{
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
+                justifyContent: 'space-evenly',
                 borderRadius: 10,
                 width: 110,
-                height: 110,
+                height: 120,
                 marginHorizontal: 5,
             }}>
                 <Image source={imagesMap[props.id]} style={{width: 70, height: 70, borderRadius: 10}}/>
-                <Text style={{fontSize: 18, fontWeight: 'bold'}}>{props.name}</Text>
+                <Text style={{fontSize: 18, fontWeight: 'bold', textAlign: 'center'}}>{props.name}</Text>
             </View>
         </Pressable>
     )

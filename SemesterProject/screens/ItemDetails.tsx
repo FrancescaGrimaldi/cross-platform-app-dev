@@ -180,6 +180,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
 
             <View style={{
                 marginHorizontal: 15,
+                marginTop: 10,
             }}>
                 <Text style={{fontSize: 22, fontWeight: 'bold'}}>Description</Text>
                 <Text style={{fontSize: 20}}>{item.fulldescr}</Text>
