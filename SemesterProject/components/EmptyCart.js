@@ -7,6 +7,8 @@
 import React from 'react';
 import { View, Text, Pressable} from 'react-native';
 
+import i18n from '../translations/I18n';
+
 import Fontisto from 'react-native-vector-icons/Fontisto';
 
 const EmptyCart = (props) => {
@@ -24,8 +26,8 @@ const EmptyCart = (props) => {
                 marginTop: 20,
                 alignItems: 'center',
             }}>
-                <Text style={{fontSize: 25}}>Oops!</Text>
-                <Text style={{fontSize: 25}}>Looks like your cart is empty!</Text>
+                <Text style={{fontSize: 25}}>{i18n.t('ShoppingCart.empty.text1')}</Text>
+                <Text style={{fontSize: 23}}>{i18n.t('ShoppingCart.empty.text2')}</Text>
                 
                 <View style={{
                     marginTop: 30,
@@ -37,7 +39,7 @@ const EmptyCart = (props) => {
                     elevation: 5,
                 }}>
                     <Pressable onPress={() => props.navigation.navigate('Homepage')}>
-                        <Text style={{fontSize: 25, textAlign: 'center'}}>Check our items</Text>
+                        <Text style={{fontSize: 23, textAlign: 'center'}}>{i18n.t('ShoppingCart.empty.gotohome')}</Text>
                     </Pressable>
                 </View>
             </View>

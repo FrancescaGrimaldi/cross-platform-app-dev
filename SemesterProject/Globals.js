@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 const Globals = {
-  serverAddress: '920d-188-113-90-45.ngrok-free.app',
+  serverAddress: 'ec13-2001-700-300-4035-adee-68a7-1cfe-f5a.ngrok-free.app',
   serverPort: 3000,
 };
 

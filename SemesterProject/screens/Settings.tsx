@@ -9,11 +9,13 @@ import React from 'react';
 import { View } from 'react-native';
 import Title from '../components/Title';
 
+import i18n from '../translations/I18n';
+
 const Settings = ( {navigation}: {navigation: any} ) => {
     
     return (
         <View style={{marginLeft: 10}}>
-            <Title title="Settings"/>
+            <Title title={i18n.t('Settings.title')}/>
         </View>
     );            
 }

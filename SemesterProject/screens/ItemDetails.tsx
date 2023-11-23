@@ -11,6 +11,8 @@ import Globals from '../Globals';
 import Title from '../components/Title';
 import PictureGallery from '../components/PictureGallery';
 
+import i18n from '../translations/I18n';
+
 import FontAw from 'react-native-vector-icons/FontAwesome';
 
 const imgSources = {
@@ -24,7 +26,7 @@ const imgSources = {
 }
 
 const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
-    const [item, setItem] = useState([]);
+    const [item, setItem] = useState<any>([]);
     const [isFav, setIsFav] = useState(false); // TODO: save favs in local storage (?)
     const [itemImg, setItemImg] = useState(require('../images/items/unavailable.jpg')); // TODO: add more images to the item object and display them in a gallery
 
@@ -150,8 +152,8 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
                 justifyContent: 'space-between',
                 marginVertical: 10,
             }}>
-                <Text style={{fontSize: 16, marginRight: 80}}>{item.category}</Text>
-                <Title title={item.name} subtitle={`By ${item.contact}`} />
+                <Text style={{fontSize: 16, marginRight: 80}}>{i18n.t(`Filter.categories.${item.category}`)}</Text>
+                <Title title={item.name} subtitle={`${i18n.t('Items.contact')} ${item.contact}`} />
             </View>
 
             <View style={{
@@ -182,7 +184,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
                 marginHorizontal: 15,
                 marginTop: 10,
             }}>
-                <Text style={{fontSize: 22, fontWeight: 'bold'}}>Description</Text>
+                <Text style={{fontSize: 22, fontWeight: 'bold'}}>{i18n.t('Items.description')}</Text>
                 <Text style={{fontSize: 20}}>{item.fulldescr}</Text>
             </View>
 

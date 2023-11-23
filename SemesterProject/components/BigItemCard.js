@@ -5,6 +5,8 @@
 import React from 'react';
 import { View, Image, Text, Pressable } from 'react-native';
 
+import i18n from '../translations/I18n';
+
 const imagesMap = {
     1: require('../images/items/1_1.jpg'),
     2: require('../images/items/2_1.jpg'),
@@ -46,7 +48,7 @@ const BigItemCard = (props) => {
                     marginLeft: 10,
                 }}>
                     <Text style={{fontSize: 22, fontWeight: 'bold'}}>{props.name}</Text>
-                    <Text style={{fontSize: 18}}>By {props.contact}</Text>
+                    <Text style={{fontSize: 18}}>{i18n.t('Items.contact')} {props.contact}</Text>
                 </View>
             </View>
         </Pressable>

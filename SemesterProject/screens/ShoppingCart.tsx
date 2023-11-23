@@ -13,15 +13,16 @@ import Cart from '../components/Cart';
 import EmptyCart from '../components/EmptyCart';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import MaterialComm from 'react-native-vector-icons/MaterialCommunityIcons';
 import ModalWindow from '../components/ModalWindow';
 import SmallItemCard from '../components/SmallItemCard';
 import CartButton from '../components/CartButton';
 
+import i18n from '../translations/I18n';
+
 const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [total, setTotal] = useState(0);
-    const [fee, setFee] = useState(0);  // TODO: calculate fees
+    const [fee, setFee] = useState(0);
     const [cartItems, setCartItems] = useState<{id: number, item_id: number, quantity: number,}[]>([]);
     const [suggestedItems, setSuggestions] = useState<any[]>([]);
     const [deliveryTime, setDeliveryTime] = useState(0);
@@ -142,7 +143,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     return (
         <View>
             <View style={{marginLeft: 15}}>
-                <Title title="My shopping basket"/>
+                <Title title={i18n.t('ShoppingCart.title')}/>
             </View>
 
         { cartItems.length === 0 ? <EmptyCart navigation={navigation}/> :
@@ -150,7 +151,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                 marginBottom: 85,
             }}>
 
-                <Text style={{fontWeight: 'bold', marginLeft: 15, fontSize: 22}}>Order summary</Text>
+                <Text style={{fontWeight: 'bold', marginLeft: 15, fontSize: 22}}>{i18n.t('ShoppingCart.summary')}</Text>
 
                 <View style={{
                     marginVertical: 20,
@@ -175,7 +176,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                             flexDirection: 'column',
                             marginLeft: 25,
                         }}>
-                            <Text style={{fontSize: 17}}>Delivery time</Text>
+                            <Text style={{fontSize: 17}}>{i18n.t('ShoppingCart.delivery')}</Text>
                             <Text style={{fontSize: 21, fontWeight: 'bold'}}>{deliveryTime} min</Text>
                         </View>
                     </View>
@@ -187,7 +188,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                             flexDirection: 'row',
                             justifyContent: 'space-between',
                         }}>
-                            <Text style={{fontSize: 18}}>Subtotal</Text>
+                            <Text style={{fontSize: 18}}>{i18n.t('ShoppingCart.subtotal')}</Text>
                             <Text style={{fontSize: 18}}>{total} NOK</Text>
                         </View>
 
@@ -195,7 +196,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                             flexDirection: 'row',
                             justifyContent: 'space-between',
                         }}>
-                            <Text style={{fontSize: 18}}>Delivery and Service fees</Text>
+                            <Text style={{fontSize: 18}}>{i18n.t('ShoppingCart.fees')}</Text>
                             <Text style={{fontSize: 18}}>{fee} NOK</Text>
                         </View>
 
@@ -205,7 +206,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                             borderBottomWidth: 1,
                             borderBottomColor: 'black',
                         }}>
-                            <Text style={{fontSize: 18,  fontWeight: 'bold'}}>Total</Text>
+                            <Text style={{fontSize: 18,  fontWeight: 'bold'}}>{i18n.t('ShoppingCart.total')}</Text>
                             <Text style={{fontSize: 18, fontWeight: 'bold'}}>{total + fee} NOK</Text>
                         </View>
                     </View>
@@ -218,9 +219,9 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                             fontSize: 22,
                             fontWeight: 'bold',
                             marginHorizontal: 15,
-                        }}>You might also like...</Text>
+                        }}>{i18n.t('ShoppingCart.suggested.title')}</Text>
 
-                        <Text style={{marginHorizontal: 15, fontSize: 18}}>Enhance your meal experience! Try these handpicked delights that perfectly complement your selection.</Text>
+                        <Text style={{marginHorizontal: 15, fontSize: 18}}>{i18n.t('ShoppingCart.suggested.text')}</Text>
 
                         <ScrollView horizontal={true} style={{marginHorizontal: 15, marginTop: 10}}>
                             {
@@ -239,11 +240,11 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                     marginVertical: 10,
                     marginHorizontal: 15,
                 }}>
-                    <CartButton onPress={resetCart} icon="reset" text="Reset the cart" backgroundColor="#fc5c65"/>
-                    <CartButton onPress={checkout} icon="checkout" text="Proceed to checkout" backgroundColor="#3ae374"/>
+                    <CartButton onPress={resetCart} icon="reset" text={i18n.t('ShoppingCart.reset')} backgroundColor="#fc5c65"/>
+                    <CartButton onPress={checkout} icon="checkout" text={i18n.t('ShoppingCart.checkout.title')} backgroundColor="#3ae374"/>
                 </View>
 
-                <ModalWindow visible={modalVisible} text="Operation completed successfully" buttonText="Close" onClose={confirmCheckout} onPress={confirmCheckout}/>
+                <ModalWindow visible={modalVisible} text={i18n.t('ShoppingCart.checkout.success')} buttonText={i18n.t('ShoppingCart.checkout.close')} onClose={confirmCheckout} onPress={confirmCheckout}/>
             
             </ScrollView>
         }

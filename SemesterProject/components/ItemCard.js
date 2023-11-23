@@ -9,6 +9,8 @@ import { View, Text, Image, Pressable} from 'react-native';
 
 import Globals from '../Globals';
 
+import i18n from '../translations/I18n';
+
 const imagesMap = {
     1: require('../images/items/1_1.jpg'),
     2: require('../images/items/2_1.jpg'),
@@ -65,7 +67,7 @@ const ItemCard = (props) => {
                     marginLeft: 10,
                 }}>
                     <Text style={{fontSize: 20, fontWeight: 'bold'}}>{item.name}</Text>
-                    <Text style={{fontSize: 16}}>By {item.contact}</Text>
+                    <Text style={{fontSize: 16}}>{i18n.t('Items.contact')} {item.contact}</Text>
                 </View>
             </View>
         </Pressable>

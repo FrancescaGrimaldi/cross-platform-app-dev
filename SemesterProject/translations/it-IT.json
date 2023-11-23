@@ -1,4 +1,8 @@
-{
+{   
+    "Items" : {
+        "contact" : "Da",
+        "description" : "Descrizione"
+    },
     "Settings" : {
         "title" : "Impostazioni",
         "locale" : {
@@ -28,12 +32,23 @@
     },
     "ShoppingCart" : {
         "title" : "Il mio carrello",
-        "empty" : "Il tuo carrello è vuoto!",
+        "empty" : {
+            "text1" : "Oops!",
+            "text2" : "Sembra che il tuo carrello sia vuoto!",
+            "gotohome" : "Guarda i prodotti"
+        },
+        "summary" : "Riepilogo ordine",
+        "delivery" : "Tempo di consegna",
         "total" : "Totale",
         "subtotal" : "Subtotale",
         "fees" : "Consegna e tasse di servizio",
+        "suggested" : {
+            "title" : "Ti potrebbe interessare...",
+            "text" : "Migliora la tua esperienza culinaria! Prova queste delizie selezionate con cura che completano perfettamente la tua selezione."
+        },
+        "reset" : "Annulla il carrello",
         "checkout" : {
-            "title" : "Checkout",
+            "title" : "Procedi con il checkout",
             "success" : "Il tuo ordine è stato inviato!",
             "close" : "Chiudi"
         }

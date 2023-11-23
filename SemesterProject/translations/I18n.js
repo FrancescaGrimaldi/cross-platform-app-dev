@@ -6,14 +6,14 @@ import { I18nManager } from "react-native";
 import * as RNLocalize from "react-native-localize";
 
 const translatedTexts = {
-    en: () => require("./en-GB.json"),
-    nb: () => require("./nb-NB.json"),
-    it: () => require("./it-IT.json"),
+    "en-GB": () => require("./en-GB.json"),
+    "nb-NB": () => require("./nb-NB.json"),
+    "it-IT": () => require("./it-IT.json"),
 };
 
 // fallback and current language
-const fallback = { languageTag: "en", isRTL: false };
-const { languageTag, isRTL } = RNLocalize.findBestAvailableLanguage(Object.keys(translatedTexts)) || fallback;
+const fallback = { languageTag: "en-GB", isRTL: false };
+const { languageTag, isRTL } = RNLocalize.findBestLanguageTag(Object.keys(translatedTexts)) || fallback;
 
 // update layout direction
 I18nManager.forceRTL(isRTL);

@@ -13,8 +13,10 @@ import ItemCard from '../components/ItemCard';
 import BigItemCard from '../components/BigItemCard';
 import SidedItemCard from '../components/SidedItemCard';
 
+import i18n from '../translations/I18n';
+
 const Homepage = ( {navigation}: {navigation: any} ) => {
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState<any>([]);
     const [filteredCategories, setFilteredCategories] = useState([]);
     const [searching, setSearching] = useState(false);
 
@@ -92,10 +94,10 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
             }}>
                 <TextInput
                     style={{fontSize: 17, height: 40, width: '82%', borderColor: '#22391f', borderWidth: 1, margin: 15, padding: 10, backgroundColor: '#fff', borderRadius: 10}}
-                    placeholder="Search"
+                    placeholder={i18n.t('Homepage.search.placeholder')}
                     onChangeText={newText => {
                         var matchedItems = [];
-
+                        
                         if (newText.trim().length > 1) {
                             matchedItems = items.filter(function (item: { name: string | any[]; }) {
                                 if (typeof item.name === 'string') {
@@ -111,7 +113,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
                         }
                     }}
                     />
-                    <Pressable onPress={() => navigation.navigate('Filter', {selectedCategories: filteredCategories, setSelectedCategories: setFilteredCategories})}>
+                    <Pressable onPress={() => navigation.navigate(`${i18n.t('Filter.title')}`, {selectedCategories: filteredCategories, setSelectedCategories: setFilteredCategories})}>
                     <FontAw5 name="filter" size={25} color="#22391f" style={{marginTop: 20, marginLeft: 10}} />
                 </Pressable>
             </View>

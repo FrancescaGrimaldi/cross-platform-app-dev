@@ -9,6 +9,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import i18n from './translations/I18n';
+
 import Homepage from './screens/Homepage';
 import MapView from './screens/MapView';
 import Bookmarks from './screens/Bookmarks';
@@ -84,7 +86,7 @@ const FoodApp = () => {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="ItemDetails" component={ItemDetails} options={{ headerTitle: '' }}/>
-        <Stack.Screen name="Filter" component={Filter} />
+        <Stack.Screen name={i18n.t('Filter.title')} component={Filter} />
       </Stack.Navigator>
     </NavigationContainer>
   );

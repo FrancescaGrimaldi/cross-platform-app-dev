@@ -1,4 +1,8 @@
 {
+    "Items" : {
+        "contact" : "By",
+        "description" : "Description"
+    },
     "Settings" : {
         "title" : "Settings",
         "locale" : {
@@ -28,12 +32,23 @@
     },
     "ShoppingCart" : {
         "title" : "My shopping basket",
-        "empty" : "Your shopping basket is empty!",
+        "empty" : {
+            "text1" : "Oops!",
+            "text2" : "Looks like your cart is empty!",
+            "gotohome" : "Check our items"
+        },
+        "summary" : "Order summary",
+        "delivery" : "Delivery time",
         "total" : "Total",
         "subtotal" : "Subtotal",
         "fees" : "Delivery and service fees",
+        "suggested" : {
+            "title" : "You might also like...",
+            "text" : "Enhance your meal experience! Try these handpicked delights that perfectly complement your selection."
+        },
+        "reset" : "Reset the cart",
         "checkout" : {
-            "title" : "Checkout",
+            "title" : "Proceed to checkout",
             "success" : "Your order has been placed successfully!",
             "close" : "Done"
         }

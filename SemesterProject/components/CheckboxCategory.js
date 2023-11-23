@@ -7,6 +7,8 @@ import React, { useState } from 'react';
 import CheckBox from '@react-native-community/checkbox';
 import { View, Text, StyleSheet } from 'react-native';
 
+import i18n from '../translations/I18n';
+
 const CheckboxCategory = (props) => {
     const [toggleCheckBox, setToggleCheckBox] = useState(props.selected);
     
@@ -21,7 +23,7 @@ const CheckboxCategory = (props) => {
                     else { props.removeFromSelected(props.category); }
                 }}
             />
-            <Text style={styles.text}>{props.category}</Text>
+            <Text style={styles.text}>{i18n.t(`Filter.categories.${props.category}`)}</Text>
         </View>
     );
 }

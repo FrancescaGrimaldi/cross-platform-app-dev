@@ -1,4 +1,8 @@
 {
+    "Items" : {
+        "contact" : "På",
+        "description" : "Beskrivelse"
+    },
     "Settings" : {
         "title" : "Innstillinger",
         "locale" : {
@@ -28,12 +32,23 @@
     },
     "ShoppingCart" : {
         "title" : "Handlekurven min",
-        "empty" : "Handlekurven din er tom!",
+        "empty" : {
+            "text1" : "Oops!",
+            "text2" : "Det ser ut til at handlekurven din er tom!",
+            "gotohome" : "Sjekk varene våre"
+        },
+        "summary" : "Bestillingssammendrag",
+        "delivery" : "Leveringstid",
         "total" : "Total",
         "subtotal" : "Delsum",
         "fees" : "Leverings og servicegebyrer",
+        "suggested" : {
+            "title" : "Du kommer kanskje også til å like...",
+            "text" : "Forbedre måltidsopplevelsen din! Prøv disse håndplukkede herlighetene som perfekt utfyller utvalget ditt."
+        },
+        "reset" : "Tilbakestill handlekurven",
         "checkout" : {
-            "title" : "Sjekk ut",
+            "title" : "Fortsett til utsjekking",
             "success" : "Bestillingen din er lagt inn!",
             "close" : "Ferdig"
         }

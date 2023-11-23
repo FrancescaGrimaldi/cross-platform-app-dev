@@ -91,19 +91,13 @@
       "id": 2
     },
     {
-      "item_id": "5",
-      "id": 6
-    },
-    {
       "item_id": "1",
       "id": 7
+    },
+    {
+      "item_id": "5",
+      "id": 8
     }
   ],
-  "cart": [
-    {
-      "item_id": "1",
-      "quantity": 3,
-      "id": 1
-    }
-  ]
+  "cart": []
 }
