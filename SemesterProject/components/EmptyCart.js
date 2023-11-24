@@ -16,32 +16,39 @@ const EmptyCart = (props) => {
         <View style={{
             flexDirection: 'column',
             justifyContent: 'center',
-            alignItems: 'center',
-            paddingVertical: 2,
+            alignContent: 'center',
             height: '80%',
         }}>
-            <Fontisto name="shopping-basket" size={60} color="black"/>
-            
             <View style={{
-                marginTop: 20,
+                flexDirection: 'row',
+                justifyContent: 'center',
                 alignItems: 'center',
+                paddingVertical: 2,
+                marginHorizontal: 60,
             }}>
-                <Text style={{fontSize: 25}}>{i18n.t('ShoppingCart.empty.text1')}</Text>
-                <Text style={{fontSize: 23}}>{i18n.t('ShoppingCart.empty.text2')}</Text>
+                <Fontisto name="shopping-basket" size={80} color="black"/>
                 
                 <View style={{
-                    marginTop: 30,
-                    borderRadius: 10,
-                    justifyContent: 'center',
-                    backgroundColor: 'white',
-                    height: 40,
-                    width: 200,
-                    elevation: 5,
+                    marginHorizontal: 15,
+                    alignItems: 'center',
                 }}>
-                    <Pressable onPress={() => props.navigation.navigate('Homepage')}>
-                        <Text style={{fontSize: 23, textAlign: 'center'}}>{i18n.t('ShoppingCart.empty.gotohome')}</Text>
-                    </Pressable>
+                    <Text style={{fontSize: 23, fontWeight: 'bold'}}>{i18n.t('ShoppingCart.empty.text1')}</Text>
+                    <Text style={{fontSize: 21, textAlign: 'center'}}>{i18n.t('ShoppingCart.empty.text2')}</Text>
                 </View>
+            </View>
+            <View style={{
+                marginTop: 30,
+                borderRadius: 10,
+                justifyContent: 'center',
+                backgroundColor: 'white',
+                alignSelf: 'center',
+                height: 40,
+                width: 200,
+                elevation: 5,
+            }}>
+                <Pressable onPress={() => props.navigation.navigate('Homepage')}>
+                    <Text style={{fontSize: 23, textAlign: 'center'}}>{i18n.t('ShoppingCart.empty.gotohome')}</Text>
+                </Pressable>
             </View>
         </View>
     )

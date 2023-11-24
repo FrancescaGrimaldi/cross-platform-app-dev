@@ -6,16 +6,26 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import Title from '../components/Title';
 
 import i18n from '../translations/I18n';
+import LanguageSelector from '../components/LanguageSelector';
+
+// give users the option to change the language and save it in local storage
 
 const Settings = ( {navigation}: {navigation: any} ) => {
     
     return (
-        <View style={{marginLeft: 10}}>
+        <View style={{marginHorizontal: 15}}>
             <Title title={i18n.t('Settings.title')}/>
+
+            <View style={{
+                flexDirection: 'column',
+            }}>
+                <Text style={{fontSize: 25, fontWeight: 'bold', marginBottom: 10}}>{i18n.t('Settings.locale.title')}</Text>
+                <LanguageSelector />
+            </View>
         </View>
     );            
 }

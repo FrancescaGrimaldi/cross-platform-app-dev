@@ -10,7 +10,7 @@
             "en" : "Inglese",
             "nb" : "Norvegese Bokmål",
             "it" : "Italiano",
-            "sys" : "Lingua di sistema"
+            "placeholder" : "Seleziona la lingua"
         }
     },
     "Bookmarks" : {

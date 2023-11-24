@@ -86,7 +86,7 @@ const FoodApp = () => {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="ItemDetails" component={ItemDetails} options={{ headerTitle: '' }}/>
-        <Stack.Screen name={i18n.t('Filter.title')} component={Filter} />
+        <Stack.Screen name="Filter" component={Filter} options={{ headerTitle: `${i18n.t('Filter.title')}` }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

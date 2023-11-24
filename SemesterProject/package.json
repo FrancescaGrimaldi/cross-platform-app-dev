@@ -11,6 +11,7 @@
     "mockapi": "json-server --w data/db.json"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.19.8",
     "@react-native-community/checkbox": "^0.5.16",
     "@react-navigation/bottom-tabs": "^6.5.10",
     "@react-navigation/native": "^6.1.9",
@@ -18,6 +19,7 @@
     "i18n-js": "^4.3.2",
     "react": "18.2.0",
     "react-native": "0.72.4",
+    "react-native-dropdown-select-list": "^2.0.5",
     "react-native-fast-image": "^8.6.3",
     "react-native-image-modal": "^2.0.4",
     "react-native-localization": "^2.3.2",

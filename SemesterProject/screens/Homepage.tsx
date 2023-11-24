@@ -39,9 +39,15 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
         }
     }
 
-    useEffect( () => {
-        getItems();
-    }, [filteredCategories]);
+    useEffect(() => {
+        const id = setInterval(() => {
+            getItems();
+        }, 3000)
+        
+        return () => {
+            clearInterval(id);
+        }
+    });
 
     const createGrid = () => {
         let counter = 0;
@@ -113,7 +119,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
                         }
                     }}
                     />
-                    <Pressable onPress={() => navigation.navigate(`${i18n.t('Filter.title')}`, {selectedCategories: filteredCategories, setSelectedCategories: setFilteredCategories})}>
+                    <Pressable onPress={() => navigation.navigate('Filter', {selectedCategories: filteredCategories, setSelectedCategories: setFilteredCategories})}>
                     <FontAw5 name="filter" size={25} color="#22391f" style={{marginTop: 20, marginLeft: 10}} />
                 </Pressable>
             </View>

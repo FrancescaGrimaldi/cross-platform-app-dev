@@ -97,7 +97,17 @@
     {
       "item_id": "5",
       "id": 8
+    },
+    {
+      "item_id": "6",
+      "id": 9
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "item_id": "5",
+      "quantity": 1,
+      "id": 1
+    }
+  ]
 }

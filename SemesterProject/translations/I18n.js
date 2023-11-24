@@ -4,10 +4,11 @@
 import {I18n} from "i18n-js";
 import { I18nManager } from "react-native";
 import * as RNLocalize from "react-native-localize";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const translatedTexts = {
+export const translatedTexts = {
     "en-GB": () => require("./en-GB.json"),
-    "nb-NB": () => require("./nb-NB.json"),
+    "nb-NO": () => require("./nb-NO.json"),
     "it-IT": () => require("./it-IT.json"),
 };
 
@@ -30,5 +31,22 @@ i18n.translations = translationsWithFallback;
 i18n.locale = languageTag;
 i18n.enableFallback = true;
 i18n.fallbackLanguage = fallback.languageTag;
+
+// set language from AsyncStorage
+const setLanguage = async () => {
+    try {
+        const language = await AsyncStorage.getItem('language');
+        if (language !== null) {
+            i18n.translations = {
+                [language]: translatedTexts[language](),
+            };
+            i18n.locale = language;
+        }
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+setLanguage();
 
 export default i18n;
