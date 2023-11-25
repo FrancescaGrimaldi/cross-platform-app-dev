@@ -1,20 +1,16 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable semi */
-/* eslint-disable eol-last */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable react-native/no-inline-styles */
 
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
+
+import Title from '../components/Title';
+import ItemCard from '../components/ItemCards/ItemCard';
 
 import Globals from '../Globals';
-import Title from '../components/Title';
-import ItemCard from '../components/ItemCard';
-
 import i18n from '../translations/I18n';
 
 const Bookmarks = ( {navigation}: {navigation: any} ) => {
-    const [favs, setFavs] = useState([])
+    const [favs, setFavs] = useState([]);
 
     // fetch bookmarked items' id from server
     const getFavs = async () => {
@@ -25,26 +21,24 @@ const Bookmarks = ( {navigation}: {navigation: any} ) => {
         } catch (error) {
             console.error(error);
         }
-    }
-    
+    };
+
     useEffect(() => {
         const id = setInterval(() => {
             getFavs();
-        }, 3000)
-        
+        }, 3000);
+
         return () => {
             clearInterval(id);
-        }
+        };
     });
 
     return (
         <View>
-            <View style={{marginLeft: 15}}>
+            <View style={styles.titleView}>
                 <Title title={i18n.t('Bookmarks.title')}/>
             </View>
-            <ScrollView style={{
-                flexDirection: 'column',
-            }}>
+            <ScrollView style={styles.scrollview}>
                 {
                     // retrieve the item name from the id using findName()
                     favs.map( (item: any) => (
@@ -53,7 +47,17 @@ const Bookmarks = ( {navigation}: {navigation: any} ) => {
                 }
             </ScrollView>
         </View>
-    );            
-}
+    );
+};
 
 export default Bookmarks;
+
+const styles = StyleSheet.create({
+    titleView: {
+        marginLeft: 15,
+    },
+    scrollview: {
+        flexDirection: 'column',
+        marginBottom: 85,
+    },
+});

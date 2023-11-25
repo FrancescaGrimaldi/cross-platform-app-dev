@@ -12,7 +12,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import i18n from './translations/I18n';
 
 import Homepage from './screens/Homepage';
-import MapView from './screens/MapView';
+import MapScreen from './screens/MapScreen';
 import Bookmarks from './screens/Bookmarks';
 import ShoppingCart from './screens/ShoppingCart';
 import Settings from './screens/Settings';
@@ -44,8 +44,8 @@ function HomeScreen() {
             <MaterialComm name="view-grid" color={color} size={size} />
           ),
         })}/>
-      <Tab.Screen name="MapView" component={MapView} options={ ({navigation}) => ({
-          headerTitle: 'MapView',
+      <Tab.Screen name="MapScreen" component={MapScreen} options={ ({navigation}) => ({
+          headerTitle: 'MapScreen',
           headerShown: false,
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (

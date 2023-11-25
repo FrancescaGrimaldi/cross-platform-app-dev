@@ -1,28 +1,30 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable semi */
-/* eslint-disable eol-last */
 
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const Title = (props) => {
     return (
         <View>
-            <Text style={{
-                fontSize: 35,
-                fontWeight: 'bold',
-                textAlign: 'left',
-                marginTop: 10,
-                color: 'black',
-            }}>{props.title}</Text>
-            <Text style={{
-                fontSize: 20,
-                textAlign: 'left',
-                color: 'black',
-            }}>{props.subtitle}</Text>
+            <Text style={styles.title}>{props.title}</Text>
+            <Text style={styles.subtitle}>{props.subtitle}</Text>
         </View>
-    )
-}
+    );
+};
 
 export default Title;
+
+const styles = StyleSheet.create({
+    title: {
+        fontSize: 35,
+        fontWeight: 'bold',
+        textAlign: 'left',
+        marginTop: 10,
+        color: 'black',
+    },
+    subtitle: {
+        fontSize: 20,
+        textAlign: 'left',
+        color: 'black',
+    },
+});

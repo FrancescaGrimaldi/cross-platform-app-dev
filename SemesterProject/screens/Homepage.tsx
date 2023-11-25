@@ -1,17 +1,13 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable semi */
-/* eslint-disable curly */
-/* eslint-disable eol-last */
-/* eslint-disable no-trailing-spaces */
 /* eslint-disable react-native/no-inline-styles */
 
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Pressable, TextInput } from 'react-native';
+import { View, ScrollView, Pressable, TextInput, StyleSheet } from 'react-native';
 import FontAw5 from 'react-native-vector-icons/FontAwesome5';
 import Globals from '../Globals';
-import ItemCard from '../components/ItemCard';
-import BigItemCard from '../components/BigItemCard';
-import SidedItemCard from '../components/SidedItemCard';
+import ItemCard from '../components/ItemCards/ItemCard';
+import BigItemCard from '../components/ItemCards/BigItemCard';
+import SidedItemCard from '../components/ItemCards/SidedItemCard';
 
 import i18n from '../translations/I18n';
 
@@ -37,73 +33,57 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     useEffect(() => {
         const id = setInterval(() => {
             getItems();
-        }, 3000)
-        
+        }, 3000);
+
         return () => {
             clearInterval(id);
-        }
+        };
     });
 
     const createGrid = () => {
         let counter = 0;
 
         return (
-            <View style={{
-                flexDirection: 'column',
-            }}>
-                {
-                    items.map( (item: any) => {
-                        counter++;
+            <View style={{ flexDirection: 'column' }}>
+                { items.map( (item: any) => {
+                    counter++;
 
-                        if (counter > 4) counter = 1;
-
-                        if (filteredCategories.length > 0 || searching) counter = 2;
-
-                        if (counter === 1) {
-                            return <BigItemCard key={item.id} id={item.id} name={item.name} contact={item.contact} navigation={navigation}/>
-                        } else if (counter === 2) {
-                            return <ItemCard key={item.id} id={item.id} navigation={navigation}/>
-                        } else if (counter === 3) {
-                            return (
-                                <View style={{
-                                    flexDirection: 'row',
-                                    width: '93%',
-                                    justifyContent: 'space-between',
-
-                                }}>
-                                    <SidedItemCard key={item.id} id={item.id} name={item.name} contact={item.contact} navigation={navigation}/>
-                                    { 
-                                        (items[items.indexOf(item) + 1] !== undefined) &&
-                                        <SidedItemCard key={items[items.indexOf(item) + 1].id} id={items[items.indexOf(item) + 1].id} name={items[items.indexOf(item) + 1].name} contact={items[items.indexOf(item) + 1].contact} navigation={navigation}/>
-                                    }
-                                </View>
-                            )
-                        }
-                    })
-                }
+                    if (counter > 4) { counter = 1; }
+                    if (filteredCategories.length > 0 || searching) { counter = 2; }
+                    if (counter === 1) {
+                        return <BigItemCard key={item.id} id={item.id} name={item.name} contact={item.contact} navigation={navigation}/>;
+                    } else if (counter === 2) {
+                        return <ItemCard key={item.id} id={item.id} navigation={navigation}/>;
+                    } else if (counter === 3) {
+                        return (
+                            <View style={styles.sidedCardsContainer}>
+                                <SidedItemCard key={item.id} id={item.id} name={item.name} contact={item.contact} navigation={navigation}/>
+                                {
+                                    (items[items.indexOf(item) + 1] !== undefined) &&
+                                    <SidedItemCard key={items[items.indexOf(item) + 1].id} id={items[items.indexOf(item) + 1].id} name={items[items.indexOf(item) + 1].name} contact={items[items.indexOf(item) + 1].contact} navigation={navigation}/>
+                                }
+                            </View>
+                        );
+                    }
+                })}
             </View>
         );
-    }
+    };
 
-
-    
     return (
         <View>
-            <View style={{
-                height: 50,
-                flexDirection: 'row',
-            }}>
+            <View style={styles.upperBar}>
                 <TextInput
-                    style={{fontSize: 17, height: 40, width: '82%', borderColor: '#22391f', borderWidth: 1, margin: 15, padding: 10, backgroundColor: '#fff', borderRadius: 10}}
+                    style={styles.searchBar}
                     placeholder={i18n.t('Homepage.search.placeholder')}
                     onChangeText={newText => {
                         var matchedItems = [];
-                        
+
                         if (newText.trim().length > 1) {
                             matchedItems = items.filter(function (item: { name: string | any[]; }) {
                                 if (typeof item.name === 'string') {
@@ -123,12 +103,39 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
                     <FontAw5 name="filter" size={25} color="#22391f" style={{marginTop: 20, marginLeft: 10}} />
                 </Pressable>
             </View>
-            
-            <ScrollView style={{marginBottom: 50, marginTop: 10}}>
+
+            <ScrollView style={styles.scrollview}>
                 { createGrid() }
             </ScrollView>
         </View>
-    );            
-}
+    );
+};
 
 export default Homepage;
+
+const styles = StyleSheet.create({
+    upperBar: {
+        height: 50,
+        flexDirection: 'row',
+    },
+    searchBar: {
+        fontSize: 17,
+        height: 40,
+        width: '82%',
+        borderColor: '#22391f',
+        borderWidth: 1,
+        margin: 15,
+        padding: 10,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+    },
+    sidedCardsContainer: {
+        flexDirection: 'row',
+        width: '93%',
+        justifyContent: 'space-between',
+    },
+    scrollview: {
+        marginBottom: 50,
+        marginTop: 10,
+    },
+});

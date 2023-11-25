@@ -1,17 +1,14 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable semi */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable eol-last */
 
 import React, { useState } from 'react';
-import CheckBox from '@react-native-community/checkbox';
 import { View, Text, StyleSheet } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
 
 import i18n from '../translations/I18n';
 
 const CheckboxCategory = (props) => {
     const [toggleCheckBox, setToggleCheckBox] = useState(props.selected);
-    
+
     return (
         <View style={styles.container}>
             <CheckBox
@@ -26,7 +23,7 @@ const CheckboxCategory = (props) => {
             <Text style={styles.text}>{i18n.t(`Filter.categories.${props.category}`)}</Text>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {

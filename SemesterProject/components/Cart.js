@@ -1,18 +1,14 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable semi */
-/* eslint-disable eol-last */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-trailing-spaces */
-/* eslint-disable react-native/no-inline-styles */
 
-import React, {useState, useEffect} from 'react';
-import { View, Text} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 import Globals from '../Globals';
 
 const Cart = (props) => {
     const [item, setItem] = useState({});
-    
+
     const findItem = async () => {
         try {
             const response = await fetch(`http://${Globals.serverAddress}/items/${props.id}`);
@@ -21,27 +17,30 @@ const Cart = (props) => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     useEffect(() => {
-        findItem()
-    }, [])
+        findItem();
+    }, []);
 
     return (
-        <View style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            paddingVertical: 2,
-        }}>
-            <Text style={{
-                fontSize: 18,
-            }}>{item.name}</Text>
-            <Text style={{
-                fontSize: 18,
-            }}>x{props.quantity}</Text>
+        <View style={styles.container}>
+            <Text style={styles.text}>{item.name}</Text>
+            <Text style={styles.text}>x{props.quantity}</Text>
         </View>
-    )
-}
+    );
+};
 
 export default Cart;
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+         paddingVertical: 2,
+    },
+    text: {
+        fontSize: 18,
+    },
+});

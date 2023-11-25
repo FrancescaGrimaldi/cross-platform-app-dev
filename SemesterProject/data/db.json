@@ -87,25 +87,21 @@
   ],
   "bookmarks": [
     {
-      "item_id": "4",
-      "id": 2
-    },
-    {
       "item_id": "1",
       "id": 7
     },
     {
-      "item_id": "5",
-      "id": 8
+      "item_id": "2",
+      "id": 10
     },
     {
-      "item_id": "6",
-      "id": 9
+      "item_id": "7",
+      "id": 12
     }
   ],
   "cart": [
     {
-      "item_id": "5",
+      "item_id": "1",
       "quantity": 1,
       "id": 1
     }

@@ -1,12 +1,9 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable semi */
-/* eslint-disable eol-last */
-/* eslint-disable no-trailing-spaces */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import React, {useState, useEffect} from 'react';
-import { Text, View, Pressable, Image } from 'react-native';
+import { Text, View, Pressable, Image, StyleSheet } from 'react-native';
 import Globals from '../Globals';
 import Title from '../components/Title';
 import PictureGallery from '../components/PictureGallery';
@@ -23,7 +20,7 @@ const imgSources = {
     5: require('../images/items/5_1.jpg'),
     6: require('../images/items/6_1.jpg'),
     7: require('../images/items/7_1.jpg'),
-}
+};
 
 const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
     const [item, setItem] = useState<any>([]);
@@ -41,7 +38,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const checkFav = async () => {
         try {
@@ -53,7 +50,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const addToCart = async () => {
         // check if the item is already in the shopping cart, if so, increment the quantity
@@ -86,7 +83,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const addToFavs = async () => {
         // check if the item is already in the bookmarks list, if so, return
@@ -110,7 +107,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const removeFromFavs = async () => {
         try {
@@ -129,7 +126,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     const switchFav = () => {
         if (isFav) {
@@ -137,37 +134,23 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         } else {
             addToFavs();
         }
-    }
+    };
 
     useEffect( () => {
         getItemDetails();
     }, []);
-    
+
     return (
         <View>
 
-            <View style={{
-                marginLeft: 15,
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                marginVertical: 10,
-            }}>
+            <View style={styles.itemDetails}>
                 <Text style={{fontSize: 16, marginRight: 80}}>{i18n.t(`Filter.categories.${item.category}`)}</Text>
                 <Title title={item.name} subtitle={`${i18n.t('Items.contact')} ${item.contact}`} />
             </View>
 
-            <View style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginVertical: 10,
-                marginLeft: 15,
-            }}>
-                <Image source={itemImg} style={{width: '80%', height: 200, borderRadius: 13}} />
-                <View style={{
-                    flexDirection: 'column',
-                    justifyContent: 'space-around',
-                    alignItems: 'center',
-                }}>
+            <View style={styles.imgBox}>
+                <Image source={itemImg} style={styles.img} />
+                <View style={styles.buttonsContainer}>
                     <Pressable onPress={switchFav}>
                         <FontAw name={isFav ? 'heart' : 'heart-o'} size={32} color="#22391f" style={{marginRight: 20, marginLeft: 10}} />
                     </Pressable>
@@ -180,18 +163,48 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
                 </View>
             </View>
 
-            <View style={{
-                marginHorizontal: 15,
-                marginTop: 10,
-            }}>
-                <Text style={{fontSize: 22, fontWeight: 'bold'}}>{i18n.t('Items.description')}</Text>
+            <View style={styles.descrBox}>
+                <Text style={styles.descrTitle}>{i18n.t('Items.description')}</Text>
                 <Text style={{fontSize: 20}}>{item.fulldescr}</Text>
             </View>
 
             <PictureGallery item={item} />
 
         </View>
-    );            
-}
+    );
+};
 
 export default ItemDetails;
+
+const styles = StyleSheet.create({
+    itemDetails: {
+        marginLeft: 15,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        marginVertical: 10,
+    },
+    imgBox: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginVertical: 10,
+        marginLeft: 15,
+    },
+    img: {
+        width: '80%',
+        height: 200,
+        borderRadius: 13,
+    },
+    buttonsContainer: {
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    },
+    descrBox: {
+        marginHorizontal: 15,
+        marginTop: 10,
+    },
+    descrTitle: {
+        fontSize: 22,
+        fontWeight: 'bold',
+    },
+});

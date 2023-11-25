@@ -1,10 +1,7 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable semi */
-/* eslint-disable eol-last */
 
 import React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import ImageModal from 'react-native-image-modal';
 
 const imagesMap = {
@@ -15,34 +12,39 @@ const imagesMap = {
     5: [require('../images/items/5_2.jpg'), require('../images/items/5_3.jpg'), require('../images/items/5_4.jpg'), require('../images/items/5_5.jpg')],
     6: [require('../images/items/6_2.jpg'), require('../images/items/6_3.jpg'), require('../images/items/6_4.jpg'), require('../images/items/6_5.jpg')],
     7: [require('../images/items/7_2.jpg'), require('../images/items/7_3.jpg'), require('../images/items/7_4.jpg'), require('../images/items/7_5.jpg')],
-}
+};
 
 const PictureGallery = (props) => {
     const images = imagesMap[props.item.id] || [];
 
     return (
-        <View style={{
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
-            marginVertical: 20,
-        }}>
-            {images.map((image, index) => {
+        <View style={styles.container}>
+            { images.map((image, index) => {
                 return (
                     <ImageModal
                         key={index}
                         resizeMode="cover"
                         modalImageResizeMode="contain"
-                        style={{
-                            width: 95,
-                            height: 95,
-                        }}
+                        style={styles.modal}
                         source={image}
                     />
-                )
+                );
             })}
         </View>
-    )
-}
+    );
+};
 
 export default PictureGallery;
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        marginVertical: 20,
+    },
+    modal: {
+        width: 95,
+        height: 95,
+    },
+});
