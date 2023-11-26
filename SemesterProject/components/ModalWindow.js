@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     buttonClose: {
-        backgroundColor: '#2196F3',
+        backgroundColor: '#4A188C',
     },
     buttonText: {
         color: 'white',
@@ -67,5 +67,6 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         textAlign: 'center',
         fontSize: 20,
+        color: '#4A188C',
     },
 });

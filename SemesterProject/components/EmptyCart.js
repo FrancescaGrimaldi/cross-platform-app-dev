@@ -11,17 +11,17 @@ const EmptyCart = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.basketBox}>
-                <Fontisto name="shopping-basket" size={80} color="black"/>
+                <Fontisto name="shopping-basket" size={82} color={props.palette.purple}/>
 
                 <View style={styles.textContainer}>
-                    <Text style={styles.bigText}>{i18n.t('ShoppingCart.empty.text1')}</Text>
-                    <Text style={styles.smallText}>{i18n.t('ShoppingCart.empty.text2')}</Text>
+                    <Text style={[styles.smallText, props.palette.color2]}>{i18n.t('ShoppingCart.empty.text1')} {i18n.t('ShoppingCart.empty.text2')}</Text>
+
+                    <View style={[styles.button, props.palette.card]}>
+                        <Pressable onPress={() => props.navigation.navigate('Homepage')}>
+                            <Text style={[styles.bigText, props.palette.color1]}>{i18n.t('ShoppingCart.empty.gotohome')}</Text>
+                        </Pressable>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.button}>
-                <Pressable onPress={() => props.navigation.navigate('Homepage')}>
-                    <Text style={styles.bigText}>{i18n.t('ShoppingCart.empty.gotohome')}</Text>
-                </Pressable>
             </View>
         </View>
     );
@@ -48,21 +48,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     bigText: {
-        fontSize: 23,
+        fontSize: 22,
         fontWeight: 'bold',
         textAlign: 'center',
     },
     smallText: {
-        fontSize: 21,
+        fontSize: 20,
         textAlign: 'center',
     },
     button: {
-        marginTop: 30,
+        marginTop: 10,
         borderRadius: 10,
         justifyContent: 'center',
         backgroundColor: 'white',
         alignSelf: 'center',
-        height: 40,
+        height: 35,
         width: 200,
         elevation: 5,
     },

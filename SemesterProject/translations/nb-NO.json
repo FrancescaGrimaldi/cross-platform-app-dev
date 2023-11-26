@@ -7,10 +7,13 @@
         "title" : "Innstillinger",
         "locale" : {
             "title" : "Språk",
-            "en" : "Engelsk",
-            "nb" : "Norsk Bokmål",
-            "it" : "Italiensk",
             "placeholder" : "Velg språk"
+        },
+        "theme" : {
+            "title" : "Tema",
+            "light" : "Lys",
+            "dark" : "Mørk",
+            "placeholder" : "Velg temaet"
         }
     },
     "Bookmarks" : {

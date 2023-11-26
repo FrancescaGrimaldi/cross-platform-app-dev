@@ -7,17 +7,18 @@ import { View, Text, Pressable, StyleSheet } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialComm from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const icons = {
-    checkout: <MaterialIcons style={{marginLeft: 20}} name="shopping-cart-checkout" size={40} color="green"/>,
-    reset: <MaterialComm style={{marginLeft: 20}} name="cart-remove" size={40} color="red"/>,
-};
 
 const CartButton = (props) => {
+    const icons = {
+        checkout: <MaterialIcons style={{marginLeft: 20}} name="shopping-cart-checkout" size={40} color={props.palette.checkout}/>,
+        reset: <MaterialComm style={{marginLeft: 20}} name="cart-remove" size={40} color={props.palette.remove}/>,
+    };
+
     return (
         <Pressable onPress={props.onPress}>
-            <View style={styles.button}>
+            <View style={[styles.button, props.palette.card]}>
                 { icons[props.icon] }
-                <Text style={styles.buttonText}>{props.text}</Text>
+                <Text style={[styles.buttonText, props.palette.color1]}>{props.text}</Text>
             </View>
         </Pressable>
     );

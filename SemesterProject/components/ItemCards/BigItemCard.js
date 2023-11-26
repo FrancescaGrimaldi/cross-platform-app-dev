@@ -1,7 +1,9 @@
 /* eslint-disable prettier/prettier */
 
 import React from 'react';
-import { View, Image, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Image, Text, Pressable, StyleSheet, LogBox } from 'react-native';
+
+// LogBox.ignoreAllLogs();
 
 import i18n from '../../translations/I18n';
 
@@ -18,12 +20,12 @@ const imagesMap = {
 const BigItemCard = (props) => {
     return (
         <Pressable onPress={() => props.navigation.navigate('ItemDetails', props.id)}>
-            <View style={styles.container}>
+            <View style={[styles.container, props.palette.shadow, props.palette.card]}>
                 <Image style={styles.img} source={imagesMap[props.id]} />
 
                 <View style={styles.textContainer}>
-                    <Text style={styles.bigText}>{props.name}</Text>
-                    <Text style={styles.smallText}>{i18n.t('Items.contact')} {props.contact}</Text>
+                    <Text style={[styles.bigText, props.palette.color1]}>{props.name}</Text>
+                    <Text style={[styles.smallText, props.palette.color2]}>{i18n.t('Items.contact')} {props.contact}</Text>
                 </View>
             </View>
         </Pressable>

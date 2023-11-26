@@ -25,8 +25,8 @@ const Cart = (props) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>{item.name}</Text>
-            <Text style={styles.text}>x{props.quantity}</Text>
+            <Text style={[styles.text, props.palette.color2]}>{item.name}</Text>
+            <Text style={[styles.text, props.palette.color2]}>x{props.quantity}</Text>
         </View>
     );
 };

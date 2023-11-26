@@ -18,7 +18,7 @@ const SmallItemCard = (props) => {
         <Pressable onPress={() => props.navigation.navigate('ItemDetails', props.id)}>
             <View style={styles.container}>
                 <Image source={imagesMap[props.id]} style={styles.img}/>
-                <Text style={styles.text}>{props.name}</Text>
+                <Text style={[styles.text, props.palette.color1]}>{props.name}</Text>
             </View>
         </Pressable>
     );

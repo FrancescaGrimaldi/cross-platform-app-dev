@@ -1,13 +1,39 @@
 /* eslint-disable prettier/prettier */
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import Globals from '../Globals';
 
 const Title = (props) => {
+    const [theme, setTheme] = useState('');
+
+    const getTheme = async () => {
+        try {
+            let colors = await AsyncStorage.getItem('theme');
+            if (theme !== null) {
+                setTheme(colors);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    useEffect(() => {
+        const id = setInterval(() => {
+            getTheme();
+        }, 3000);
+
+        return () => {
+            clearInterval(id);
+        };
+    });
+
     return (
         <View>
-            <Text style={styles.title}>{props.title}</Text>
-            <Text style={styles.subtitle}>{props.subtitle}</Text>
+            <Text style={[styles.title, props.palette.color1]}>{props.title}</Text>
+            <Text style={[styles.subtitle, props.palette.color1]}>{props.subtitle}</Text>
         </View>
     );
 };
@@ -20,11 +46,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'left',
         marginTop: 10,
-        color: 'black',
     },
     subtitle: {
         fontSize: 20,
         textAlign: 'left',
-        color: 'black',
     },
 });

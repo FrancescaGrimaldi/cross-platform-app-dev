@@ -37,12 +37,12 @@ const ItemCard = (props) => {
 
     return (
         <Pressable onPress={() => props.navigation.navigate('ItemDetails', props.id)}>
-            <View style={styles.container}>
+            <View style={[styles.container, props.palette.shadow, props.palette.card]}>
                 <Image style={styles.img} source={imagesMap[item.id]} />
 
                 <View style={styles.textContainer}>
-                    <Text style={styles.itemName}>{item.name}</Text>
-                    <Text style={styles.itemContact}>{i18n.t('Items.contact')} {item.contact}</Text>
+                    <Text style={[styles.itemName, props.palette.color1]}>{item.name}</Text>
+                    <Text style={[styles.itemContact, props.palette.color2]}>{i18n.t('Items.contact')} {item.contact}</Text>
                 </View>
             </View>
         </Pressable>

@@ -2,19 +2,21 @@
 /* eslint-disable react-native/no-inline-styles */
 
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView, Pressable, TextInput, StyleSheet } from 'react-native';
-import FontAw5 from 'react-native-vector-icons/FontAwesome5';
-import Globals from '../Globals';
+import { View, ScrollView, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import ItemCard from '../components/ItemCards/ItemCard';
 import BigItemCard from '../components/ItemCards/BigItemCard';
 import SidedItemCard from '../components/ItemCards/SidedItemCard';
+import UpperBar from '../components/UpperBar';
 
-import i18n from '../translations/I18n';
+import Globals from '../Globals';
 
 const Homepage = ( {navigation}: {navigation: any} ) => {
     const [items, setItems] = useState<any>([]);
     const [filteredCategories, setFilteredCategories] = useState([]);
     const [searching, setSearching] = useState(false);
+    const [palette, setPalette] = useState<any>('');
 
     // fetch items from server
     const getItems = async () => {
@@ -35,9 +37,25 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
         }
     };
 
+    const getTheme = async () => {
+        try {
+            let theme = await AsyncStorage.getItem('theme');
+            if (theme !== null) {
+                if (theme === 'light') {
+                    setPalette(Globals.colors.light);
+                } else {
+                    setPalette(Globals.colors.dark);
+                }
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     useEffect(() => {
         const id = setInterval(() => {
-            getItems();
+            if (!searching) { getItems(); }
+            getTheme();
         }, 3000);
 
         return () => {
@@ -49,23 +67,23 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
         let counter = 0;
 
         return (
-            <View style={{ flexDirection: 'column' }}>
+            <View style={{ flexDirection: 'column'}}>
                 { items.map( (item: any) => {
                     counter++;
 
                     if (counter > 4) { counter = 1; }
                     if (filteredCategories.length > 0 || searching) { counter = 2; }
                     if (counter === 1) {
-                        return <BigItemCard key={item.id} id={item.id} name={item.name} contact={item.contact} navigation={navigation}/>;
+                        return <BigItemCard key={item.id} id={item.id} name={item.name} contact={item.contact} navigation={navigation} palette={palette} />;
                     } else if (counter === 2) {
-                        return <ItemCard key={item.id} id={item.id} navigation={navigation}/>;
+                        return <ItemCard key={item.id} id={item.id} navigation={navigation} palette={palette} />;
                     } else if (counter === 3) {
                         return (
                             <View style={styles.sidedCardsContainer}>
-                                <SidedItemCard key={item.id} id={item.id} name={item.name} contact={item.contact} navigation={navigation}/>
+                                <SidedItemCard key={item.id} id={item.id} name={item.name} contact={item.contact} navigation={navigation} palette={palette} />
                                 {
                                     (items[items.indexOf(item) + 1] !== undefined) &&
-                                    <SidedItemCard key={items[items.indexOf(item) + 1].id} id={items[items.indexOf(item) + 1].id} name={items[items.indexOf(item) + 1].name} contact={items[items.indexOf(item) + 1].contact} navigation={navigation}/>
+                                    <SidedItemCard key={items[items.indexOf(item) + 1].id} id={items[items.indexOf(item) + 1].id} name={items[items.indexOf(item) + 1].name} contact={items[items.indexOf(item) + 1].contact} navigation={navigation} palette={palette} />
                                 }
                             </View>
                         );
@@ -76,33 +94,8 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
     };
 
     return (
-        <View>
-            <View style={styles.upperBar}>
-                <TextInput
-                    style={styles.searchBar}
-                    placeholder={i18n.t('Homepage.search.placeholder')}
-                    onChangeText={newText => {
-                        var matchedItems = [];
-
-                        if (newText.trim().length > 1) {
-                            matchedItems = items.filter(function (item: { name: string | any[]; }) {
-                                if (typeof item.name === 'string') {
-                                    return item.name.toLowerCase().includes(newText.toLowerCase());
-                                }
-                                return false;
-                            });
-                            setItems(matchedItems);
-                            setSearching(true);
-                        } else {
-                            getItems();
-                            setSearching(false);
-                        }
-                    }}
-                    />
-                    <Pressable onPress={() => navigation.navigate('Filter', {selectedCategories: filteredCategories, setSelectedCategories: setFilteredCategories})}>
-                    <FontAw5 name="filter" size={25} color="#22391f" style={{marginTop: 20, marginLeft: 10}} />
-                </Pressable>
-            </View>
+        <View style={[palette.bg, {flex: 1}]}>
+            <UpperBar from="Homepage" items={items} getItems={getItems} setItems={setItems} filteredCategories={filteredCategories} setFilteredCategories={setFilteredCategories} setSearching={setSearching} navigation={navigation} palette={palette} />
 
             <ScrollView style={styles.scrollview}>
                 { createGrid() }
@@ -114,28 +107,12 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
 export default Homepage;
 
 const styles = StyleSheet.create({
-    upperBar: {
-        height: 50,
-        flexDirection: 'row',
-    },
-    searchBar: {
-        fontSize: 17,
-        height: 40,
-        width: '82%',
-        borderColor: '#22391f',
-        borderWidth: 1,
-        margin: 15,
-        padding: 10,
-        backgroundColor: '#fff',
-        borderRadius: 10,
-    },
     sidedCardsContainer: {
         flexDirection: 'row',
         width: '93%',
         justifyContent: 'space-between',
     },
     scrollview: {
-        marginBottom: 50,
         marginTop: 10,
     },
 });

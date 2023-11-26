@@ -18,12 +18,12 @@ const imagesMap = {
 const SidedItemCard = (props) => {
     return (
         <Pressable onPress={() => props.navigation.navigate('ItemDetails', props.id)}>
-            <View style={styles.container}>
+            <View style={[styles.container, props.palette.shadow, props.palette.card]}>
                 <Image style={styles.img} source={imagesMap[props.id]} />
 
                 <View style={styles.textContainer}>
-                    <Text style={styles.itemName}>{props.name}</Text>
-                    <Text style={styles.itemContact}>{i18n.t('Items.contact')} {props.contact}</Text>
+                    <Text style={[styles.itemName, props.palette.color1]}>{props.name}</Text>
+                    <Text style={[styles.itemContact, props.palette.color2]}>{i18n.t('Items.contact')} {props.contact}</Text>
                 </View>
             </View>
         </Pressable>

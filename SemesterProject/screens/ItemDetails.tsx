@@ -4,13 +4,15 @@
 
 import React, {useState, useEffect} from 'react';
 import { Text, View, Pressable, Image, StyleSheet } from 'react-native';
-import Globals from '../Globals';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import FontAw from 'react-native-vector-icons/FontAwesome';
+
 import Title from '../components/Title';
 import PictureGallery from '../components/PictureGallery';
 
 import i18n from '../translations/I18n';
-
-import FontAw from 'react-native-vector-icons/FontAwesome';
+import Globals from '../Globals';
 
 const imgSources = {
     1: require('../images/items/1_1.jpg'),
@@ -24,8 +26,9 @@ const imgSources = {
 
 const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
     const [item, setItem] = useState<any>([]);
-    const [isFav, setIsFav] = useState(false); // TODO: save favs in local storage (?)
-    const [itemImg, setItemImg] = useState(require('../images/items/unavailable.jpg')); // TODO: add more images to the item object and display them in a gallery
+    const [isFav, setIsFav] = useState(false);
+    const [itemImg, setItemImg] = useState(require('../images/items/unavailable.jpg'));
+    const [palette, setPalette] = useState<any>('light');
 
     // fetch item details from server
     const getItemDetails = async () => {
@@ -136,36 +139,52 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         }
     };
 
-    useEffect( () => {
+    const getTheme = async () => {
+        try {
+            let theme = await AsyncStorage.getItem('theme');
+            if (theme !== null) {
+                if (theme === 'light') {
+                    setPalette(Globals.colors.light);
+                } else {
+                    setPalette(Globals.colors.dark);
+                }
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    useEffect(() => {
         getItemDetails();
+        getTheme();
     }, []);
 
     return (
-        <View>
+        <View style={[{flex: 1}, palette.bg]}>
 
             <View style={styles.itemDetails}>
-                <Text style={{fontSize: 16, marginRight: 80}}>{i18n.t(`Filter.categories.${item.category}`)}</Text>
-                <Title title={item.name} subtitle={`${i18n.t('Items.contact')} ${item.contact}`} />
+                <Text style={[styles.category, palette.color2]}>{i18n.t(`Filter.categories.${item.category}`)}</Text>
+                <Title title={item.name} subtitle={`${i18n.t('Items.contact')} ${item.contact}`} palette={palette} />
             </View>
 
             <View style={styles.imgBox}>
                 <Image source={itemImg} style={styles.img} />
                 <View style={styles.buttonsContainer}>
                     <Pressable onPress={switchFav}>
-                        <FontAw name={isFav ? 'heart' : 'heart-o'} size={32} color="#22391f" style={{marginRight: 20, marginLeft: 10}} />
+                        <FontAw name={isFav ? 'heart' : 'heart-o'} size={32} color={palette.purple} style={{marginRight: 20, marginLeft: 10}} />
                     </Pressable>
                     <View>
                         <Pressable onPress={addToCart}>
-                            <FontAw name="shopping-cart" size={35} color="#22391f" style={{marginRight: 20, marginLeft: 12}} />
+                            <FontAw name="shopping-cart" size={35} color={palette.purple} style={{marginRight: 20, marginLeft: 12}} />
                         </Pressable>
-                        <Text style={{marginRight: 10, fontSize: 16}}>{item.price} NOK</Text>
+                        <Text style={[styles.price, palette.color2]}>{item.price} NOK</Text>
                     </View>
                 </View>
             </View>
 
             <View style={styles.descrBox}>
-                <Text style={styles.descrTitle}>{i18n.t('Items.description')}</Text>
-                <Text style={{fontSize: 20}}>{item.fulldescr}</Text>
+                <Text style={[styles.descrTitle, palette.color1]}>{i18n.t('Items.description')}</Text>
+                <Text style={[styles.fullDescr, palette.color2]}>{item.fulldescr}</Text>
             </View>
 
             <PictureGallery item={item} />
@@ -183,6 +202,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginVertical: 10,
     },
+    category: {
+        fontSize: 16,
+        marginRight: 80,
+    },
     imgBox: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -199,6 +222,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
     },
+    price: {
+        marginRight: 10,
+        fontSize: 16,
+    },
     descrBox: {
         marginHorizontal: 15,
         marginTop: 10,
@@ -206,5 +233,8 @@ const styles = StyleSheet.create({
     descrTitle: {
         fontSize: 22,
         fontWeight: 'bold',
+    },
+    fullDescr: {
+        fontSize: 20,
     },
 });

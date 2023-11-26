@@ -3,11 +3,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { Text, View, ScrollView, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import Title from '../components/Title';
-import Cart from '../components/Cart';
+import CartItem from '../components/CartItem';
 import EmptyCart from '../components/EmptyCart';
 import ModalWindow from '../components/ModalWindow';
 import SmallItemCard from '../components/ItemCards/SmallItemCard';
@@ -23,6 +24,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     const [cartItems, setCartItems] = useState<{id: number, item_id: number, quantity: number,}[]>([]);
     const [suggestedItems, setSuggestions] = useState<any[]>([]);
     const [deliveryTime, setDeliveryTime] = useState(0);
+    const [palette, setPalette] = useState<any>('light');
 
     // fetch items in the shopping cart from server
     const getCartItems = async () => {
@@ -95,9 +97,26 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
         }
     };
 
+    const getPalette = async () => {
+        try {
+            let theme = await AsyncStorage.getItem('theme');
+            if (theme !== null) {
+                if (theme === 'light') {
+                    setPalette(Globals.colors.light);
+                } else {
+                    setPalette(Globals.colors.dark);
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+
     useEffect(() => {
         const id = setInterval(() => {
             getCartItems();
+            getPalette();
         }, 3000);
 
         return () => {
@@ -138,47 +157,46 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     };
 
     return (
-        <View>
+        <View style={[{flex: 1}, palette.bg]}>
             <View style={styles.titleContainer}>
-                <Title title={i18n.t('ShoppingCart.title')}/>
+                <Title title={i18n.t('ShoppingCart.title')} palette={palette} />
             </View>
 
-            { cartItems.length === 0 ? <EmptyCart navigation={navigation}/> :
-            <ScrollView style={styles.verticalScrollview}>
-
-                <Text style={styles.summary}>{i18n.t('ShoppingCart.summary')}</Text>
+            { cartItems.length === 0 ? <EmptyCart navigation={navigation} palette={palette} /> :
+            <ScrollView>
+                <Text style={[styles.titleText, palette.color1]}>{i18n.t('ShoppingCart.summary')}</Text>
 
                 <View style={styles.itemContainer}>
                     {
                         cartItems.map( (item: any, index: number) => (
-                            <Cart id={item.item_id} quantity={item.quantity} key={index} />
+                            <CartItem id={item.item_id} quantity={item.quantity} key={index} palette={palette} />
                         ))
                     }
                 </View>
 
                 <View style={{ marginHorizontal: 15 }}>
                     <View style={styles.deliveryBox}>
-                        <MaterialIcons name="delivery-dining" size={55} color="black" />
+                        <MaterialIcons name="delivery-dining" size={55} color={palette.purple} />
                         <View style={styles.deliveryInfo}>
-                            <Text style={styles.smallText}>{i18n.t('ShoppingCart.delivery')}</Text>
-                            <Text style={{fontSize: 21, fontWeight: 'bold'}}>{deliveryTime} min</Text>
+                            <Text style={[styles.smallText, palette.color2]}>{i18n.t('ShoppingCart.delivery')}</Text>
+                            <Text style={[{fontSize: 21, fontWeight: 'bold', color: '#4A188C'}, palette.color1]}>{deliveryTime} min</Text>
                         </View>
                     </View>
 
                     <View style={{ marginVertical: 20 }}>
                         <View style={styles.priceContainer}>
-                            <Text style={styles.smallText}>{i18n.t('ShoppingCart.subtotal')}</Text>
-                            <Text style={styles.smallText}>{total} NOK</Text>
+                            <Text style={[styles.smallText, palette.color2]}>{i18n.t('ShoppingCart.subtotal')}</Text>
+                            <Text style={[styles.smallText, palette.color2]}>{total} NOK</Text>
                         </View>
 
                         <View style={styles.priceContainer}>
-                            <Text style={styles.smallText}>{i18n.t('ShoppingCart.fees')}</Text>
-                            <Text style={styles.smallText}>{fee} NOK</Text>
+                            <Text style={[styles.smallText, palette.color2]}>{i18n.t('ShoppingCart.fees')}</Text>
+                            <Text style={[styles.smallText, palette.color2]}>{fee} NOK</Text>
                         </View>
 
-                        <View style={styles.totalContainer}>
-                            <Text style={styles.smallBoldText}>{i18n.t('ShoppingCart.total')}</Text>
-                            <Text style={styles.smallBoldText}>{total + fee} NOK</Text>
+                        <View style={[styles.totalContainer, palette.borderBottom]}>
+                            <Text style={[styles.smallBoldText, palette.color1]}>{i18n.t('ShoppingCart.total')}</Text>
+                            <Text style={[styles.smallBoldText, palette.color1]}>{total + fee} NOK</Text>
                         </View>
                     </View>
 
@@ -186,14 +204,14 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
 
                 { suggestedItems.length > 0 &&
                     <View style={{marginVertical: 10}}>
-                        <Text style={styles.suggestedTitle}>{i18n.t('ShoppingCart.suggested.title')}</Text>
+                        <Text style={[styles.titleText, palette.color1]}>{i18n.t('ShoppingCart.suggested.title')}</Text>
 
-                        <Text style={styles.suggestedText}>{i18n.t('ShoppingCart.suggested.text')}</Text>
+                        <Text style={[styles.suggestedText, palette.color2]}>{i18n.t('ShoppingCart.suggested.text')}</Text>
 
                         <ScrollView horizontal={true} style={styles.horizontalScrollview}>
                             {
                                 suggestedItems.map( (item: any, index: number) => (
-                                    <SmallItemCard id={item.id} name={item.name} key={index} navigation={navigation}/>
+                                    <SmallItemCard id={item.id} name={item.name} key={index} navigation={navigation} palette={palette} />
                                 ))
                             }
                         </ScrollView>
@@ -202,11 +220,11 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
                 }
 
                 <View style={styles.buttonsContainer}>
-                    <CartButton onPress={resetCart} icon="reset" text={i18n.t('ShoppingCart.reset')} backgroundColor="#fc5c65"/>
-                    <CartButton onPress={checkout} icon="checkout" text={i18n.t('ShoppingCart.checkout.title')} backgroundColor="#3ae374"/>
+                    <CartButton onPress={resetCart} icon="reset" text={i18n.t('ShoppingCart.reset')} backgroundColor="#fc5c65" palette={palette} />
+                    <CartButton onPress={checkout} icon="checkout" text={i18n.t('ShoppingCart.checkout.title')} backgroundColor="#3ae374" palette={palette} />
                 </View>
 
-                <ModalWindow visible={modalVisible} text={i18n.t('ShoppingCart.checkout.success')} buttonText={i18n.t('ShoppingCart.checkout.close')} onClose={confirmCheckout} onPress={confirmCheckout}/>
+                <ModalWindow visible={modalVisible} text={i18n.t('ShoppingCart.checkout.success')} buttonText={i18n.t('ShoppingCart.checkout.close')} onClose={confirmCheckout} onPress={confirmCheckout} palette={palette} />
 
             </ScrollView>
             }
@@ -221,17 +239,9 @@ const styles = StyleSheet.create({
     titleContainer: {
         marginLeft: 15,
     },
-    verticalScrollview: {
-        marginBottom: 85,
-    },
     horizontalScrollview: {
         marginHorizontal: 15,
         marginTop: 10,
-    },
-    summary: {
-        fontWeight: 'bold',
-        marginLeft: 15,
-        fontSize: 22,
     },
     itemContainer: {
         marginVertical: 20,
@@ -252,7 +262,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         borderBottomWidth: 1,
-        borderBottomColor: 'black',
     },
     smallBoldText: {
         fontSize: 18,
@@ -262,7 +271,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
-    suggestedTitle: {
+    titleText: {
         fontSize: 22,
         fontWeight: 'bold',
         marginHorizontal: 15,

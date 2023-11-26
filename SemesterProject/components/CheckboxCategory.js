@@ -14,13 +14,14 @@ const CheckboxCategory = (props) => {
             <CheckBox
                 disabled={false}
                 value={toggleCheckBox}
+                tintColors={{ true: props.palette.purple }}
                 onValueChange={(newValue) => {
                     setToggleCheckBox(newValue);
                     if (newValue) { props.addToSelected(props.category); }
                     else { props.removeFromSelected(props.category); }
                 }}
             />
-            <Text style={styles.text}>{i18n.t(`Filter.categories.${props.category}`)}</Text>
+            <Text style={[styles.text, props.palette.color2]}>{i18n.t(`Filter.categories.${props.category}`)}</Text>
         </View>
     );
 };

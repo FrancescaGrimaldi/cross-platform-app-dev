@@ -1,11 +1,11 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
 
 import React, {useState, useEffect} from 'react';
-import { View, Pressable, TextInput, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import FontAw5 from 'react-native-vector-icons/FontAwesome5';
+import UpperBar from '../components/UpperBar';
 
 import Globals from '../Globals';
 import i18n from '../translations/I18n';
@@ -13,6 +13,8 @@ import i18n from '../translations/I18n';
 const MapScreen = ( {navigation}: {navigation: any} ) => {
     const [markers, setMarkers] = useState<any>([]);
     const [filteredCategories, setFilteredCategories] = useState([]);
+    const [searching, setSearching] = useState(false);
+    const [palette, setPalette] = useState<any>('');
 
     // fetch items from server
     const getMarkers = async () => {
@@ -33,9 +35,25 @@ const MapScreen = ( {navigation}: {navigation: any} ) => {
         }
     };
 
+    const getTheme = async () => {
+        try {
+            let theme = await AsyncStorage.getItem('theme');
+            if (theme !== null) {
+                if (theme === 'light') {
+                    setPalette(Globals.colors.light);
+                } else {
+                    setPalette(Globals.colors.dark);
+                }
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     useEffect(() => {
         const id = setInterval(() => {
-            getMarkers();
+            if (!searching) { getMarkers(); }
+            getTheme();
         }, 8000);
 
         return () => {
@@ -44,31 +62,8 @@ const MapScreen = ( {navigation}: {navigation: any} ) => {
     });
 
     return (
-        <View style={styles.container}>
-            <View style={styles.upperBar}>
-                <TextInput
-                    style={styles.searchBar}
-                    placeholder={i18n.t('Homepage.search.placeholder')}
-                    onChangeText={newText => {
-                        var matchedItems = [];
-
-                        if (newText.trim().length > 1) {
-                            matchedItems = markers.filter(function (item: { name: string | any[]; }) {
-                                if (typeof item.name === 'string') {
-                                    return item.name.toLowerCase().includes(newText.toLowerCase());
-                                }
-                                return false;
-                            });
-                            setMarkers(matchedItems);
-                        } else {
-                            getMarkers();
-                        }
-                    }}
-                    />
-                    <Pressable onPress={() => navigation.navigate('Filter', {selectedCategories: filteredCategories, setSelectedCategories: setFilteredCategories})}>
-                    <FontAw5 name="filter" size={25} color="#22391f" style={{marginTop: 20, marginLeft: 10}} />
-                </Pressable>
-            </View>
+        <View style={[styles.container, palette.bg]}>
+            <UpperBar from="MapScreen" items={markers} getItems={getMarkers} setItems={setMarkers} filteredCategories={filteredCategories} setFilteredCategories={setFilteredCategories} setSearching={setSearching} navigation={navigation} palette={palette} />
 
             <MapView
                 style={styles.map}
@@ -100,21 +95,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-between',
-    },
-    upperBar: {
-        height: 50,
-        flexDirection: 'row',
-    },
-    searchBar: {
-        fontSize: 17,
-        height: 40,
-        width: '82%',
-        borderColor: '#22391f',
-        borderWidth: 1,
-        margin: 15,
-        padding: 10,
-        backgroundColor: '#fff',
-        borderRadius: 10,
     },
     map: {
         marginTop: 10,

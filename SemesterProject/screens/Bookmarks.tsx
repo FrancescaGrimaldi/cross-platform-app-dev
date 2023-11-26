@@ -1,7 +1,9 @@
 /* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
 
 import React, { useState, useEffect } from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Title from '../components/Title';
 import ItemCard from '../components/ItemCards/ItemCard';
@@ -11,6 +13,7 @@ import i18n from '../translations/I18n';
 
 const Bookmarks = ( {navigation}: {navigation: any} ) => {
     const [favs, setFavs] = useState([]);
+    const [palette, setPalette] = useState<any>('');
 
     // fetch bookmarked items' id from server
     const getFavs = async () => {
@@ -23,9 +26,25 @@ const Bookmarks = ( {navigation}: {navigation: any} ) => {
         }
     };
 
+    const getTheme = async () => {
+        try {
+            let theme = await AsyncStorage.getItem('theme');
+            if (theme !== null) {
+                if (theme === 'light') {
+                    setPalette(Globals.colors.light);
+                } else {
+                    setPalette(Globals.colors.dark);
+                }
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     useEffect(() => {
         const id = setInterval(() => {
             getFavs();
+            getTheme();
         }, 3000);
 
         return () => {
@@ -34,15 +53,15 @@ const Bookmarks = ( {navigation}: {navigation: any} ) => {
     });
 
     return (
-        <View>
+        <View style={[{flex: 1}, palette.bg]}>
             <View style={styles.titleView}>
-                <Title title={i18n.t('Bookmarks.title')}/>
+                <Title title={i18n.t('Bookmarks.title')} palette={palette} />
             </View>
             <ScrollView style={styles.scrollview}>
                 {
                     // retrieve the item name from the id using findName()
                     favs.map( (item: any) => (
-                        <ItemCard key={item.id} id={item.item_id} navigation={navigation}/>
+                        <ItemCard key={item.id} id={item.item_id} navigation={navigation} palette={palette} />
                     ))
                 }
             </ScrollView>

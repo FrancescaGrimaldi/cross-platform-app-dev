@@ -7,10 +7,13 @@
         "title" : "Settings",
         "locale" : {
             "title" : "Language",
-            "en" : "English",
-            "nb" : "Norwegian Bokmål",
-            "it" : "Italian",
             "placeholder" : "Select language"
+        },
+        "theme" : {
+            "title" : "Theme",
+            "light" : "Light",
+            "dark" : "Dark",
+            "placeholder" : "Select theme"
         }
     },
     "Bookmarks" : {

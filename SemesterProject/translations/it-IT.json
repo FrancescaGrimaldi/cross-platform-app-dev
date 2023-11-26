@@ -7,10 +7,13 @@
         "title" : "Impostazioni",
         "locale" : {
             "title" : "Lingua",
-            "en" : "Inglese",
-            "nb" : "Norvegese Bokmål",
-            "it" : "Italiano",
             "placeholder" : "Seleziona la lingua"
+        },
+        "theme" : {
+            "title" : "Tema",
+            "light" : "Chiaro",
+            "dark" : "Scuro",
+            "placeholder" : "Seleziona il tema"
         }
     },
     "Bookmarks" : {
