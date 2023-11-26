@@ -31,7 +31,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const FoodApp = () => {
-  const [palette, setPalette] = useState<any>('');
+  const [palette, setPalette] = useState<any>(Globals.colors.light);
 
   function HomeScreen() {
     return (

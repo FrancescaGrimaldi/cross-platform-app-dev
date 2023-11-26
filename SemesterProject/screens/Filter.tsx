@@ -13,7 +13,7 @@ import Globals from '../Globals';
 const Filter = ( {navigation, route}: {navigation: any, route: any} ) => {
     const categories = ['American Food', 'Asian Food', 'Italian Food'];
     const [selected, setSelected] = useState(route.params.selectedCategories);
-    const [palette, setPalette] = useState<any>('');
+    const [palette, setPalette] = useState<any>(Globals.colors.light);
 
     const addToSelectedCategories = (category: string) => {
         setSelected([...selected, category]);

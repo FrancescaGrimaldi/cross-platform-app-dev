@@ -28,7 +28,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
     const [item, setItem] = useState<any>([]);
     const [isFav, setIsFav] = useState(false);
     const [itemImg, setItemImg] = useState(require('../images/items/unavailable.jpg'));
-    const [palette, setPalette] = useState<any>('light');
+    const [palette, setPalette] = useState<any>(Globals.colors.light);
 
     // fetch item details from server
     const getItemDetails = async () => {

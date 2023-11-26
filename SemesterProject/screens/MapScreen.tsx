@@ -14,7 +14,7 @@ const MapScreen = ( {navigation}: {navigation: any} ) => {
     const [markers, setMarkers] = useState<any>([]);
     const [filteredCategories, setFilteredCategories] = useState([]);
     const [searching, setSearching] = useState(false);
-    const [palette, setPalette] = useState<any>('');
+    const [palette, setPalette] = useState<any>(Globals.colors.light);
 
     // fetch items from server
     const getMarkers = async () => {

@@ -13,7 +13,7 @@ import i18n from '../translations/I18n';
 
 const Bookmarks = ( {navigation}: {navigation: any} ) => {
     const [favs, setFavs] = useState([]);
-    const [palette, setPalette] = useState<any>('');
+    const [palette, setPalette] = useState<any>(Globals.colors.light);
 
     // fetch bookmarked items' id from server
     const getFavs = async () => {

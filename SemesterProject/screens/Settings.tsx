@@ -15,7 +15,7 @@ import Globals from '../Globals';
 
 const Settings = ( {navigation}: {navigation: any} ) => {
     const [lang, setLang] = useState('en-GB');
-    const [palette, setPalette] = useState<any>('');
+    const [palette, setPalette] = useState<any>(Globals.colors.light);
 
     const getTheme = async () => {
         try {

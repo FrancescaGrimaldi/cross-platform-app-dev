@@ -16,7 +16,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
     const [items, setItems] = useState<any>([]);
     const [filteredCategories, setFilteredCategories] = useState([]);
     const [searching, setSearching] = useState(false);
-    const [palette, setPalette] = useState<any>('');
+    const [palette, setPalette] = useState<any>(Globals.colors.light);
 
     // fetch items from server
     const getItems = async () => {

@@ -24,7 +24,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     const [cartItems, setCartItems] = useState<{id: number, item_id: number, quantity: number,}[]>([]);
     const [suggestedItems, setSuggestions] = useState<any[]>([]);
     const [deliveryTime, setDeliveryTime] = useState(0);
-    const [palette, setPalette] = useState<any>('light');
+    const [palette, setPalette] = useState<any>(Globals.colors.light);
 
     // fetch items in the shopping cart from server
     const getCartItems = async () => {
