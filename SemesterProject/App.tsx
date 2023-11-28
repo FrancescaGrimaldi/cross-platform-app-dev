@@ -1,7 +1,5 @@
-/* eslint-disable eol-last */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable semi */
 /* eslint-disable prettier/prettier */
 
 import React, { useState, useEffect } from 'react';
@@ -121,11 +119,18 @@ const FoodApp = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name="ItemDetails" component={ItemDetails} options={{ headerTitle: '', headerTintColor: palette.purple, headerStyle: {backgroundColor: palette.bgColor} }}/>
-        <Stack.Screen name="Filter" component={Filter} options={{ headerTitle: `${i18n.t('Filter.title')}`, headerStyle: {backgroundColor: palette.bgColor}, headerTitleStyle: {fontSize: 25}, headerTintColor: palette.purple }}/>
+        <Stack.Screen name="ItemDetails" component={ItemDetails} options={{
+          headerTitle: '',
+          headerTintColor: palette.purple,
+          headerStyle: {backgroundColor: palette.bgColor} }}/>
+        <Stack.Screen name="Filter" component={Filter} options={{
+          headerTitle: `${i18n.t('Filter.title')}`,
+          headerStyle: {backgroundColor: palette.bgColor},
+          headerTitleStyle: {fontSize: 25},
+          headerTintColor: palette.purple }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
 
 export default FoodApp;
