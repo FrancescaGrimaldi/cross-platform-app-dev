@@ -1,6 +1,6 @@
 ﻿# Semester project 2023 - INFT2508 Cross-platform Applications Development for Mobile Devices
 
-**Student**: Francesca Grimaldi
+**Student**: Francesca Grimaldi <br>
 **Date**: 01/12/2023
 
 ## Product description and features
@@ -28,8 +28,8 @@ The **bottom bar** gives users the possibility to easily navigate among the main
 This is what the thumbnails view looks like.
 
 <p align="center">
-  <img src="screenshots/home_light_eng.png" width="49%" />
-  <img src="screenshots/home_dark_nb.png" width="49%" />
+  <img src="screenshots/home_light_eng.png" width="35%" />
+  <img src="screenshots/home_dark_nb.png" width="35%" />
 
   **Figure 1.** (a) Homepage in Light mode (English). (b) Homepage in Dark mode (Norwegian).
 </p>
@@ -39,8 +39,8 @@ The only differences between these representations are in the size and placement
 All the items are shown using the same card – the **medium** one – when searching or filtering, to provide a more straightforward and clear visualization of the products.
 
 <p align="center">
-  <img src="screenshots/search_light_eng.png" width="49%" />
-  <img src="screenshots/filter1_light_eng.png" width="49%" />
+  <img src="screenshots/search_light_eng.png" width="35%" />
+  <img src="screenshots/filter1_light_eng.png" width="35%" />
 
   **Figure 2.** (a) Searching by name.  (b) Filtered items (Italian and Asian cuisine).
 </p>
@@ -54,8 +54,8 @@ Each item is placed on it through a location **marker**, based on the position o
 As per the thumbnails view, items can be searched and filtered.
 
 <p align="center">
-  <img src="screenshots/map1_light_eng.png" width="49%" />
-  <img src="screenshots/filter_map_light_eng.png" width="49%" />
+  <img src="screenshots/map1_light_eng.png" width="35%" />
+  <img src="screenshots/filter_map_light_eng.png" width="35%" />
 
   **Figure 3.** (a) Map view.  (b) Filtered items on map (Italian and Asian cuisine).
 </p>
@@ -66,8 +66,8 @@ From here, they can select one or more **categories** that they want to see the 
 By clicking on the back arrow, they can return to the landing page and visualize the filtered list of items.
 
 <p align="center">
-  <img src="screenshots/filter2_light_eng.png" width="49%" />
-  <img src="screenshots/filter2_dark_ita.png" width="49%" />
+  <img src="screenshots/filter2_light_eng.png" width="35%" />
+  <img src="screenshots/filter2_dark_ita.png" width="35%" />
 
   **Figure 4.** (a) Filters page in Light mode (English).  (b) Filters page in Dark mode (Italian).
 </p>
@@ -92,8 +92,8 @@ The bookmarked page is displayed upon click on the **heart** logo of the bottom 
 For their representation, the **medium** item card is used. By clicking on it, users are navigated to the item details page.
 
 <p align="center">
-  <img src="screenshots/fav_light_eng.png" width="49%" />
-  <img src="screenshots/fav_dark_ita.png" width="49%" />
+  <img src="screenshots/fav_light_eng.png" width="35%" />
+  <img src="screenshots/fav_dark_ita.png" width="35%" />
 
   **Figure 6.** (a) Bookmarks page in Light mode (English).  (b) Bookmarks page in Dark mode (Italian).
 </p>
@@ -104,8 +104,8 @@ The **summary** includes names of the products along with their quantities, the 
 Personalized **suggestions** are given according to the type of goods in the cart. For instance, if a person has a dish that is categorized as "American food", other products that fall under that category will be recommended to them. These can be browsed by scrolling horizontally.
 
 <p align="center">
-  <img src="screenshots/cart1_light_eng.png" width="49%" />
-  <img src="screenshots/cart2_light_eng.png" width="49%" />
+  <img src="screenshots/cart1_light_eng.png" width="35%" />
+  <img src="screenshots/cart2_light_eng.png" width="35%" />
 
   **Figure 7.** (a) Shopping cart page.  (b) Shopping cart page (cont.).
 </p>
@@ -115,8 +115,8 @@ To **proceed to checkout**, users can press on the designated button. Payment lo
 When there are zero items in the cart, the following screen is presented, with a button that leads to the the main page to see all the products and do shopping.
 
 <p align="center">
-  <img src="screenshots/checkout_light_eng.png" width="49%" />
-  <img src="screenshots/emptycart_light_eng.png" width="49%" />
+  <img src="screenshots/checkout_light_eng.png" width="35%" />
+  <img src="screenshots/emptycart_light_eng.png" width="35%" />
 
   **Figure 8.** (a) Checkout dialog.  (b) Empty cart screen.
 </p>
@@ -128,8 +128,8 @@ The Settings page is a very simple page that can be accessed from the bottom bar
 * change the **theme**: the app colors can be switched between Light and Dark mode.
 
 <p align="center">
-  <img src="screenshots/settings_light_eng.png" width="49%" />
-  <img src="screenshots/settings_dark_nb.png" width="49%" />
+  <img src="screenshots/settings_light_eng.png" width="35%" />
+  <img src="screenshots/settings_dark_nb.png" width="35%" />
 
   **Figure 9.** (a) Settings page in Light mode (English).  (b) Settings page in Dark mode (Norwegian).
 </p>
