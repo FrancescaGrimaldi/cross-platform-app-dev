@@ -29,7 +29,7 @@ This is what the thumbnails view looks like.
 
 <p align="center">
   <img src="screenshots/home_light_eng.png" width="49%" />
-  <img src="screenshot/home_dark_nb.png" width="49%" />
+  <img src="screenshots/home_dark_nb.png" width="49%" />
 
   **Figure 1.** (a) Homepage in Light mode (English). (b) Homepage in Dark mode (Norwegian).
 </p>
@@ -40,7 +40,7 @@ All the items are shown using the same card – the **medium** one – when sear
 
 <p align="center">
   <img src="screenshots/search_light_eng.png" width="49%" />
-  <img src="screenshot/filter1_light_eng.png" width="49%" />
+  <img src="screenshots/filter1_light_eng.png" width="49%" />
 
   **Figure 2.** (a) Searching by name.  (b) Filtered items (Italian and Asian cuisine).
 </p>
@@ -55,7 +55,7 @@ As per the thumbnails view, items can be searched and filtered.
 
 <p align="center">
   <img src="screenshots/map1_light_eng.png" width="49%" />
-  <img src="screenshot/filter_map_light_eng.png" width="49%" />
+  <img src="screenshots/filter_map_light_eng.png" width="49%" />
 
   **Figure 3.** (a) Map view.  (b) Filtered items on map (Italian and Asian cuisine).
 </p>
@@ -67,7 +67,7 @@ By clicking on the back arrow, they can return to the landing page and visualize
 
 <p align="center">
   <img src="screenshots/filter2_light_eng.png" width="49%" />
-  <img src="screenshot/filter2_dark_ita.png" width="49%" />
+  <img src="screenshots/filter2_dark_ita.png" width="49%" />
 
   **Figure 4.** (a) Filters page in Light mode (English).  (b) Filters page in Dark mode (Italian).
 </p>
@@ -81,8 +81,8 @@ After a short description of the dish, four other images are presented as **pict
 
 <p align="center">
   <img src="screenshots/details_light_eng.png" width="30%" />
-  <img src="screenshot/details_dark_nb.png" width="30%" />
-  <img src="screenshot/gallery.png" width="30%" />
+  <img src="screenshots/details_dark_nb.png" width="30%" />
+  <img src="screenshots/gallery.png" width="30%" />
 
   **Figure 5.** (a) Item details page in Light mode (English).  (b) Item details page in Dark mode (Norwegian).  (c\) Opened image.
 </p>
@@ -93,7 +93,7 @@ For their representation, the **medium** item card is used. By clicking on it, u
 
 <p align="center">
   <img src="screenshots/fav_light_eng.png" width="49%" />
-  <img src="screenshot/fav_dark_ita.png" width="49%" />
+  <img src="screenshots/fav_dark_ita.png" width="49%" />
 
   **Figure 6.** (a) Bookmarks page in Light mode (English).  (b) Bookmarks page in Dark mode (Italian).
 </p>
@@ -105,7 +105,7 @@ Personalized **suggestions** are given according to the type of goods in the car
 
 <p align="center">
   <img src="screenshots/cart1_light_eng.png" width="49%" />
-  <img src="screenshot/cart2_light_eng.png" width="49%" />
+  <img src="screenshots/cart2_light_eng.png" width="49%" />
 
   **Figure 7.** (a) Shopping cart page.  (b) Shopping cart page (cont.).
 </p>
@@ -116,7 +116,7 @@ When there are zero items in the cart, the following screen is presented, with a
 
 <p align="center">
   <img src="screenshots/checkout_light_eng.png" width="49%" />
-  <img src="screenshot/emptycart_light_eng.png" width="49%" />
+  <img src="screenshots/emptycart_light_eng.png" width="49%" />
 
   **Figure 8.** (a) Checkout dialog.  (b) Empty cart screen.
 </p>
@@ -129,7 +129,7 @@ The Settings page is a very simple page that can be accessed from the bottom bar
 
 <p align="center">
   <img src="screenshots/settings_light_eng.png" width="49%" />
-  <img src="screenshot/settings_dark_nb.png" width="49%" />
+  <img src="screenshots/settings_dark_nb.png" width="49%" />
 
   **Figure 9.** (a) Settings page in Light mode (English).  (b) Settings page in Dark mode (Norwegian).
 </p>
