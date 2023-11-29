@@ -17,7 +17,6 @@ export const imagesMap = {
     7: require('../../images/items/7_1.jpg'),
 };
 
-// TODO: implement different sizes for different parts of the app
 const ItemCard = (props) => {
     const [item, setItem] = useState({});
 

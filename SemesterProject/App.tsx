@@ -9,7 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import i18n from './translations/I18n';
-import Globals from './Globals';
+import Palette from './Palette';
 
 import Homepage from './screens/Homepage';
 import MapScreen from './screens/MapScreen';
@@ -29,7 +29,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const FoodApp = () => {
-  const [palette, setPalette] = useState<any>(Globals.colors.light);
+  const [palette, setPalette] = useState<any>(Palette.colors.light);
 
   function HomeScreen() {
     return (
@@ -95,9 +95,9 @@ const FoodApp = () => {
         let theme = await AsyncStorage.getItem('theme');
         if (theme !== null) {
             if (theme === 'light') {
-                setPalette(Globals.colors.light);
+                setPalette(Palette.colors.light);
             } else {
-                setPalette(Globals.colors.dark);
+                setPalette(Palette.colors.dark);
             }
         }
     } catch (e) {

@@ -11,8 +11,9 @@ import FontAw from 'react-native-vector-icons/FontAwesome';
 import Title from '../components/Title';
 import PictureGallery from '../components/PictureGallery';
 
-import i18n from '../translations/I18n';
 import Globals from '../Globals';
+import Palette from '../Palette';
+import i18n from '../translations/I18n';
 
 const imgSources = {
     1: require('../images/items/1_1.jpg'),
@@ -28,7 +29,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
     const [item, setItem] = useState<any>([]);
     const [isFav, setIsFav] = useState(false);
     const [itemImg, setItemImg] = useState(require('../images/items/unavailable.jpg'));
-    const [palette, setPalette] = useState<any>(Globals.colors.light);
+    const [palette, setPalette] = useState<any>(Palette.colors.light);
 
     // fetch item details from server
     const getItemDetails = async () => {
@@ -144,9 +145,9 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
             let theme = await AsyncStorage.getItem('theme');
             if (theme !== null) {
                 if (theme === 'light') {
-                    setPalette(Globals.colors.light);
+                    setPalette(Palette.colors.light);
                 } else {
-                    setPalette(Globals.colors.dark);
+                    setPalette(Palette.colors.dark);
                 }
             }
         } catch (e) {

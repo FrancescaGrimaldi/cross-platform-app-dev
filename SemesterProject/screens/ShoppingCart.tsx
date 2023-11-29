@@ -15,6 +15,7 @@ import SmallItemCard from '../components/ItemCards/SmallItemCard';
 import CartButton from '../components/CartButton';
 
 import Globals from '../Globals';
+import Palette from '../Palette';
 import i18n from '../translations/I18n';
 
 const ShoppingCart = ( {navigation}: {navigation: any} ) => {
@@ -24,7 +25,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
     const [cartItems, setCartItems] = useState<{id: number, item_id: number, quantity: number,}[]>([]);
     const [suggestedItems, setSuggestions] = useState<any[]>([]);
     const [deliveryTime, setDeliveryTime] = useState(0);
-    const [palette, setPalette] = useState<any>(Globals.colors.light);
+    const [palette, setPalette] = useState<any>(Palette.colors.light);
 
     // fetch items in the shopping cart from server
     const getCartItems = async () => {
@@ -102,9 +103,9 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
             let theme = await AsyncStorage.getItem('theme');
             if (theme !== null) {
                 if (theme === 'light') {
-                    setPalette(Globals.colors.light);
+                    setPalette(Palette.colors.light);
                 } else {
-                    setPalette(Globals.colors.dark);
+                    setPalette(Palette.colors.dark);
                 }
             }
         } catch (error) {

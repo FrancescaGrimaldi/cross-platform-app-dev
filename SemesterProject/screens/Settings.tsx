@@ -10,21 +10,21 @@ import Title from '../components/Title';
 import LanguageSelector from '../components/LanguageSelector';
 import ThemeSelector from '../components/ThemeSelector';
 
+import Palette from '../Palette';
 import i18n from '../translations/I18n';
-import Globals from '../Globals';
 
 const Settings = ( {navigation}: {navigation: any} ) => {
     const [lang, setLang] = useState('en-GB');
-    const [palette, setPalette] = useState<any>(Globals.colors.light);
+    const [palette, setPalette] = useState<any>(Palette.colors.light);
 
     const getTheme = async () => {
         try {
             let theme = await AsyncStorage.getItem('theme');
             if (theme !== null) {
                 if (theme === 'light') {
-                    setPalette(Globals.colors.light);
+                    setPalette(Palette.colors.light);
                 } else {
-                    setPalette(Globals.colors.dark);
+                    setPalette(Palette.colors.dark);
                 }
             }
         } catch (e) {

@@ -9,11 +9,12 @@ import Title from '../components/Title';
 import ItemCard from '../components/ItemCards/ItemCard';
 
 import Globals from '../Globals';
+import Palette from '../Palette';
 import i18n from '../translations/I18n';
 
 const Bookmarks = ( {navigation}: {navigation: any} ) => {
     const [favs, setFavs] = useState([]);
-    const [palette, setPalette] = useState<any>(Globals.colors.light);
+    const [palette, setPalette] = useState<any>(Palette.colors.light);
 
     // fetch bookmarked items' id from server
     const getFavs = async () => {
@@ -31,9 +32,9 @@ const Bookmarks = ( {navigation}: {navigation: any} ) => {
             let theme = await AsyncStorage.getItem('theme');
             if (theme !== null) {
                 if (theme === 'light') {
-                    setPalette(Globals.colors.light);
+                    setPalette(Palette.colors.light);
                 } else {
-                    setPalette(Globals.colors.dark);
+                    setPalette(Palette.colors.dark);
                 }
             }
         } catch (e) {

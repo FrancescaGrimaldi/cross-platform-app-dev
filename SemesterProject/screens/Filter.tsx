@@ -8,12 +8,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import CheckboxCategory from '../components/CheckboxCategory';
 
-import Globals from '../Globals';
+import Palette from '../Palette';
 
 const Filter = ( {navigation, route}: {navigation: any, route: any} ) => {
     const categories = ['American Food', 'Asian Food', 'Italian Food'];
     const [selected, setSelected] = useState(route.params.selectedCategories);
-    const [palette, setPalette] = useState<any>(Globals.colors.light);
+    const [palette, setPalette] = useState<any>(Palette.colors.light);
 
     const addToSelectedCategories = (category: string) => {
         setSelected([...selected, category]);
@@ -35,9 +35,9 @@ const Filter = ( {navigation, route}: {navigation: any, route: any} ) => {
             let theme = await AsyncStorage.getItem('theme');
             if (theme !== null) {
                 if (theme === 'light') {
-                    setPalette(Globals.colors.light);
+                    setPalette(Palette.colors.light);
                 } else {
-                    setPalette(Globals.colors.dark);
+                    setPalette(Palette.colors.dark);
                 }
             }
         } catch (e) {

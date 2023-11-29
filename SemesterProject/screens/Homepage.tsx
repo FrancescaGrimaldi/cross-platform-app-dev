@@ -11,12 +11,13 @@ import SidedItemCard from '../components/ItemCards/SidedItemCard';
 import UpperBar from '../components/UpperBar';
 
 import Globals from '../Globals';
+import Palette from '../Palette';
 
 const Homepage = ( {navigation}: {navigation: any} ) => {
     const [items, setItems] = useState<any>([]);
     const [filteredCategories, setFilteredCategories] = useState([]);
     const [searching, setSearching] = useState(false);
-    const [palette, setPalette] = useState<any>(Globals.colors.light);
+    const [palette, setPalette] = useState<any>(Palette.colors.light);
 
     // fetch items from server
     const getItems = async () => {
@@ -42,9 +43,9 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
             let theme = await AsyncStorage.getItem('theme');
             if (theme !== null) {
                 if (theme === 'light') {
-                    setPalette(Globals.colors.light);
+                    setPalette(Palette.colors.light);
                 } else {
-                    setPalette(Globals.colors.dark);
+                    setPalette(Palette.colors.dark);
                 }
             }
         } catch (e) {

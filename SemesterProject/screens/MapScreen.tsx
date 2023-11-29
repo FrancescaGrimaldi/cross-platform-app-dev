@@ -8,13 +8,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import UpperBar from '../components/UpperBar';
 
 import Globals from '../Globals';
+import Palette from '../Palette';
 import i18n from '../translations/I18n';
 
 const MapScreen = ( {navigation}: {navigation: any} ) => {
     const [markers, setMarkers] = useState<any>([]);
     const [filteredCategories, setFilteredCategories] = useState([]);
     const [searching, setSearching] = useState(false);
-    const [palette, setPalette] = useState<any>(Globals.colors.light);
+    const [palette, setPalette] = useState<any>(Palette.colors.light);
 
     // fetch items from server
     const getMarkers = async () => {
@@ -40,9 +41,9 @@ const MapScreen = ( {navigation}: {navigation: any} ) => {
             let theme = await AsyncStorage.getItem('theme');
             if (theme !== null) {
                 if (theme === 'light') {
-                    setPalette(Globals.colors.light);
+                    setPalette(Palette.colors.light);
                 } else {
-                    setPalette(Globals.colors.dark);
+                    setPalette(Palette.colors.dark);
                 }
             }
         } catch (e) {

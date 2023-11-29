@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 import i18n from '../translations/I18n';
-import Globals from '../Globals';
+import Palette from '../Palette';
 
 const ThemeSelector = (props) => {
     const [selected, setSelected] = useState('');
@@ -22,9 +22,9 @@ const ThemeSelector = (props) => {
         try {
             await AsyncStorage.setItem('theme', selected);
             if (selected === 'light') {
-                props.setPalette(Globals.colors.light);
+                props.setPalette(Palette.colors.light);
             } else {
-                props.setPalette(Globals.colors.dark);
+                props.setPalette(Palette.colors.dark);
             }
         } catch (e) {
             console.log(e);
