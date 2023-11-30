@@ -36,6 +36,7 @@ const MapScreen = ( {navigation}: {navigation: any} ) => {
         }
     };
 
+    // retrieve theme from async storage
     const getTheme = async () => {
         try {
             let theme = await AsyncStorage.getItem('theme');
@@ -55,7 +56,7 @@ const MapScreen = ( {navigation}: {navigation: any} ) => {
         const id = setInterval(() => {
             if (!searching) { getMarkers(); }
             getTheme();
-        }, 8000);
+        }, 3000);
 
         return () => {
             clearInterval(id);

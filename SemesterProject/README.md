@@ -20,7 +20,7 @@ The landing page, which can be visualized in **thumbnails** or **map** view, is 
 
 On the upper part of the page, both versions feature:
 * a **search bar**, to retrieve specific items by their name;
-* a **filter menu**, that can be opened by clicking on the hamburger menu icon besides the search bar, and allows users to only visualize the items belonging to the selected categories.
+* a **filter menu**, that can be opened by clicking on the filter icon besides the search bar, and allows users to only visualize the items belonging to the selected categories.
 
 The **bottom bar** gives users the possibility to easily navigate among the main sections of the app.
 
@@ -61,7 +61,7 @@ As per the thumbnails view, items can be searched and filtered.
 </p>
 
 ### Filters page
-This page is displayed when the user clicks on the filter menu in the upper bar of the main screen.
+This page is displayed when the user clicks on the filter icon in the upper bar of the main screen.
 From here, they can select one or more **categories** that they want to see the products of. In this case, it would be the different types of cuisine.
 By clicking on the back arrow, they can return to the landing page and visualize the filtered list of items.
 
@@ -141,10 +141,10 @@ The project's folder tree is the following.
 .
 ├── components/
 │   ├── ItemCards/
-│	│	├── BigItemCard.js
-│	│	├── ItemCard.js
-│	│	├── SidedItemCard.js
-│	│	└── SmallItemCard.js
+│   │   ├── BigItemCard.js
+│ 	│	  ├── ItemCard.js
+│	  │   ├── SidedItemCard.js
+│	  │   └── SmallItemCard.js
 │   ├── CartButton.js
 │   ├── CheckboxCategory.js
 │   ├── EmptyCart.js

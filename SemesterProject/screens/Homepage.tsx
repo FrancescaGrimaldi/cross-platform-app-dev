@@ -38,6 +38,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
         }
     };
 
+    // retrieve theme from async storage
     const getTheme = async () => {
         try {
             let theme = await AsyncStorage.getItem('theme');
@@ -64,6 +65,7 @@ const Homepage = ( {navigation}: {navigation: any} ) => {
         };
     });
 
+    // returns the items displayed according to the pattern
     const createGrid = () => {
         let counter = 0;
 

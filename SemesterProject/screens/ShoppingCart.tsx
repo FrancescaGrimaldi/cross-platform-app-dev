@@ -40,6 +40,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
         }
     };
 
+    // calculate the total price of the items in the shopping cart, with subtotal, fees and delivery time
     const calculateTotal = async () => {
         let sum = 0;
         let deliTime = 0;
@@ -59,6 +60,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
         setDeliveryTime(deliTime);
     };
 
+    // suggest items to the user based on the category of the items in the shopping cart
     const suggestItems = async () => {
         // retrieve all information of each cart item from the server and check their category to suggest similar items
         let itemsCategories: any[] = [];
@@ -98,6 +100,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
         }
     };
 
+    // retrieve theme from async storage
     const getPalette = async () => {
         try {
             let theme = await AsyncStorage.getItem('theme');
@@ -125,6 +128,7 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
         };
     });
 
+    // reset the shopping cart
     const resetCart = async () => {
         try {
             for (let item of cartItems) {
@@ -148,10 +152,12 @@ const ShoppingCart = ( {navigation}: {navigation: any} ) => {
         }
     };
 
+    // open the modal window to confirm the checkout
     const checkout = () => {
         setModalVisible(true);
     };
 
+    // empty the shopping cart and close the modal window
     const confirmCheckout = async () => {
         resetCart();
         setModalVisible(false);

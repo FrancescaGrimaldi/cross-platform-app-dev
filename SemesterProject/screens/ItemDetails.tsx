@@ -44,6 +44,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         }
     };
 
+    // fetch to check if the item is in the bookmarks list
     const checkFav = async () => {
         try {
             const response = await fetch(`https://${Globals.serverAddress}/bookmarks/?item_id=` + route.params);
@@ -56,6 +57,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         }
     };
 
+    // add the item to the shopping cart (or increment the quantity)
     const addToCart = async () => {
         // check if the item is already in the shopping cart, if so, increment the quantity
         try {
@@ -89,6 +91,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         }
     };
 
+    // add the item to the bookmarks list
     const addToFavs = async () => {
         // check if the item is already in the bookmarks list, if so, return
         try {
@@ -113,6 +116,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         }
     };
 
+    // remove the item from the bookmarks list
     const removeFromFavs = async () => {
         try {
             // delete using the id of the bookmark
@@ -132,6 +136,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         }
     };
 
+    // change the bookmark status of the item
     const switchFav = () => {
         if (isFav) {
             removeFromFavs();
@@ -140,6 +145,7 @@ const ItemDetails = ( {navigation, route}: {navigation: any, route: any} ) => {
         }
     };
 
+    // retrieve theme from async storage
     const getTheme = async () => {
         try {
             let theme = await AsyncStorage.getItem('theme');

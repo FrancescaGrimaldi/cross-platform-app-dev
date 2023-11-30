@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react-native/no-inline-styles */
 
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
@@ -15,14 +14,17 @@ const Filter = ( {navigation, route}: {navigation: any, route: any} ) => {
     const [selected, setSelected] = useState(route.params.selectedCategories);
     const [palette, setPalette] = useState<any>(Palette.colors.light);
 
+    // adds a category to the selected categories
     const addToSelectedCategories = (category: string) => {
         setSelected([...selected, category]);
     };
 
+    // removes a category from the selected categories
     const removeFromSelectedCategories = (category: string) => {
         setSelected(selected.filter( (item: string) => item !== category));
     };
 
+    // checks if a category is selected
     const checkSelected = (category: string) => {
         if (selected.includes(category)) {
             return true;
@@ -30,6 +32,7 @@ const Filter = ( {navigation, route}: {navigation: any, route: any} ) => {
         return false;
     };
 
+    // retrieve theme from async storage
     const getTheme = async () => {
         try {
             let theme = await AsyncStorage.getItem('theme');

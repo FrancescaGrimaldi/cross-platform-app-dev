@@ -1,9 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import React from 'react';
-import { View, Image, Text, Pressable, StyleSheet, LogBox } from 'react-native';
-
-// LogBox.ignoreAllLogs();
+import { View, Image, Text, Pressable, StyleSheet } from 'react-native';
 
 import i18n from '../../translations/I18n';
 

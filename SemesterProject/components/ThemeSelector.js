@@ -18,6 +18,7 @@ const ThemeSelector = (props) => {
         {key:'dark', value:`${i18n.t('Settings.theme.dark')}`},
     ];
 
+    // change theme and save it to async storage
     const changeTheme = async () => {
         try {
             await AsyncStorage.setItem('theme', selected);

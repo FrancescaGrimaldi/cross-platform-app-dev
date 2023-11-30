@@ -18,6 +18,7 @@ const LanguageSelector = (props) => {
         {key:'nb-NO', value:'Norsk Bokmål'},
     ];
 
+    // change language and save it to async storage
     const changeLanguage = async () => {
         i18n.translations = {
             [selected]: translatedTexts[selected](),

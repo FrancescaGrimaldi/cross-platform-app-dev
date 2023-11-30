@@ -27,6 +27,7 @@ const Bookmarks = ( {navigation}: {navigation: any} ) => {
         }
     };
 
+    // retrieve theme from async storage
     const getTheme = async () => {
         try {
             let theme = await AsyncStorage.getItem('theme');

@@ -9,6 +9,7 @@ import Globals from '../Globals';
 const Cart = (props) => {
     const [item, setItem] = useState({});
 
+    // fetch item from server
     const findItem = async () => {
         try {
             const response = await fetch(`http://${Globals.serverAddress}/items/${props.id}`);

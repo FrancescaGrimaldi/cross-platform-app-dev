@@ -17,6 +17,7 @@ const Settings = ( {navigation}: {navigation: any} ) => {
     const [lang, setLang] = useState('en-GB');
     const [palette, setPalette] = useState<any>(Palette.colors.light);
 
+    // retrieve language from async storage
     const getTheme = async () => {
         try {
             let theme = await AsyncStorage.getItem('theme');
