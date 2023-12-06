@@ -142,9 +142,9 @@ The project's folder tree is the following.
 ├── components/
 │   ├── ItemCards/
 │   │   ├── BigItemCard.js
-│ 	│	  ├── ItemCard.js
-│	  │   ├── SidedItemCard.js
-│	  │   └── SmallItemCard.js
+│   │   ├── ItemCard.js
+│   │   ├── SidedItemCard.js
+│   │   └── SmallItemCard.js
 │   ├── CartButton.js
 │   ├── CheckboxCategory.js
 │   ├── EmptyCart.js
